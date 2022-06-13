@@ -65,10 +65,16 @@ end
 # STORAGE #
 ###########
 
-# Indexed list of all trades
+# Indexed list of sale trades
 @storage_var
-func _trades(idx : felt) -> (trade : SwapNFT):
+func _sale_trades(idx : felt) -> (trade : SwapNFT):
 end
+
+# Indexed list of nft to nft trades
+@storage_var
+func _nft_to_nft_trades(idx : felt) -> (trade : SwapNFT):
+end
+
 
 # Indexed list of all bids
 @storage_var
@@ -77,20 +83,32 @@ end
 
 # Contract Address of ether used to purchase or sell items
 @storage_var
-func ether_token_address() -> (address : felt):
+func erc20_token_address() -> (address : felt):
 end
 
-# The current number of trades
+# The current number of sale trades
 @storage_var
-func trade_counter() -> (value : felt):
+func sale_trade_counter() -> (value : felt):
+end
+
+# The current number of swap trades
+@storage_var
+func swap_trade_counter() -> (value : felt):
 end
 
 
+
+###############
+# CONSTRUCTOR #
+###############
 
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-     owner : felt
+     owner : felt, erc20_address : felt, 
 ):
+    erc20_token_address(erc20_address)
     Ownable_initializer(owner)
+    sale_trade_counter.write(1)
+    swap_trade_counter.write(1)
     return ()
 end
