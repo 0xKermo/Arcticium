@@ -1,21 +1,34 @@
 
-const hre = require("hardhat");
+//we import expect to test values
+const { expect } = require("chai");
+// These two lines allow us to play with our testnet and access our deployed contract 
+const { starknet } = require("hardhat");
+const { StarknetContract, StarknetContractFactory } = require("hardhat/types/runtime");
 
-async function main() {
 
-  const Greeter = await hre.ethers.getContractFactory("test_ERC721");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+describe("Test contract : ERC721", function () {
 
-  await greeter.deployed();
+  it("Should create an contract and play with it.", async function () {
+    // We need to increase the timeout to prevent test network latencies (in microseconds))  
+    this.timeout(600_000);
 
-  console.log("Greeter deployed to:", greeter.address);
-}
+    console.log("Started deployment");
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
+    // "Balance" represent our smart contract.
+    const contractFactory = await starknet.getContractFactory("ERC721");
+    const contract = await contractFactory.deploy({ initial_balance: 0 });
+
+    console.log("Deployed at", contract.address);
+
+    const { res: BalanceBefore } = await contract.call("get_balance");
+    console.log("balance at initialization", BalanceBefore)
+    expect(BalanceBefore).to.equal(BigInt("0")); // or 0n, the return is typeOf Bigint
+
+    await contract.invoke("increase_balance", { amount: 10 });
+    console.log("Balance Increased by 10");
+
+    const { res: balanceAfter } = await contract.call("get_balance");
+    console.log("balance after update", balanceAfter)
+    expect(balanceAfter).to.equal(10n); // or BigInt("10")
   });
+});

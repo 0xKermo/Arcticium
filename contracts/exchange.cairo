@@ -32,11 +32,11 @@ struct NftToNft:
     member token_contract : felt
     member token_id : Uint256
     member expiration : felt
-    member price : felt
+    member price : felt # expect NFT + eth
     member status : felt  # from TradeStatus
     member trade_id : felt
     member target_token_contract : felt # nft contract address to be swapped
-    member target_nft_id : Uint256 # nft to be swapped
+    member target_token_id : Uint256 # nft to be swapped
 end
 
 
@@ -60,13 +60,7 @@ struct NftToCollection:
     member target_collection_contract : felt
 end
 
-struct NftToAny:
-    member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member status : felt  # from TradeStatus
-    member trade_id : felt
-end
+
 
 
 struct Bids:
@@ -85,9 +79,9 @@ end
 ###########
 
 # Indexed list of all trades
-@storage_var
-func _trades(idx : felt) -> (trade : Trade):
-end
+# @storage_var
+# func _trades(idx : felt) -> (trade : Trade):
+# end
 
 # Indexed list of all bids
 @storage_var

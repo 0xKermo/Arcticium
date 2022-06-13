@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@shardlabs/starknet-hardhat-plugin": "^0.5.5",
+    "chai": "^4.3.6",
+    "hardhat": "^2.9.9"
+  },
+  "scripts": {
+    "test": "mocha --timeout 10000"
+  }
+}
