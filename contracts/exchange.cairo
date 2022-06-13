@@ -28,7 +28,14 @@ namespace TradeStatus:
     const Cancelled = 3
 end
 
-struct NftToNft:
+namespace SwapType:
+    const Sale = 1 
+    const NftToAny = 2
+    const NFtToNft = 3
+    const NftToCollection = 4
+end
+
+struct SwapNFT:
     member token_contract : felt
     member token_id : Uint256
     member expiration : felt
@@ -37,39 +44,19 @@ struct NftToNft:
     member trade_id : felt
     member target_token_contract : felt # nft contract address to be swapped
     member target_token_id : Uint256 # nft to be swapped
+    member swap_type : felt # from SwapType
 end
-
-
-struct NftToAny:
-    member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member price : felt # Nft + eth
-    member status : felt  # from TradeStatus
-    member trade_id : felt
-end
-
-
-struct NftToCollection:
-    member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member price : felt # Nft + eth
-    member status : felt  # from TradeStatus
-    member trade_id : felt
-    member target_collection_contract : felt
-end
-
-
 
 
 struct Bids:
     member bid_owner : felt
-    member bid_nft : Uint256
+    member bid_collection_address : felt 
+    member bid_nft_id : Uint256
     member expiration : felt
     member price : felt # Nft + eth
     member status : felt  # from TradeStatus
     member target_nft_owner : felt
+    member target_collection_address : felt
     member target_nft_id : felt
     member bid_id : felt
 end
@@ -79,9 +66,9 @@ end
 ###########
 
 # Indexed list of all trades
-# @storage_var
-# func _trades(idx : felt) -> (trade : Trade):
-# end
+@storage_var
+func _trades(idx : felt) -> (trade : SwapNFT):
+end
 
 # Indexed list of all bids
 @storage_var
