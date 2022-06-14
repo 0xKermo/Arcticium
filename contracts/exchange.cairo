@@ -35,7 +35,7 @@ namespace TradeType:
     const NftToCollection = 4
 end
 
-struct Swap:
+struct Trade:
     member token_contract : felt
     member token_id : Uint256
     member expiration : felt
@@ -44,7 +44,7 @@ struct Swap:
     member trade_id : felt
     member target_token_contract : felt # nft contract address to be swapped
     member target_token_id : Uint256 # nft to be swapped
-    member swap_type : felt # from SwapType
+    member trade_type : felt # from SwapType
 end
 
 
@@ -61,29 +61,43 @@ struct Bids:
     member bid_id : felt
 end
 
+
+##########
+# EVENTS #
+##########
+
+@event
+func TradeAction(trade : Swap):
+end
+
 ###########
 # STORAGE #
 ###########
 
 # Indexed list of sale trades
 @storage_var
-func _sale_trades(idx : felt) -> (trade : Swap):
+func sale_trades(idx : felt) -> (trade : Swap):
 end
 
-# Indexed list of nft to nft trades
+# Indexed list of swap trades
 @storage_var
-func _nft_to_nft_trades(idx : felt) -> (trade : Swap):
+func swap_trades(idx : felt) -> (trade : Swap):
 end
 
 
 # Indexed list of all bids
 @storage_var
-func _bids(idx : felt) -> (trade : Bids):
+func bids(idx : felt) -> (trade : Bids):
 end
 
 # Contract Address of ether used to purchase or sell items
 @storage_var
 func erc20_token_address() -> (address : felt):
+end
+
+# The current number of trades
+@storage_var
+func trade_counter() -> (value : felt):
 end
 
 # The current number of sale trades
@@ -110,6 +124,7 @@ func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
     Ownable_initializer(owner)
     sale_trade_counter.write(1)
     swap_trade_counter.write(1)
+    trade_counter.write(1)
     return ()
 end
 
@@ -121,8 +136,8 @@ end
 
 @external
 func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _token_contract : felt, _token_id : Uint256, _tradetype : felt, _price : felt, _expiration : felt, 
-    _target_token_contract : felt, _target_token_id : Uint256, 
+    _token_contract : felt, _token_id : Uint256, _expiration : felt, _price : felt, 
+    _target_token_contract : felt, _target_token_id : Uint256, _trade_type : felt
 ):
     alloc_locals
     Pausable_when_not_paused()
@@ -135,14 +150,32 @@ func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     assert owner_of = caller
     assert is_approved = 1
 
-    _sale_trades(
-        sale_trade_count,
-        Swap(
+    sale_trades(
+        _token_contract,
+        Trade(
         _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count),
     )
 
     # increment
     sale_trade_counter.write(sale_trade_count + 1)
+    if _trade_type == 1:
+        let (sale_trade_count) = sale_trade_counter.read()
+        sale_trade_counter.write(sale_trade_count+1)
+    if _trade_type == 2:
+        let (swap_trade_count) = swap_trade_counter.read()
+        swap_trade_counter.write(swap_trade_count+1)
+
     return ()
 end
 
+###########
+# HELPERS #
+###########
+
+func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _trade : felt, trade : Trade
+):
+    _trades.write(_trade, trade)
+    TradeAction.emit(trade)
+    return ()
+end
