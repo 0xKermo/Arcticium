@@ -135,7 +135,7 @@ func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     assert owner_of = caller
     assert is_approved = 1
 
-    write_trade(
+    _sale_trades(
         sale_trade_count,
         Swap(
         _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count),
@@ -146,12 +146,3 @@ func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     return ()
 end
 
- member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member price : felt # expect NFT + eth
-    member status : felt  # from TradeStatus
-    member trade_id : felt
-    member target_token_contract : felt # nft contract address to be swapped
-    member target_token_id : Uint256 # nft to be swapped
-    member swap_type : felt # from SwapType
