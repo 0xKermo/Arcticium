@@ -123,7 +123,7 @@ end
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
      owner : felt, erc20_address : felt, 
 ):
-    erc20_token_address(erc20_address)
+    erc20_token_address.write(erc20_address)
     Ownable_initializer(owner)
     sale_trade_counter.write(1)
     swap_trade_counter.write(1)
@@ -154,24 +154,22 @@ func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_pt
     assert owner_of = caller
     assert is_approved = 1
 
-    if _trade_type == 1:
-        write_trade(
-            _token_contract,
-            Trade(
-            _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count, 
-            _target_token_contract, _target_token_id, TradeType.Sale)
-        )
-        sale_trade_counter.write(sale_trade_count+1)
-    end
-    if _trade_type == 2:
-        write_trade(
-            _token_contract,
-            Trade(
-            _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count, 
-            _target_token_contract, _target_token_id, TradeType.Swap)
-        )
-        swap_trade_counter.write(swap_trade_count+1)
-    end
+    write_trade(
+        _token_contract,
+        Trade(
+        token_contract = _token_contract, 
+        token_id = _token_id, 
+        expiration = _expiration, 
+        price = _price, 
+        status = TradeStatus.Open,
+        trade_id = 0,
+        target_token_contract = _target_token_contract,
+        target_token_id  =_target_token_id,
+        trade_type = 0), 
+        _trade_type,
+        sale_trade_count,
+        swap_trade_count
+    )
 
     return ()
 end
@@ -181,9 +179,28 @@ end
 ###########
 
 func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _trade : felt, trade : Trade
-):
-    _trades.write(_trade, trade)
+    _trade : felt, trade : Trade, _trade_type : felt, sale_trade_count : felt, swap_trade_count : felt
+):  
+
+    if _trade_type == 1:
+        trade.trade_type = TradeType.Sale
+        sale_trades.write(
+           sale_trade_count,
+            trade
+        )
+        sale_trade_counter.write(sale_trade_count+1)
+        return ()
+    end
+    if _trade_type == 2:
+        trade.trade_type = TradeType.Swap
+        swap_trades.write(
+        swap_trade_count,
+            trade
+        )
+        swap_trade_counter.write(swap_trade_count+1)
+        return ()
+    end
+
     TradeAction.emit(trade)
     return ()
 end
