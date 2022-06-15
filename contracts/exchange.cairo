@@ -17,7 +17,12 @@ from openzeppelin.token.erc20.interfaces.IERC20 import IERC20
 from openzeppelin.token.erc721.interfaces.IERC721 import IERC721
 
 from openzeppelin.access.ownable import Ownable_initializer, Ownable_only_owner
-
+from openzeppelin.security.pausable import (
+    Pausable_paused,
+    Pausable_pause,
+    Pausable_unpause,
+    Pausable_when_not_paused,
+)
 ############
 # MAPPINGS #
 ############
@@ -30,9 +35,7 @@ end
 
 namespace TradeType:
     const Sale = 1 
-    const NftToAny = 2
-    const NFtToNft = 3
-    const NftToCollection = 4
+    const Swap = 2
 end
 
 struct Trade:
@@ -67,7 +70,7 @@ end
 ##########
 
 @event
-func TradeAction(trade : Swap):
+func TradeAction(trade : Trade):
 end
 
 ###########
@@ -76,12 +79,12 @@ end
 
 # Indexed list of sale trades
 @storage_var
-func sale_trades(idx : felt) -> (trade : Swap):
+func sale_trades(idx : felt) -> (trade : Trade):
 end
 
 # Indexed list of swap trades
 @storage_var
-func swap_trades(idx : felt) -> (trade : Swap):
+func swap_trades(idx : felt) -> (trade : Trade):
 end
 
 
@@ -135,7 +138,7 @@ end
 
 
 @external
-func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     _token_contract : felt, _token_id : Uint256, _expiration : felt, _price : felt, 
     _target_token_contract : felt, _target_token_id : Uint256, _trade_type : felt
 ):
@@ -146,24 +149,29 @@ func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
     let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
     let (sale_trade_count) = sale_trade_counter.read()
+    let (swap_trade_count) = swap_trade_counter.read()
 
     assert owner_of = caller
     assert is_approved = 1
 
-    sale_trades(
-        _token_contract,
-        Trade(
-        _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count),
-    )
-
-    # increment
-    sale_trade_counter.write(sale_trade_count + 1)
     if _trade_type == 1:
-        let (sale_trade_count) = sale_trade_counter.read()
+        write_trade(
+            _token_contract,
+            Trade(
+            _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count, 
+            _target_token_contract, _target_token_id, TradeType.Sale)
+        )
         sale_trade_counter.write(sale_trade_count+1)
+    end
     if _trade_type == 2:
-        let (swap_trade_count) = swap_trade_counter.read()
+        write_trade(
+            _token_contract,
+            Trade(
+            _token_contract, _token_id, _expiration, _price, TradeStatus.Open, sale_trade_count, 
+            _target_token_contract, _target_token_id, TradeType.Swap)
+        )
         swap_trade_counter.write(swap_trade_count+1)
+    end
 
     return ()
 end
