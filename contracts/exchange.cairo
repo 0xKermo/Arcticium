@@ -52,7 +52,7 @@ struct Trade:
 end
 
 
-struct Bids:
+struct Bid:
     member bid_owner : felt
     member bid_collection_address : felt 
     member bid_nft_id : Uint256
@@ -74,6 +74,11 @@ end
 func TradeAction(trade : Trade):
 end
 
+
+@event
+func BidAction(trade : Bid):
+end
+
 ###########
 # STORAGE #
 ###########
@@ -91,7 +96,7 @@ end
 
 # Indexed list of all bids
 @storage_var
-func bids(idx : felt) -> (trade : Bids):
+func bids(idx : felt) -> (trade : Bid):
 end
 
 # Contract Address of ether used to purchase or sell items
