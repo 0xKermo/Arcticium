@@ -183,6 +183,7 @@ func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
 ):  
 
     if _trade_type == 1:
+        trade.trade_id = sale_trade_count
         trade.trade_type = TradeType.Sale
         sale_trades.write(
            sale_trade_count,
@@ -192,6 +193,7 @@ func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
         return ()
     end
     if _trade_type == 2:
+        trade.trade_id = swap_trade_count
         trade.trade_type = TradeType.Swap
         swap_trades.write(
         swap_trade_count,
