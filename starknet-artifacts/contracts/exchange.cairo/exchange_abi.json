@@ -27,28 +27,33 @@
                 "type": "felt"
             },
             {
-                "name": "trade_id",
+                "name": "sale_trade_id",
                 "offset": 6,
                 "type": "felt"
             },
             {
-                "name": "target_token_contract",
+                "name": "swap_trade_id",
                 "offset": 7,
                 "type": "felt"
             },
             {
-                "name": "target_token_id",
+                "name": "target_token_contract",
                 "offset": 8,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_id",
+                "offset": 9,
                 "type": "Uint256"
             },
             {
                 "name": "trade_type",
-                "offset": 10,
+                "offset": 11,
                 "type": "felt"
             }
         ],
         "name": "Trade",
-        "size": 11,
+        "size": 12,
         "type": "struct"
     },
     {
@@ -127,6 +132,144 @@
         ],
         "name": "open_trade",
         "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "idx",
+                "type": "felt"
+            }
+        ],
+        "name": "get_sale_trade",
+        "outputs": [
+            {
+                "name": "trade",
+                "type": "Trade"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "idx",
+                "type": "felt"
+            }
+        ],
+        "name": "get_swap_trade",
+        "outputs": [
+            {
+                "name": "trade",
+                "type": "Trade"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_sale_trade_counter",
+        "outputs": [
+            {
+                "name": "sale_trade_counter",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_swap_trade_counter",
+        "outputs": [
+            {
+                "name": "sale_trade_counter",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "idx",
+                "type": "felt"
+            }
+        ],
+        "name": "get_sale_trade_status",
+        "outputs": [
+            {
+                "name": "status",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "idx",
+                "type": "felt"
+            }
+        ],
+        "name": "get_swap_trade_status",
+        "outputs": [
+            {
+                "name": "status",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "idx",
+                "type": "felt"
+            }
+        ],
+        "name": "get_sale_trade_token_id",
+        "outputs": [
+            {
+                "name": "token_id",
+                "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "idx",
+                "type": "felt"
+            }
+        ],
+        "name": "get_swap_trade_token_id",
+        "outputs": [
+            {
+                "name": "token_id",
+                "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "paused",
+        "outputs": [
+            {
+                "name": "paused",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     }
 ]

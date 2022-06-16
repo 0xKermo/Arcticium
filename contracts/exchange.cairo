@@ -44,7 +44,8 @@ struct Trade:
     member expiration : felt
     member price : felt # expect NFT + eth
     member status : felt  # from TradeStatus
-    member trade_id : felt
+    member sale_trade_id : felt
+    member swap_trade_id : felt
     member target_token_contract : felt # nft contract address to be swapped
     member target_token_id : Uint256 # nft to be swapped
     member trade_type : felt # from SwapType
@@ -162,7 +163,8 @@ func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_pt
         expiration = _expiration, 
         price = _price, 
         status = TradeStatus.Open,
-        trade_id = 0,
+        sale_trade_id = 0,
+        swap_trade_id = 0,
         target_token_contract = _target_token_contract,
         target_token_id  =_target_token_id,
         trade_type = 0), 
@@ -183,7 +185,7 @@ func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
 ):  
 
     if _trade_type == 1:
-        trade.trade_id = sale_trade_count
+        trade.sale_trade_id = sale_trade_count
         trade.trade_type = TradeType.Sale
         sale_trades.write(
            sale_trade_count,
@@ -193,7 +195,7 @@ func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
         return ()
     end
     if _trade_type == 2:
-        trade.trade_id = swap_trade_count
+        trade.swap_trade_id = swap_trade_count
         trade.trade_type = TradeType.Swap
         swap_trades.write(
         swap_trade_count,
@@ -203,6 +205,81 @@ func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
         return ()
     end
 
+
     TradeAction.emit(trade)
     return ()
+end
+
+
+###########
+# GETTERS #
+###########
+
+@view
+func get_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(idx : felt) -> (
+    trade : Trade
+):
+    return sale_trades.read(idx)
+end
+
+@view
+func get_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(idx : felt) -> (
+    trade : Trade
+):
+    return swap_trades.read(idx)
+end
+
+@view
+func get_sale_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    sale_trade_counter : felt
+):
+    return sale_trade_counter.read()
+end
+
+@view
+func get_swap_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    sale_trade_counter : felt
+):
+    return swap_trade_counter.read()
+end
+
+# Returns a sale trades status
+@view
+func get_sale_trade_status{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    idx : felt
+) -> (status : felt):
+    let (trade) = sale_trades.read(idx)
+    return (trade.status)
+end
+# Returns a swap trades status
+@view
+func get_swap_trade_status{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    idx : felt
+) -> (status : felt):
+    let (trade) = swap_trades.read(idx)
+    return (trade.status)
+end
+
+# Returns a sale trades token
+@view
+func get_sale_trade_token_id{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    idx : felt
+) -> (token_id : Uint256):
+    let (trade) = sale_trades.read(idx)
+    return (trade.token_id)
+end
+
+# Returns a swap trades token
+@view
+func get_swap_trade_token_id{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    idx : felt
+) -> (token_id : Uint256):
+    let (trade) = swap_trades.read(idx)
+    return (trade.token_id)
+end
+
+@view
+func paused{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (paused : felt):
+    let (paused) = Pausable_paused.read()
+    return (paused)
 end
