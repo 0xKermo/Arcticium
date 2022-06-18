@@ -157,10 +157,6 @@
             {
                 "name": "owner",
                 "type": "felt"
-            },
-            {
-                "name": "erc20_address",
-                "type": "felt"
             }
         ],
         "name": "constructor",

@@ -127,9 +127,9 @@ end
 
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-     owner : felt, erc20_address : felt, 
+     owner : felt
 ):
-    erc20_token_address.write(erc20_address)
+    # erc20_token_address.write(erc20_address)
     Ownable_initializer(owner)
     sale_trade_counter.write(1)
     swap_trade_counter.write(1)
