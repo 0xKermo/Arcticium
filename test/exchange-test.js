@@ -25,15 +25,15 @@ describe("exchange Test Cases", function () {
     erc721 = await starknet.deployAccount("OpenZeppelin");
     erc20 = await starknet.deployAccount("OpenZeppelin");
     target_token_contract = await starknet.deployAccount("OpenZeppelin");
-    console.log("Deployed acc1 address: ", acc1.starknetContract.address);
+    console.log("Deployed acc1 address: ", owner.starknetContract.address);
     console.log("Deployed erc721 address: ", erc721.starknetContract.address);
     console.log("Deployed erc20 address: ", erc20.starknetContract.address);
     console.log("Deployed target token contract address: ", target_token_contract.starknetContract.address);
 
     const contractFactory = await starknet.getContractFactory("exchange");
     
-    owner = BigInt(acc1.starknetContract.address)
-    erc20 = BigInt(erc20.starknetContract.address)
+    owner = BigInt(owner.starknetContract.address)
+    erc20 = toUint256WithFelts(erc20.starknetContract.address);
     erc721 = BigInt(erc721.starknetContract.address)
     target_token_contract = BigInt(target_token_contract.starknetContract.address)
 

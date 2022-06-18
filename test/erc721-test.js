@@ -58,6 +58,7 @@ describe("ERC721 Test Cases", function () {
   });
 
   it("Should create a NFT and get this informations.", async function () {
+    this.timeout(300_000);
     function toUint256WithFelts(num) {
       const n = uint256.bnToUint256(num);
       return {
