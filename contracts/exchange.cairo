@@ -121,7 +121,7 @@ end
 ###############
 
 @external
-func list_item{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     _token_contract : felt,
     _token_id : Uint256,
     _expiration : felt,
@@ -142,6 +142,7 @@ func list_item{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr
     # assert is_approved = 1
     if _trade_type == 1:
         let _SaleTrade = SaleTrade(
+            owner_address = caller,
             token_contract = _token_contract, 
             token_id = _token_id, 
             expiration = _expiration, 
@@ -149,10 +150,11 @@ func list_item{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr
             status = TradeStatus.Open,
             sale_trade_id = sale_trade_count)
         sale_trades.write(sale_trade_count,  _SaleTrade)
-        sale_trade_counter.write(2)
-        # TradeAction.emit(trade)
+        sale_trade_counter.write(sale_trade_count+1)
+        SaleAction.emit(_SaleTrade)
     else:
         let _SwapTrade =  SwapTrade(
+            owner_address = caller,
             token_contract = _token_contract, 
             token_id = _token_id, 
             expiration = _expiration, 
@@ -162,11 +164,61 @@ func list_item{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr
             target_token_contract = _target_token_contract,
             target_token_id  =_target_token_id)
         swap_trades.write(swap_trade_count,_SwapTrade)
-        swap_trade_counter.write(2)
-        # TradeAction.emit(trade)
+        swap_trade_counter.write(swap_trade_count + 1)
+        SwapAction.emit(_SwapTrade)
     end    
     return ()
 end
+
+
+@external
+func execute_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt, _trade_type :felt
+):
+    alloc_locals
+    Pausable_when_not_paused()
+    let (currency) = currency_token_address.read()
+
+    let (caller) = get_caller_address()
+
+    if _trade_type == 1:
+        let _SaleTrade = sale_trades.read(_id)
+        assert _SaleTrade.status = TradeStatus.Open
+        let (check_owner) = IERC721.ownerOf(_SaleTrade.token_contract, SaleTrade.token_contract)
+        assert check_owner = _SaleTrade.owner_address
+          # transfer to seller
+        IERC20.transferFrom(currency, caller, _SaleTrade.owner_address, Uint256(_SaleTrade.price, 0))
+        # transfer item to buyer
+        IERC721.transferFrom(_SaleTrade.token_contract, _SaleTrade.owner_address, caller, _SaleTrade.token_id)
+    else:
+
+        let _SwapTrade =  swap_trades.read(_id)
+        assert _SaleTrade.status = TradeStatus.Open
+    end  
+
+  
+
+    # transfer to treasury
+    IERC20.transferFrom(currency, caller, _treasury_address, Uint256(fee, 0))
+
+    # transfer item to buyer
+    IERC721.transferFrom(trade.token_contract, trade.poster, caller, trade.token_id)
+
+    write_trade(
+        _trade,
+        Trade(
+        trade.token_contract,
+        trade.token_id,
+        trade.expiration,
+        trade.price,
+        trade.poster,
+        TradeStatus.Executed,
+        _trade),
+    )
+
+    return ()
+end
+
 
 
 ###########
