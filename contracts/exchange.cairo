@@ -23,6 +23,8 @@ from openzeppelin.security.pausable import (
     Pausable_unpause,
     Pausable_when_not_paused,
 )
+
+from contracts.utils.structs import SaleTrade, SwapTrade
 ############
 # MAPPINGS #
 ############
@@ -38,18 +40,25 @@ namespace TradeType:
     const Swap = 2
 end
 
-struct Trade:
-    member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member price : felt # expect NFT + eth
-    member status : felt  # from TradeStatus
-    member sale_trade_id : felt
-    member swap_trade_id : felt
-    member target_token_contract : felt # nft contract address to be swapped
-    member target_token_id : Uint256 # nft to be swapped
-    member trade_type : felt # from SwapType
-end
+# struct SaleTrade:
+#     member token_contract : felt
+#     member token_id : Uint256
+#     member expiration : felt
+#     member price : felt # eth
+#     member status : felt  # from TradeStatus
+#     member sale_trade_id : felt
+# end
+
+# struct SwapTrade:
+#     member token_contract : felt
+#     member token_id : Uint256
+#     member expiration : felt
+#     member price : felt # expect NFT + eth
+#     member status : felt  # from TradeStatus
+#     member swap_trade_id : felt
+#     member target_token_contract : felt # nft contract address to be swapped
+#     member target_token_id : Uint256 # nft to be swapped
+# end
 
 
 struct Bid:
@@ -71,9 +80,12 @@ end
 ##########
 
 @event
-func TradeAction(trade : Trade):
+func SaleAction(trade : SaleTrade):
 end
 
+@event
+func SwapAction(trade : SwapTrade):
+end
 
 @event
 func BidAction(trade : Bid):
@@ -85,12 +97,12 @@ end
 
 # Indexed list of sale trades
 @storage_var
-func sale_trades(idx : felt) -> (trade : Trade):
+func sale_trades(idx : felt) -> (trade : SaleTrade):
 end
 
 # Indexed list of swap trades
 @storage_var
-func swap_trades(idx : felt) -> (trade : Trade):
+func swap_trades(idx : felt) -> (trade : SwapTrade):
 end
 
 
@@ -143,41 +155,81 @@ end
 ###############
 
 
+# @external
+# func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+#     _token_contract : felt,
+#     _token_id : Uint256,
+#     _expiration : felt,
+#     _price : felt
+# ):
+#     alloc_locals
+#     Pausable_when_not_paused()
+#     let (caller) = get_caller_address()
+#     let (contract_address) = get_contract_address()
+#     # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
+#     # let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
+#     let (sale_trade_count) = sale_trade_counter.read()
+#     # assert owner_of = caller
+#     # assert is_approved = 1
+   
+#     let saleTrade = SaleTrade(
+#         token_contract = _token_contract, 
+#         token_id = _token_id, 
+#         expiration = _expiration, 
+#         price = _price, 
+#         status = TradeStatus.Open,
+#         sale_trade_id = sale_trade_count)
+#     sale_trades.write(sale_trade_count,  saleTrade)
+#     sale_trade_counter.write(sale_trade_count+1)
+#     SaleAction.emit(saleTrade)
+#     return ()
+# end
+
 @external
-func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _token_contract : felt, _token_id : Uint256, _expiration : felt, _price : felt, 
-    _target_token_contract : felt, _target_token_id : Uint256, _trade_type : felt
-):
+func list_item{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _token_contract : felt,
+    _token_id : Uint256,
+    _expiration : felt,
+    _price : felt, 
+    _target_token_contract : felt,
+    _target_token_id : Uint256,
+    _trade_type :felt
+    ):
     alloc_locals
     Pausable_when_not_paused()
     let (caller) = get_caller_address()
     let (contract_address) = get_contract_address()
-    let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
-    let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
-    let (sale_trade_count) = sale_trade_counter.read()
+    # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
+    # let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
     let (swap_trade_count) = swap_trade_counter.read()
-
-    assert owner_of = caller
-    assert is_approved = 1
-
-    write_trade(
-        _token_contract,
-        Trade(
-        token_contract = _token_contract, 
-        token_id = _token_id, 
-        expiration = _expiration, 
-        price = _price, 
-        status = TradeStatus.Open,
-        sale_trade_id = 0,
-        swap_trade_id = 0,
-        target_token_contract = _target_token_contract,
-        target_token_id  =_target_token_id,
-        trade_type = 0), 
-        _trade_type,
-        sale_trade_count,
-        swap_trade_count
-    )
-
+    let (sale_trade_count) = sale_trade_counter.read()
+    # assert owner_of = caller
+    # assert is_approved = 1
+    if _trade_type == 1:
+        let _SaleTrade = SaleTrade(
+            token_contract = _token_contract, 
+            token_id = _token_id, 
+            expiration = _expiration, 
+            price = _price, 
+            status = TradeStatus.Open,
+            sale_trade_id = sale_trade_count)
+        sale_trades.write(sale_trade_count,  _SaleTrade)
+        sale_trade_counter.write(2)
+        # TradeAction.emit(trade)
+    else:
+        let _SwapTrade =  SwapTrade(
+            token_contract = _token_contract, 
+            token_id = _token_id, 
+            expiration = _expiration, 
+            price = _price, 
+            status = TradeStatus.Open,
+            swap_trade_id = swap_trade_count,
+            target_token_contract = _target_token_contract,
+            target_token_id  =_target_token_id)
+        swap_trades.write(swap_trade_count,_SwapTrade)
+        swap_trade_counter.write(2)
+        # TradeAction.emit(trade)
+    end    
     return ()
 end
 
@@ -185,35 +237,37 @@ end
 # HELPERS #
 ###########
 
-func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _trade : felt, trade : Trade, _trade_type : felt, sale_trade_count : felt, swap_trade_count : felt
-):  
+# func write_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+#     trade : Trade, _trade_type : felt, sale_trade_count : felt, swap_trade_count : felt
+# ):  
 
-    if _trade_type == 1:
-        trade.sale_trade_id = sale_trade_count
-        trade.trade_type = TradeType.Sale
-        sale_trades.write(
-           sale_trade_count,
-            trade
-        )
-        sale_trade_counter.write(sale_trade_count+1)
-        return ()
-    end
-    if _trade_type == 2:
-        trade.swap_trade_id = swap_trade_count
-        trade.trade_type = TradeType.Swap
-        swap_trades.write(
-        swap_trade_count,
-            trade
-        )
-        swap_trade_counter.write(swap_trade_count+1)
-        return ()
-    end
+#     tempvar _trade = trade
+
+#     if _trade_type == 1:
+#         _trade.sale_trade_id = sale_trade_count
+#         _trade.trade_type = TradeType.Sale
+#         sale_trades.write(
+#            sale_trade_count,
+#             _trade
+#         )
+#         sale_trade_counter.write(sale_trade_count+1)
+#         return ()
+#     end
+#     if _trade_type == 2:
+#         _trade.swap_trade_id = swap_trade_count
+#         _trade.trade_type = TradeType.Swap
+#         swap_trades.write(
+#         swap_trade_count,
+#             _trade
+#         )
+#         swap_trade_counter.write(swap_trade_count+1)
+#         return ()
+#     end
 
 
-    TradeAction.emit(trade)
-    return ()
-end
+#     TradeAction.emit(trade)
+#     return ()
+# end
 
 
 ###########
@@ -222,14 +276,14 @@ end
 
 @view
 func get_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(idx : felt) -> (
-    trade : Trade
+    trade : SaleTrade
 ):
     return sale_trades.read(idx)
 end
 
 @view
 func get_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(idx : felt) -> (
-    trade : Trade
+    trade : SwapTrade
 ):
     return swap_trades.read(idx)
 end
