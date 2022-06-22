@@ -25,7 +25,7 @@ from openzeppelin.security.pausable import (
 )
 
 from contracts.utils.structs import SaleTrade, SwapTrade, SaleBid, SwapBid
-from contracts.sale import Sale_Trade
+from contracts.exchanges.sale import Sale_Trade
 
 ###########
 # STORAGE #
