@@ -2,7 +2,7 @@
     {
         "members": [
             {
-                "name": "owner_address",
+                "name": "owner",
                 "offset": 0,
                 "type": "felt"
             },
@@ -132,6 +132,10 @@
             {
                 "name": "owner",
                 "type": "felt"
+            },
+            {
+                "name": "_erc20_address",
+                "type": "felt"
             }
         ],
         "name": "constructor",
@@ -155,21 +159,9 @@
             {
                 "name": "_price",
                 "type": "felt"
-            },
-            {
-                "name": "_target_token_contract",
-                "type": "felt"
-            },
-            {
-                "name": "_target_token_id",
-                "type": "Uint256"
-            },
-            {
-                "name": "_trade_type",
-                "type": "felt"
             }
         ],
-        "name": "open_trade",
+        "name": "open_sale_trade",
         "outputs": [],
         "type": "function"
     },

@@ -26,24 +26,10 @@ from openzeppelin.security.pausable import (
 
 from contracts.utils.structs import SaleTrade, SwapTrade, SaleBid, SwapBid
 from contracts.sale import Sale_Trade
-############
-# MAPPINGS #
-############
-
-namespace TradeStatus:
-    const Open = 1
-    const Executed = 2
-    const Cancelled = 3
-end
 
 ###########
 # STORAGE #
 ###########
-
-# Contract Address of ether used to purchase or sell items
-@storage_var
-func erc20_token_address() -> (address : felt):
-end
 
 # The current number of trades
 @storage_var
@@ -56,11 +42,12 @@ end
 
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-     owner : felt
+     owner : felt,
+     _erc20_address : felt,
 ):
     # erc20_token_address.write(erc20_address)
     Ownable_initializer(owner)
-    Sale_Trade.initializer(owner)
+    Sale_Trade.initializer(owner,_erc20_address)
     trade_counter.write(1)
     return ()
 end
@@ -71,18 +58,15 @@ end
 ###############
 
 @external
-func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     _token_contract : felt,
     _token_id : Uint256,
     _expiration : felt,
-    _price : felt, 
-    _target_token_contract : felt,
-    _target_token_id : Uint256,
-    _trade_type :felt
+    _price : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
-    let (caller) = get_caller_address()
+    let (caller) =  get_caller_address()
     let (contract_address) = get_contract_address()
     # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
     # let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
@@ -94,11 +78,25 @@ func open_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_pt
         _token_contract, 
         _token_id, 
         _expiration, 
-        _price, 
-        TradeStatus.Open)
+        _price
+        )
  
     return ()
 end
+
+@external
+func execute_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt
+    ):
+    alloc_locals
+    Pausable_when_not_paused()
+    
+    Sale_Trade.buy_item(_id)
+ 
+    return ()
+end
+
+
 
 ###########
 # GETTERS #

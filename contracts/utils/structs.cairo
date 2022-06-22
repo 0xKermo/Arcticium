@@ -2,7 +2,7 @@
 from starkware.cairo.common.uint256 import Uint256
 
 struct SaleTrade:
-    member owner_address :felt
+    member owner :felt
     member token_contract : felt
     member token_id : Uint256
     member expiration : felt
@@ -12,7 +12,7 @@ struct SaleTrade:
 end
 
 struct SwapTrade:
-    member owner_address :felt
+    member owner :felt
     member token_contract : felt
     member token_id : Uint256
     member expiration : felt
