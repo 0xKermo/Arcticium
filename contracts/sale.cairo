@@ -137,7 +137,7 @@ namespace Sale_Trade:
         let (sale_trade) = _trades.read(_id)
         
         assert sale_trade.status = TradeStatus.Open
-        assert_nn_le(price, uint_to_felt(buyer_balance))
+        # assert_nn_le(sale_trade.price, uint_to_felt(buyer_balance))
         # assert_check_expiration(_id)
         assert sale_trade.owner = caller
          # transfer to seller
