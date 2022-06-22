@@ -96,6 +96,29 @@ func execute_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_
     return ()
 end
 
+@external
+func update_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt, price : felt
+    ):
+    alloc_locals
+    Pausable_when_not_paused()
+    
+    Sale_Trade.update_price(_id, price)
+ 
+    return ()
+end
+
+@external
+func cancel_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt
+    ):
+    alloc_locals
+    Pausable_when_not_paused()
+    
+    Sale_Trade.cancel_listing(_id)
+ 
+    return ()
+end
 
 
 ###########

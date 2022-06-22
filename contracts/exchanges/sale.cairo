@@ -192,7 +192,7 @@ namespace Sale_Trade:
     end
 
     func cancel_listing{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-        _id : felt,  _price : felt
+        _id : felt
         ):
         alloc_locals
         Pausable_when_not_paused()
