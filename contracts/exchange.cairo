@@ -26,7 +26,7 @@ from openzeppelin.security.pausable import (
 
 from contracts.utils.structs import SaleTrade, SwapTrade, SaleBid, SwapBid
 from contracts.exchanges.sale import Sale_Trade
-
+from contracts.exchanges.swap import Swap_Trade
 ###########
 # STORAGE #
 ###########
@@ -45,36 +45,33 @@ func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_p
      owner : felt,
      _erc20_address : felt,
 ):
-    # erc20_token_address.write(erc20_address)
     Ownable_initializer(owner)
+    Swap_Trade.initializer(owner,_erc20_address)
     Sale_Trade.initializer(owner,_erc20_address)
     trade_counter.write(1)
     return ()
 end
 
+############################
+#          LIST ITEM       #
+###########################
 
-###############
-# LIST ITEM   #
-###############
+##############
+# SALE TRADE #
+##############
 
 @external
 func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     _token_contract : felt,
     _token_id : Uint256,
     _expiration : felt,
-    _price : felt
+    _price : felt, 
+    _owner_address : felt
     ):
     alloc_locals
-    Pausable_when_not_paused()
-    let (caller) =  get_caller_address()
-    let (contract_address) = get_contract_address()
-    # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
-    # let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
-    # assert owner_of = caller
-    # assert is_approved = 1
-    
+    Pausable_when_not_paused()    
     Sale_Trade.list_item(
-        caller,
+        _owner_address,
         _token_contract, 
         _token_id, 
         _expiration, 
@@ -86,45 +83,112 @@ end
 
 @external
 func execute_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt
+    _id : felt,  _owner_address : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Sale_Trade.buy_item(_id)
+    Sale_Trade.buy_item(_id,_owner_address)
  
     return ()
 end
 
 @external
 func update_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt, price : felt
+    _id : felt, price : felt, _owner_address : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Sale_Trade.update_price(_id, price)
+    Sale_Trade.update_price(_id, price, _owner_address)
  
     return ()
 end
 
 @external
 func cancel_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt
+    _id : felt, _owner_address : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Sale_Trade.cancel_listing(_id)
+    Sale_Trade.cancel_listing(_id,_owner_address)
  
     return ()
 end
 
+##############
+# SWAP TRADE #
+##############
 
-###########
-# GETTERS #
-###########
+@external
+func open_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _token_contract : felt,
+    _token_id : Uint256,
+    _expiration : felt,
+    _price : felt, 
+    _owner_address : felt,
+    _target_token_contract : felt,
+    _target_token_id : Uint256
+    ):
+    alloc_locals
+    Pausable_when_not_paused()    
+    Swap_Trade.list_item(
+        _owner_address,
+        _token_contract, 
+        _token_id, 
+        _expiration, 
+        _price,
+        _target_token_contract,
+        _target_token_id
+        )
+ 
+    return ()
+end
 
+@external
+func execute_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt,  _owner_address : felt
+    ):
+    alloc_locals
+    Pausable_when_not_paused()
+    
+    Swap_Trade.swap_item(_id,_owner_address)
+ 
+    return ()
+end
+
+@external
+func update_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt, price : felt, _owner_address : felt, _target_token_contract : felt, _target_token_id : Uint256
+    ):
+    alloc_locals
+    Pausable_when_not_paused()
+    
+    Swap_Trade.update_listing(_id, price, _owner_address,_target_token_contract,_target_token_id)
+ 
+    return ()
+end
+
+@external
+func cancel_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _id : felt, _owner_address : felt
+    ):
+    alloc_locals
+    Pausable_when_not_paused()
+    
+    Swap_Trade.cancel_trade(_id,_owner_address)
+ 
+    return ()
+end
+
+#######################
+#       GETTERS      #
+######################
+
+##############
+# SALE GET.  #
+##############
 @view
 func get_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_id : felt) -> (
     trade : SaleTrade
@@ -141,6 +205,29 @@ func get_sale_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, ra
     return (trade_counter)
 end
 
+##############
+# SWAP GET.  #
+##############
+
+@view
+func get_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_id : felt) -> (
+    trade : SwapTrade
+):
+    let (trade : SwapTrade) = Swap_Trade.trade(_id)
+    return (trade)
+end
+
+@view
+func get_swap_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    _trade_counter : felt
+):
+    let (trade_counter) = Swap_Trade.trade_counter()
+    return (trade_counter)
+end
+
+##############
+#   COMMON   #
+##############
 @view
 func paused{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (paused : felt):
     let (paused) = Pausable_paused.read()

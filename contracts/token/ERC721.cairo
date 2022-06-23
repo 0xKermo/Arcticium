@@ -204,7 +204,6 @@ func mint{
         syscall_ptr: felt*,
         range_check_ptr
     }(to: felt, tokenId: Uint256):
-    Ownable.assert_only_owner()
     ERC721_mint(to, tokenId)
     return ()
 end

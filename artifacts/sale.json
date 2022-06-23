@@ -15410,7 +15410,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 49,
-                        "end_line": 292,
+                        "end_line": 295,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
@@ -15424,12 +15424,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 50,
-                                        "end_line": 295,
+                                        "end_line": 298,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "start_col": 29,
-                                        "start_line": 295
+                                        "start_line": 298
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
@@ -15439,7 +15439,7 @@
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 30,
-                        "start_line": 292
+                        "start_line": 295
                     }
                 },
                 "491": {
@@ -15462,12 +15462,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 50,
-                        "end_line": 295,
+                        "end_line": 298,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 29,
-                        "start_line": 295
+                        "start_line": 298
                     }
                 },
                 "493": {
@@ -15498,7 +15498,7 @@
                         "parent_location": [
                             {
                                 "end_col": 50,
-                                "end_line": 295,
+                                "end_line": 298,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
@@ -15512,12 +15512,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 36,
-                                                "end_line": 296,
+                                                "end_line": 299,
                                                 "input_file": {
                                                     "filename": "contracts/exchanges/sale.cairo"
                                                 },
                                                 "start_col": 19,
-                                                "start_line": 296
+                                                "start_line": 299
                                             },
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
@@ -15527,7 +15527,7 @@
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
                                 "start_col": 29,
-                                "start_line": 295
+                                "start_line": 298
                             },
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
@@ -15556,7 +15556,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 78,
-                        "end_line": 292,
+                        "end_line": 295,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
@@ -15570,12 +15570,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 36,
-                                        "end_line": 296,
+                                        "end_line": 299,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "start_col": 19,
-                                        "start_line": 296
+                                        "start_line": 299
                                     },
                                     "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
                                 ],
@@ -15585,7 +15585,7 @@
                             "While expanding the reference 'pedersen_ptr' in:"
                         ],
                         "start_col": 51,
-                        "start_line": 292
+                        "start_line": 295
                     }
                 },
                 "495": {
@@ -15609,7 +15609,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 95,
-                        "end_line": 292,
+                        "end_line": 295,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
@@ -15623,12 +15623,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 36,
-                                        "end_line": 296,
+                                        "end_line": 299,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "start_col": 19,
-                                        "start_line": 296
+                                        "start_line": 299
                                     },
                                     "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                 ],
@@ -15638,7 +15638,7 @@
                             "While expanding the reference 'range_check_ptr' in:"
                         ],
                         "start_col": 80,
-                        "start_line": 292
+                        "start_line": 295
                     }
                 },
                 "496": {
@@ -15662,24 +15662,24 @@
                     "hints": [],
                     "inst": {
                         "end_col": 15,
-                        "end_line": 293,
+                        "end_line": 296,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 35,
-                                "end_line": 296,
+                                "end_line": 299,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "start_col": 32,
-                                "start_line": 296
+                                "start_line": 299
                             },
                             "While expanding the reference '_id' in:"
                         ],
                         "start_col": 5,
-                        "start_line": 293
+                        "start_line": 296
                     }
                 },
                 "497": {
@@ -15703,12 +15703,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 36,
-                        "end_line": 296,
+                        "end_line": 299,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 19,
-                        "start_line": 296
+                        "start_line": 299
                     }
                 },
                 "499": {
@@ -15740,7 +15740,7 @@
                         "parent_location": [
                             {
                                 "end_col": 36,
-                                "end_line": 296,
+                                "end_line": 299,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
@@ -15754,12 +15754,12 @@
                                         "parent_location": [
                                             {
                                                 "end_col": 52,
-                                                "end_line": 298,
+                                                "end_line": 301,
                                                 "input_file": {
                                                     "filename": "contracts/exchanges/sale.cairo"
                                                 },
                                                 "start_col": 5,
-                                                "start_line": 298
+                                                "start_line": 301
                                             },
                                             "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                         ],
@@ -15769,7 +15769,7 @@
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 296
+                                "start_line": 299
                             },
                             "While trying to update the implicit return value 'range_check_ptr' in:"
                         ],
@@ -15799,24 +15799,24 @@
                     "hints": [],
                     "inst": {
                         "end_col": 25,
-                        "end_line": 295,
+                        "end_line": 298,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 33,
-                                "end_line": 298,
+                                "end_line": 301,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "start_col": 18,
-                                "start_line": 298
+                                "start_line": 301
                             },
                             "While expanding the reference 'block_timestamp' in:"
                         ],
                         "start_col": 10,
-                        "start_line": 295
+                        "start_line": 298
                     }
                 },
                 "501": {
@@ -15841,12 +15841,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 51,
-                        "end_line": 298,
+                        "end_line": 301,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 35,
-                        "start_line": 298
+                        "start_line": 301
                     }
                 },
                 "502": {
@@ -15871,12 +15871,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 52,
-                        "end_line": 298,
+                        "end_line": 301,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 298
+                        "start_line": 301
                     }
                 },
                 "504": {
@@ -15908,36 +15908,36 @@
                         "parent_location": [
                             {
                                 "end_col": 36,
-                                "end_line": 296,
+                                "end_line": 299,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 49,
-                                        "end_line": 292,
+                                        "end_line": 295,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "parent_location": [
                                             {
                                                 "end_col": 14,
-                                                "end_line": 300,
+                                                "end_line": 303,
                                                 "input_file": {
                                                     "filename": "contracts/exchanges/sale.cairo"
                                                 },
                                                 "start_col": 5,
-                                                "start_line": 300
+                                                "start_line": 303
                                             },
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 30,
-                                        "start_line": 292
+                                        "start_line": 295
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 296
+                                "start_line": 299
                             },
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
@@ -15974,36 +15974,36 @@
                         "parent_location": [
                             {
                                 "end_col": 36,
-                                "end_line": 296,
+                                "end_line": 299,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 78,
-                                        "end_line": 292,
+                                        "end_line": 295,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "parent_location": [
                                             {
                                                 "end_col": 14,
-                                                "end_line": 300,
+                                                "end_line": 303,
                                                 "input_file": {
                                                     "filename": "contracts/exchanges/sale.cairo"
                                                 },
                                                 "start_col": 5,
-                                                "start_line": 300
+                                                "start_line": 303
                                             },
                                             "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
                                         ],
                                         "start_col": 51,
-                                        "start_line": 292
+                                        "start_line": 295
                                     },
                                     "While expanding the reference 'pedersen_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 296
+                                "start_line": 299
                             },
                             "While trying to update the implicit return value 'pedersen_ptr' in:"
                         ],
@@ -16040,36 +16040,36 @@
                         "parent_location": [
                             {
                                 "end_col": 52,
-                                "end_line": 298,
+                                "end_line": 301,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 95,
-                                        "end_line": 292,
+                                        "end_line": 295,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "parent_location": [
                                             {
                                                 "end_col": 14,
-                                                "end_line": 300,
+                                                "end_line": 303,
                                                 "input_file": {
                                                     "filename": "contracts/exchanges/sale.cairo"
                                                 },
                                                 "start_col": 5,
-                                                "start_line": 300
+                                                "start_line": 303
                                             },
                                             "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                         ],
                                         "start_col": 80,
-                                        "start_line": 292
+                                        "start_line": 295
                                     },
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 5,
-                                "start_line": 298
+                                "start_line": 301
                             },
                             "While trying to update the implicit return value 'range_check_ptr' in:"
                         ],
@@ -16099,12 +16099,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 14,
-                        "end_line": 300,
+                        "end_line": 303,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 300
+                        "start_line": 303
                     }
                 },
                 "508": {
@@ -16127,7 +16127,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 24,
-                        "end_line": 307,
+                        "end_line": 310,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
@@ -16141,12 +16141,12 @@
                                 "parent_location": [
                                     {
                                         "end_col": 39,
-                                        "end_line": 309,
+                                        "end_line": 312,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 309
+                                        "start_line": 312
                                     },
                                     "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                 ],
@@ -16156,7 +16156,7 @@
                             "While expanding the reference 'range_check_ptr' in:"
                         ],
                         "start_col": 9,
-                        "start_line": 307
+                        "start_line": 310
                     }
                 },
                 "509": {
@@ -16179,12 +16179,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 30,
-                        "end_line": 309,
+                        "end_line": 312,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 20,
-                        "start_line": 309
+                        "start_line": 312
                     }
                 },
                 "510": {
@@ -16207,12 +16207,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 309,
+                        "end_line": 312,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 32,
-                        "start_line": 309
+                        "start_line": 312
                     }
                 },
                 "512": {
@@ -16235,12 +16235,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 39,
-                        "end_line": 309,
+                        "end_line": 312,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 309
+                        "start_line": 312
                     }
                 },
                 "514": {
@@ -16263,12 +16263,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 36,
-                        "end_line": 310,
+                        "end_line": 313,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 13,
-                        "start_line": 310
+                        "start_line": 313
                     }
                 },
                 "516": {
@@ -16292,36 +16292,36 @@
                     "hints": [],
                     "inst": {
                         "end_col": 27,
-                        "end_line": 305,
+                        "end_line": 308,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 27,
-                                "end_line": 305,
+                                "end_line": 308,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 49,
-                                        "end_line": 310,
+                                        "end_line": 313,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 310
+                                        "start_line": 313
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 9,
-                                "start_line": 305
+                                "start_line": 308
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 9,
-                        "start_line": 305
+                        "start_line": 308
                     }
                 },
                 "517": {
@@ -16345,36 +16345,36 @@
                     "hints": [],
                     "inst": {
                         "end_col": 35,
-                        "end_line": 306,
+                        "end_line": 309,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 35,
-                                "end_line": 306,
+                                "end_line": 309,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 49,
-                                        "end_line": 310,
+                                        "end_line": 313,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 310
+                                        "start_line": 313
                                     },
                                     "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
                                 ],
                                 "start_col": 9,
-                                "start_line": 306
+                                "start_line": 309
                             },
                             "While expanding the reference 'pedersen_ptr' in:"
                         ],
                         "start_col": 9,
-                        "start_line": 306
+                        "start_line": 309
                     }
                 },
                 "518": {
@@ -16405,36 +16405,36 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 309,
+                                "end_line": 312,
                                 "input_file": {
                                     "filename": "contracts/exchanges/sale.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 24,
-                                        "end_line": 307,
+                                        "end_line": 310,
                                         "input_file": {
                                             "filename": "contracts/exchanges/sale.cairo"
                                         },
                                         "parent_location": [
                                             {
                                                 "end_col": 49,
-                                                "end_line": 310,
+                                                "end_line": 313,
                                                 "input_file": {
                                                     "filename": "contracts/exchanges/sale.cairo"
                                                 },
                                                 "start_col": 5,
-                                                "start_line": 310
+                                                "start_line": 313
                                             },
                                             "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                         ],
                                         "start_col": 9,
-                                        "start_line": 307
+                                        "start_line": 310
                                     },
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
                                 "start_col": 5,
-                                "start_line": 309
+                                "start_line": 312
                             },
                             "While trying to update the implicit return value 'range_check_ptr' in:"
                         ],
@@ -16463,12 +16463,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 48,
-                        "end_line": 310,
+                        "end_line": 313,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 13,
-                        "start_line": 310
+                        "start_line": 313
                     }
                 },
                 "520": {
@@ -16492,12 +16492,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 49,
-                        "end_line": 310,
+                        "end_line": 313,
                         "input_file": {
                             "filename": "contracts/exchanges/sale.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 310
+                        "start_line": 313
                     }
                 }
             }

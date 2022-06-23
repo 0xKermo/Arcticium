@@ -106,11 +106,12 @@ namespace Sale_Trade:
         alloc_locals
         Pausable_when_not_paused()
         let (contract_address) = get_contract_address()
-        # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
-        # let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
+        # let(caller) = get_caller_address()
+        let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
+        let (is_approved) = IERC721.isApprovedForAll(_token_contract, _owner_address, contract_address)
         let (sale_trade_count) = _trade_counter.read()
-        # assert owner_of = caller
-        # assert is_approved = 1
+        assert owner_of = _owner_address
+        assert is_approved = 1
         
         let _SaleTrade = SaleTrade(
             owner = _owner_address,
@@ -128,25 +129,25 @@ namespace Sale_Trade:
     end
 
     func buy_item{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-        _id : felt,  
+        _id : felt,  _owner_address : felt
         ):
         alloc_locals
         Pausable_when_not_paused()
         let (caller) = get_caller_address()
         let (currency) = erc20_token_address.read()
-        # let (buyer_balance) = IERC20.balanceOf(caller)
-        
+        let (buyer_balance) = IERC20.balanceOf(currency,_owner_address)
+        let(balance) = uint_to_felt(buyer_balance)
         let (sale_trade) = _trades.read(_id)
         
         assert sale_trade.status = TradeStatus.Open
-        # assert_nn_le(sale_trade.price, uint_to_felt(buyer_balance))
+        assert_nn_le(sale_trade.price, balance)
         # assert_check_expiration(_id)
-        assert sale_trade.owner = caller
+        assert sale_trade.owner = _owner_address
          # transfer to seller
-        IERC20.transferFrom(currency, caller, sale_trade.owner, Uint256(sale_trade.price, 0))
+        IERC20.transferFrom(currency, _owner_address, sale_trade.owner, Uint256(sale_trade.price, 0))
 
         # transfer item to buyer
-        IERC721.transferFrom(sale_trade.token_contract, sale_trade.owner, caller, sale_trade.token_id)
+        IERC721.transferFrom(sale_trade.token_contract, sale_trade.owner, _owner_address, sale_trade.token_id)
 
         let _SaleTrade = SaleTrade(
             owner = sale_trade.owner,
@@ -163,16 +164,17 @@ namespace Sale_Trade:
     end
 
     func update_price{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-        _id : felt,  _price : felt
+        _id : felt,  _price : felt, _owner_address : felt
         ):
         alloc_locals
         Pausable_when_not_paused()
         let (caller) = get_caller_address()
-        # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
-        # assert owner_of = caller
-        let (sale_trade) = _trades.read(_id)
-        assert sale_trade.owner = caller
         
+        let (sale_trade) = _trades.read(_id)
+        let (owner_of) = IERC721.ownerOf(sale_trade.token_contract, sale_trade.token_id)
+        
+        assert owner_of = _owner_address
+        assert sale_trade.owner = caller
         assert sale_trade.status = TradeStatus.Open
 
         # assert_check_expiration(_id)
@@ -192,16 +194,17 @@ namespace Sale_Trade:
     end
 
     func cancel_listing{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-        _id : felt
+        _id : felt, _owner_address : felt
         ):
         alloc_locals
         Pausable_when_not_paused()
         let (caller) = get_caller_address()
-        # let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
-        # assert owner_of = caller
+     
         let (sale_trade) = _trades.read(_id)
-        assert sale_trade.owner = caller
+        let (owner_of) = IERC721.ownerOf(sale_trade.token_contract, sale_trade.token_id)
         
+        assert owner_of = _owner_address
+        assert sale_trade.owner = _owner_address
         assert sale_trade.status = TradeStatus.Open
 
         # assert_check_expiration(_id)
