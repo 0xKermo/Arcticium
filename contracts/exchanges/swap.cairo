@@ -57,7 +57,7 @@ end
 
 # Indexed list of sale trades
 @storage_var
-func _trades(idx : felt) -> (trade : SwapTrade):
+func _swap_trades(idx : felt) -> (trade : SwapTrade):
 end
 
 # Indexed list of all bids
@@ -125,7 +125,7 @@ namespace Swap_Trade:
             swap_trade_id = swap_trade_count,
             target_token_contract = _target_token_contract,
             target_token_id = _target_token_id)
-        _trades.write(swap_trade_count,  _SwapTrade)
+        _swap_trades.write(swap_trade_count,  _SwapTrade)
         _trade_counter.write(swap_trade_count + 1)
         SwapAction.emit(_SwapTrade)
     
@@ -139,27 +139,27 @@ namespace Swap_Trade:
         Pausable_when_not_paused()
         let (caller) = get_caller_address()
 
-        let (swap_trade) = _trades.read(_id)
+        let (swap_trade) = _swap_trades.read(_id)
         
         assert swap_trade.status = TradeStatus.Open
 
-        if swap_trade.price != 0:
-            let (currency) = erc20_token_address.read()
-            let (buyer_balance) = IERC20.balanceOf(currency,_owner_address)
-            let(balance) = uint_to_felt(buyer_balance)
-            assert_nn_le(swap_trade.price, balance)
-            # transfer to seller
-            IERC20.transferFrom(currency, caller, swap_trade.owner, Uint256(swap_trade.price, 0))
+        # if swap_trade.price != 0:
+        #     let (currency) = erc20_token_address.read()
+        #     let (buyer_balance) = IERC20.balanceOf(currency,_owner_address)
+        #     let(balance) = uint_to_felt(buyer_balance)
+        #     assert_nn_le(swap_trade.price, balance)
+        #     # transfer to seller
+        #     IERC20.transferFrom(currency, caller, swap_trade.owner, Uint256(swap_trade.price, 0))
         
-        end
+        # end
         
         # assert_check_expiration(_id)
 
         
         # transfer item to buyer
-        # IERC721.transferFrom(swap_trade.token_contract, swap_trade.owner, caller, swap_trade.token_id)
+        IERC721.transferFrom(swap_trade.token_contract, swap_trade.owner, caller, swap_trade.token_id)
         # # transfer item to seller
-        # IERC721.transferFrom(swap_trade.target_token_contract, caller, swap_trade.owner, swap_trade.target_token_id)
+        IERC721.transferFrom(swap_trade.target_token_contract, caller, swap_trade.owner, swap_trade.target_token_id)
 
         let _SwapTrade = SwapTrade(
             owner = swap_trade.owner,
@@ -172,7 +172,7 @@ namespace Swap_Trade:
             target_token_contract = swap_trade.target_token_contract,
             target_token_id = swap_trade.target_token_id
             )
-        _trades.write(_id,  _SwapTrade)
+        _swap_trades.write(_id,_SwapTrade)
         SwapAction.emit(_SwapTrade)
     
         return ()
@@ -185,7 +185,7 @@ namespace Swap_Trade:
         Pausable_when_not_paused()
         let (caller) = get_caller_address()
         
-        let (swap_trade) = _trades.read(_id)
+        let (swap_trade) = _swap_trades.read(_id)
         let (owner_of) = IERC721.ownerOf(swap_trade.token_contract, swap_trade.token_id)
         
         assert owner_of = _owner_address
@@ -204,7 +204,7 @@ namespace Swap_Trade:
             _id,
             _target_token_contract,
             _target_token_id)
-        _trades.write(_id,  _SwapTrade)
+        _swap_trades.write(_id,  _SwapTrade)
         SwapAction.emit(_SwapTrade)
     
         return ()
@@ -217,7 +217,7 @@ namespace Swap_Trade:
         Pausable_when_not_paused()
         let (caller) = get_caller_address()
      
-        let (swap_trade) = _trades.read(_id)
+        let (swap_trade) = _swap_trades.read(_id)
         let (owner_of) = IERC721.ownerOf(swap_trade.token_contract, swap_trade.token_id)
         
         assert owner_of = _owner_address
@@ -236,7 +236,7 @@ namespace Swap_Trade:
             _id,
             swap_trade.target_token_contract,
             swap_trade.target_token_id)
-        _trades.write(_id,  _SwapTrade)
+        _swap_trades.write(_id,  _SwapTrade)
         SwapAction.emit(_SwapTrade)
     
         return ()
@@ -251,7 +251,7 @@ namespace Swap_Trade:
             pedersen_ptr : HashBuiltin*,
             range_check_ptr
         }(_id : felt) -> (trade: SwapTrade):
-        let (trade) = _trades.read(_id)
+        let (trade) = _swap_trades.read(_id)
         return (trade)
     end
 
@@ -268,7 +268,7 @@ namespace Swap_Trade:
     func get_trade_status{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
         _id : felt
     ) -> (status : felt):
-        let (trade) = _trades.read(_id)
+        let (trade) = _swap_trades.read(_id)
         return (trade.status)
     end
 
@@ -276,7 +276,7 @@ namespace Swap_Trade:
     func get_trade_token_id{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
         _id : felt
     ) -> (token_id : Uint256):
-        let (trade) = _trades.read(_id)
+        let (trade) = _swap_trades.read(_id)
         return (trade.token_id)
     end
 
@@ -315,7 +315,7 @@ func assert_check_expiration{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, r
     _id : felt
 ):
     let (block_timestamp) = get_block_timestamp()
-    let (trade) = _trades.read(_id)
+    let (trade) = _swap_trades.read(_id)
     # check trade expiration within
     assert_nn_le(block_timestamp, trade.expiration)
 

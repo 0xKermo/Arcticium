@@ -148,7 +148,8 @@ end
 
 @external
 func execute_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt,  _owner_address : felt
+    _id : felt,
+    _owner_address : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
@@ -160,19 +161,24 @@ end
 
 @external
 func update_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt, price : felt, _owner_address : felt, _target_token_contract : felt, _target_token_id : Uint256
+    _id : felt,
+    price : felt,
+    _target_token_contract : felt,
+    _target_token_id : Uint256,
+    _owner_address : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Swap_Trade.update_listing(_id, price, _owner_address,_target_token_contract,_target_token_id)
+    Swap_Trade.update_listing(_id, price,_target_token_contract,_target_token_id, _owner_address)
  
     return ()
 end
 
 @external
 func cancel_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt, _owner_address : felt
+    _id : felt,
+    _owner_address : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
