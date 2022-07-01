@@ -48,15 +48,7 @@
                         "starkware.cairo.common.math",
                         "starkware.cairo.common.math.assert_not_zero"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 0,
-                            "offset": 0
-                        },
-                        "reference_ids": {
-                            "starkware.cairo.common.math.assert_not_zero.value": 0
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [
                         {
                             "location": {
@@ -86,15 +78,7 @@
                         "starkware.cairo.common.math",
                         "starkware.cairo.common.math.assert_not_zero"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 0,
-                            "offset": 0
-                        },
-                        "reference_ids": {
-                            "starkware.cairo.common.math.assert_not_zero.value": 0
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
                         "end_col": 18,
@@ -111,15 +95,7 @@
                         "starkware.cairo.common.math",
                         "starkware.cairo.common.math.assert_not_zero"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 0,
-                            "offset": 0
-                        },
-                        "reference_ids": {
-                            "starkware.cairo.common.math.assert_not_zero.value": 0
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
                         "end_col": 14,
@@ -136,25 +112,16 @@
                         "starkware.starknet.common.syscalls",
                         "starkware.starknet.common.syscalls.get_caller_address"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 1,
-                            "offset": 0
-                        },
-                        "reference_ids": {
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall": 2,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": 1
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
                         "end_col": 90,
-                        "end_line": 114,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 63,
-                        "start_line": 114
+                        "start_line": 196
                     }
                 },
                 "7": {
@@ -162,26 +129,16 @@
                         "starkware.starknet.common.syscalls",
                         "starkware.starknet.common.syscalls.get_caller_address"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 1,
-                            "offset": 1
-                        },
-                        "reference_ids": {
-                            "starkware.starknet.common.syscalls.get_caller_address.__temp0": 3,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall": 2,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": 1
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
                         "end_col": 91,
-                        "end_line": 114,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 114
+                        "start_line": 196
                     }
                 },
                 "8": {
@@ -189,63 +146,53 @@
                         "starkware.starknet.common.syscalls",
                         "starkware.starknet.common.syscalls.get_caller_address"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 1,
-                            "offset": 1
-                        },
-                        "reference_ids": {
-                            "starkware.starknet.common.syscalls.get_caller_address.__temp0": 3,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall": 2,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": 4
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [
                         {
                             "location": {
                                 "end_col": 93,
-                                "end_line": 115,
+                                "end_line": 197,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 115
+                                "start_line": 197
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 58,
-                        "end_line": 116,
+                        "end_line": 198,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 112,
+                                "end_line": 194,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 60,
-                                        "end_line": 117,
+                                        "end_line": 199,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 117
+                                        "start_line": 199
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 112
+                                "start_line": 194
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 116
+                        "start_line": 198
                     }
                 },
                 "10": {
@@ -253,26 +200,16 @@
                         "starkware.starknet.common.syscalls",
                         "starkware.starknet.common.syscalls.get_caller_address"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 1,
-                            "offset": 2
-                        },
-                        "reference_ids": {
-                            "starkware.starknet.common.syscalls.get_caller_address.__temp0": 3,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall": 2,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": 4
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
                         "end_col": 59,
-                        "end_line": 117,
+                        "end_line": 199,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 28,
-                        "start_line": 117
+                        "start_line": 199
                     }
                 },
                 "11": {
@@ -280,26 +217,16 @@
                         "starkware.starknet.common.syscalls",
                         "starkware.starknet.common.syscalls.get_caller_address"
                     ],
-                    "flow_tracking_data": {
-                        "ap_tracking": {
-                            "group": 1,
-                            "offset": 3
-                        },
-                        "reference_ids": {
-                            "starkware.starknet.common.syscalls.get_caller_address.__temp0": 3,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall": 2,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": 4
-                        }
-                    },
+                    "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
                         "end_col": 60,
-                        "end_line": 117,
+                        "end_line": 199,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 117
+                        "start_line": 199
                     }
                 }
             }
@@ -336,8 +263,6 @@
                             "offset": 1
                         },
                         "reference_ids": {
-                            "starkware.starknet.common.syscalls.get_caller_address.__temp0": 3,
-                            "starkware.starknet.common.syscalls.get_caller_address.syscall": 2,
                             "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": 1
                         }
                     }
@@ -365,10 +290,8 @@
                 "type": "struct"
             },
             "__main__.Ownable.Return": {
-                "full_name": "__main__.Ownable.Return",
-                "members": {},
-                "size": 0,
-                "type": "struct"
+                "cairo_type": "()",
+                "type": "type_definition"
             },
             "__main__.Ownable.SIZEOF_LOCALS": {
                 "type": "const",
@@ -394,10 +317,8 @@
                 "type": "struct"
             },
             "__main__.Ownable_owner.Return": {
-                "full_name": "__main__.Ownable_owner.Return",
-                "members": {},
-                "size": 0,
-                "type": "struct"
+                "cairo_type": "()",
+                "type": "type_definition"
             },
             "__main__.Ownable_owner.SIZEOF_LOCALS": {
                 "type": "const",
@@ -435,10 +356,8 @@
                 "type": "struct"
             },
             "__main__.OwnershipTransferred.Return": {
-                "full_name": "__main__.OwnershipTransferred.Return",
-                "members": {},
-                "size": 0,
-                "type": "struct"
+                "cairo_type": "()",
+                "type": "type_definition"
             },
             "__main__.OwnershipTransferred.SELECTOR": {
                 "type": "const",
@@ -617,10 +536,8 @@
                 "type": "struct"
             },
             "starkware.cairo.common.math.assert_not_zero.Return": {
-                "full_name": "starkware.cairo.common.math.assert_not_zero.Return",
-                "members": {},
-                "size": 0,
-                "type": "struct"
+                "cairo_type": "()",
+                "type": "type_definition"
             },
             "starkware.cairo.common.math.assert_not_zero.SIZEOF_LOCALS": {
                 "type": "const",
@@ -721,6 +638,75 @@
             "starkware.starknet.common.syscalls.DELEGATE_L1_HANDLER_SELECTOR": {
                 "type": "const",
                 "value": 23274015802972845247556842986379118667122
+            },
+            "starkware.starknet.common.syscalls.DEPLOY_SELECTOR": {
+                "type": "const",
+                "value": 75202468540281
+            },
+            "starkware.starknet.common.syscalls.Deploy": {
+                "full_name": "starkware.starknet.common.syscalls.Deploy",
+                "members": {
+                    "request": {
+                        "cairo_type": "starkware.starknet.common.syscalls.DeployRequest",
+                        "offset": 0
+                    },
+                    "response": {
+                        "cairo_type": "starkware.starknet.common.syscalls.DeployResponse",
+                        "offset": 6
+                    }
+                },
+                "size": 9,
+                "type": "struct"
+            },
+            "starkware.starknet.common.syscalls.DeployRequest": {
+                "full_name": "starkware.starknet.common.syscalls.DeployRequest",
+                "members": {
+                    "class_hash": {
+                        "cairo_type": "felt",
+                        "offset": 1
+                    },
+                    "constructor_calldata": {
+                        "cairo_type": "felt*",
+                        "offset": 4
+                    },
+                    "constructor_calldata_size": {
+                        "cairo_type": "felt",
+                        "offset": 3
+                    },
+                    "contract_address_salt": {
+                        "cairo_type": "felt",
+                        "offset": 2
+                    },
+                    "reserved": {
+                        "cairo_type": "felt",
+                        "offset": 5
+                    },
+                    "selector": {
+                        "cairo_type": "felt",
+                        "offset": 0
+                    }
+                },
+                "size": 6,
+                "type": "struct"
+            },
+            "starkware.starknet.common.syscalls.DeployResponse": {
+                "full_name": "starkware.starknet.common.syscalls.DeployResponse",
+                "members": {
+                    "constructor_retdata": {
+                        "cairo_type": "felt*",
+                        "offset": 2
+                    },
+                    "constructor_retdata_size": {
+                        "cairo_type": "felt",
+                        "offset": 1
+                    },
+                    "contract_address": {
+                        "cairo_type": "felt",
+                        "offset": 0
+                    }
+                },
+                "size": 3,
+                "type": "struct"
             },
             "starkware.starknet.common.syscalls.DictAccess": {
                 "destination": "starkware.cairo.common.dict_access.DictAccess",
@@ -1048,6 +1034,56 @@
                 "size": 2,
                 "type": "struct"
             },
+            "starkware.starknet.common.syscalls.LIBRARY_CALL_L1_HANDLER_SELECTOR": {
+                "type": "const",
+                "value": 436233452754198157705746250789557519228244616562
+            },
+            "starkware.starknet.common.syscalls.LIBRARY_CALL_SELECTOR": {
+                "type": "const",
+                "value": 92376026794327011772951660
+            },
+            "starkware.starknet.common.syscalls.LibraryCall": {
+                "full_name": "starkware.starknet.common.syscalls.LibraryCall",
+                "members": {
+                    "request": {
+                        "cairo_type": "starkware.starknet.common.syscalls.LibraryCallRequest",
+                        "offset": 0
+                    },
+                    "response": {
+                        "cairo_type": "starkware.starknet.common.syscalls.CallContractResponse",
+                        "offset": 5
+                    }
+                },
+                "size": 7,
+                "type": "struct"
+            },
+            "starkware.starknet.common.syscalls.LibraryCallRequest": {
+                "full_name": "starkware.starknet.common.syscalls.LibraryCallRequest",
+                "members": {
+                    "calldata": {
+                        "cairo_type": "felt*",
+                        "offset": 4
+                    },
+                    "calldata_size": {
+                        "cairo_type": "felt",
+                        "offset": 3
+                    },
+                    "class_hash": {
+                        "cairo_type": "felt",
+                        "offset": 1
+                    },
+                    "function_selector": {
+                        "cairo_type": "felt",
+                        "offset": 2
+                    },
+                    "selector": {
+                        "cairo_type": "felt",
+                        "offset": 0
+                    }
+                },
+                "size": 5,
+                "type": "struct"
+            },
             "starkware.starknet.common.syscalls.SEND_MESSAGE_TO_L1_SELECTOR": {
                 "type": "const",
                 "value": 433017908768303439907196859243777073
@@ -1201,49 +1237,12 @@
                 "type": "struct"
             },
             "starkware.starknet.common.syscalls.get_caller_address.Return": {
-                "full_name": "starkware.starknet.common.syscalls.get_caller_address.Return",
-                "members": {
-                    "caller_address": {
-                        "cairo_type": "felt",
-                        "offset": 0
-                    }
-                },
-                "size": 1,
-                "type": "struct"
+                "cairo_type": "(caller_address : felt)",
+                "type": "type_definition"
             },
             "starkware.starknet.common.syscalls.get_caller_address.SIZEOF_LOCALS": {
                 "type": "const",
                 "value": 0
-            },
-            "starkware.starknet.common.syscalls.get_caller_address.__temp0": {
-                "cairo_type": "felt",
-                "full_name": "starkware.starknet.common.syscalls.get_caller_address.__temp0",
-                "references": [
-                    {
-                        "ap_tracking_data": {
-                            "group": 1,
-                            "offset": 1
-                        },
-                        "pc": 7,
-                        "value": "[cast(ap + (-1), felt*)]"
-                    }
-                ],
-                "type": "reference"
-            },
-            "starkware.starknet.common.syscalls.get_caller_address.syscall": {
-                "cairo_type": "starkware.starknet.common.syscalls.GetCallerAddress",
-                "full_name": "starkware.starknet.common.syscalls.get_caller_address.syscall",
-                "references": [
-                    {
-                        "ap_tracking_data": {
-                            "group": 1,
-                            "offset": 0
-                        },
-                        "pc": 5,
-                        "value": "[cast([fp + (-3)], starkware.starknet.common.syscalls.GetCallerAddress*)]"
-                    }
-                ],
-                "type": "reference"
             },
             "starkware.starknet.common.syscalls.get_caller_address.syscall_ptr": {
                 "cairo_type": "felt*",
@@ -1288,30 +1287,6 @@
                     },
                     "pc": 5,
                     "value": "[cast(fp + (-3), felt**)]"
-                },
-                {
-                    "ap_tracking_data": {
-                        "group": 1,
-                        "offset": 0
-                    },
-                    "pc": 5,
-                    "value": "[cast([fp + (-3)], starkware.starknet.common.syscalls.GetCallerAddress*)]"
-                },
-                {
-                    "ap_tracking_data": {
-                        "group": 1,
-                        "offset": 1
-                    },
-                    "pc": 7,
-                    "value": "[cast(ap + (-1), felt*)]"
-                },
-                {
-                    "ap_tracking_data": {
-                        "group": 1,
-                        "offset": 1
-                    },
-                    "pc": 8,
-                    "value": "cast([fp + (-3)] + 2, felt*)"
                 }
             ]
         }

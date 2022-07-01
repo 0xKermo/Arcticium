@@ -151,6 +151,18 @@
         "type": "function"
     },
     {
+        "inputs": [],
+        "name": "getCallerAddress",
+        "outputs": [
+            {
+                "name": "caller",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
             {
                 "name": "owner",
