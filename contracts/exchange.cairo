@@ -27,6 +27,7 @@ from openzeppelin.security.pausable import (
 from contracts.utils.structs import SaleTrade, SwapTrade, SaleBid, SwapBid
 from contracts.exchanges.sale import Sale_Trade
 from contracts.exchanges.swap import Swap_Trade
+
 ###########
 # STORAGE #
 ###########
@@ -42,9 +43,9 @@ end
 
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-     owner : felt,
-     _erc20_address : felt,
-):
+    owner : felt,
+    _erc20_address : felt,
+    ):
     Ownable_initializer(owner)
     Swap_Trade.initializer(owner,_erc20_address)
     Sale_Trade.initializer(owner,_erc20_address)
@@ -127,14 +128,12 @@ func open_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     _token_id : Uint256,
     _expiration : felt,
     _price : felt, 
-    _owner_address : felt,
     _target_token_contract : felt,
     _target_token_id : Uint256
     ):
     alloc_locals
     Pausable_when_not_paused()    
     Swap_Trade.list_item(
-        _owner_address,
         _token_contract, 
         _token_id, 
         _expiration, 
@@ -148,13 +147,12 @@ end
 
 @external
 func execute_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt,
-    _owner_address : felt
+    _id : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Swap_Trade.swap_item(_id,_owner_address)
+    Swap_Trade.swap_item(_id)
  
     return ()
 end
@@ -164,27 +162,80 @@ func update_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_c
     _id : felt,
     price : felt,
     _target_token_contract : felt,
-    _target_token_id : Uint256,
-    _owner_address : felt
+    _target_token_id : Uint256
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Swap_Trade.update_listing(_id, price,_target_token_contract,_target_token_id, _owner_address)
+    Swap_Trade.update_listing(_id, price,_target_token_contract,_target_token_id)
  
     return ()
 end
 
 @external
 func cancel_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt,
-    _owner_address : felt
+    _id : felt
     ):
     alloc_locals
     Pausable_when_not_paused()
     
-    Swap_Trade.cancel_trade(_id,_owner_address)
+    Swap_Trade.cancel_trade(_id)
  
+    return ()
+end
+
+##############
+# SWAP BİD #
+##############
+
+@external
+func open_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _trade_id : felt,
+    _bid_contract_address : felt,
+    _bid_token_id : Uint256,
+    _expiration : felt, 
+    _price : felt,
+    _target_token_contract : felt,
+    _target_token_id : Uint256
+    ):
+    alloc_locals
+    Swap_Trade.bid_to_item(
+    _trade_id, 
+    _bid_contract_address, 
+    _bid_token_id, 
+    _expiration,
+    _price,
+    _target_token_contract,
+    _target_token_id
+    )
+ 
+    return ()
+end
+
+@external
+func cancel_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _trade_id : felt,
+    _bid_id : felt
+    ):
+    alloc_locals
+
+    Swap_Trade.cancel_bid(
+    _trade_id, 
+    _bid_id
+    )
+    return ()
+end
+
+@external
+func accept_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _trade_id : felt,
+    _bid_id : felt
+    ):
+    alloc_locals    
+    Swap_Trade.accept_bid(
+    _trade_id, 
+    _bid_id
+    )
     return ()
 end
 
@@ -225,10 +276,88 @@ end
 
 @view
 func get_swap_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
-    _trade_counter : felt
-):
+    trade_counter : felt
+    ):
     let (trade_counter) = Swap_Trade.trade_counter()
     return (trade_counter)
+end
+
+@view
+func get_swap_item_bid_count{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_trade_id : felt) -> (
+    bid_count : felt
+    ):
+    let (bid_count) = Swap_Trade.get_bid_count(_trade_id)
+    return (bid_count)
+end
+
+@view
+func get_swap_item_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_trade_id : felt, _bid_id : felt) -> (
+    bid : SwapBid
+    ):
+    let (bid) = Swap_Trade.bid(_trade_id,_bid_id )
+    return (bid)
+end
+
+# @view
+# func get_swap_item_bids{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_trade_id : felt, index : felt) -> (
+#     bids_len : felt, bids : SwapBid*
+#     ):
+#     let (bids) = Swap_Trade.get_item_bids(_trade_id,index )
+#     return (bids)
+# end
+
+
+@view
+func get_all_bids{
+    syscall_ptr: felt*,
+    pedersen_ptr: HashBuiltin*,
+    range_check_ptr: felt
+    }(_trade_id : felt ) -> (bids_ptr_len: felt, bids_ptr: SwapBid*):
+
+    alloc_locals
+    let (item_bit_count) = Swap_Trade.get_bid_count(_trade_id)
+
+    let (local bids_ptr: SwapBid*) = alloc()
+
+    get_bids(
+        _trade_id=_trade_id,
+        _item_bit_count=item_bit_count,
+        _bids_ptr_len=0,
+        _bids_ptr=bids_ptr
+    )
+    
+    return (item_bit_count, bids_ptr)
+end
+
+func get_bids{
+    syscall_ptr: felt*,
+    pedersen_ptr: HashBuiltin*,
+    range_check_ptr: felt
+    }(
+    _trade_id: felt,
+    _item_bit_count: felt,
+    _bids_ptr_len: felt,
+    _bids_ptr: SwapBid*
+    ):
+
+    if _bids_ptr_len == _item_bit_count - 1:
+        return ()
+    end
+
+    let (bid) = Swap_Trade.bid(_trade_id,
+        _bids_ptr_len + 1
+    )
+
+    assert [_bids_ptr] = bid
+
+    get_bids(
+        _trade_id=_trade_id,
+        _item_bit_count=_item_bit_count,
+        _bids_ptr_len=_bids_ptr_len + 1,
+        _bids_ptr=_bids_ptr + SwapBid.SIZE
+    )
+
+    return ()
 end
 
 ##############

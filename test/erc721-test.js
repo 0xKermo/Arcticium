@@ -3,19 +3,8 @@ const { expect } = require("chai");
 // These two lines allow us to play with our testnet and access our deployed contract 
 const { starknet } = require("hardhat");
 const { number, uint256 } = require("starknet");
-
 const { StarknetContract, StarknetContractFactory } = require("hardhat/types/runtime");
-// const {
-//   toUint256WithFelts,
-//   tryCatch,
-//   shouldFail,
-//   fromUint256WithFelts,
-//   strToFeltArr,
-//   feltArrToStr,
-// } = require('./utils/util')
-// import library to transform string <>decimal
 const { Account } = require("@shardlabs/starknet-hardhat-plugin/dist/src/account");
-// const  { deployERC721 } =  require("./utils/deploy_util");
 
 describe("ERC721 Test Cases", function () {
 
@@ -59,21 +48,9 @@ describe("ERC721 Test Cases", function () {
 
   it("Should create a NFT and get this informations.", async function () {
     this.timeout(300_000);
-    function toUint256WithFelts(num) {
-      const n = uint256.bnToUint256(num);
-      return {
-        low: BigInt(n.low.toString()),
-        high: BigInt(n.high.toString()),
-      };
-    }
+
     const toWallet = BigInt(acc2.starknetContract.address);
-    const num0 = toUint256WithFelts("0");
     const num1 = toUint256WithFelts("1");
-    const num2 = toUint256WithFelts("2");
-    const num3 = toUint256WithFelts("3");
-    const num4 = toUint256WithFelts("4");
-    const num5 = toUint256WithFelts("5");
-    console.log("num",num2)
     await acc1.invoke(contract, "mint", {
       to: toWallet,
       tokenId: num2,
@@ -82,7 +59,7 @@ describe("ERC721 Test Cases", function () {
     .balance;
     console.log("owner balance",balance2)
 
-  expect(balance2).to.deep.equal(num2);
+  expect(balance2).to.deep.equal(num1);
 
 
   });

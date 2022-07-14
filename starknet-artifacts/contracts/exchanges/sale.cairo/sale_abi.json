@@ -1,0 +1,130 @@
+[
+    {
+        "members": [
+            {
+                "name": "owner",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "token_contract",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "token_id",
+                "offset": 2,
+                "type": "Uint256"
+            },
+            {
+                "name": "expiration",
+                "offset": 4,
+                "type": "felt"
+            },
+            {
+                "name": "price",
+                "offset": 5,
+                "type": "felt"
+            },
+            {
+                "name": "status",
+                "offset": 6,
+                "type": "felt"
+            },
+            {
+                "name": "sale_trade_id",
+                "offset": 7,
+                "type": "felt"
+            }
+        ],
+        "name": "SaleTrade",
+        "size": 8,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "low",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "high",
+                "offset": 1,
+                "type": "felt"
+            }
+        ],
+        "name": "Uint256",
+        "size": 2,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "bid_owner",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "expiration",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "bid_price",
+                "offset": 2,
+                "type": "felt"
+            },
+            {
+                "name": "status",
+                "offset": 3,
+                "type": "felt"
+            },
+            {
+                "name": "bidden_nft_owner",
+                "offset": 4,
+                "type": "felt"
+            },
+            {
+                "name": "bidden_collection_address",
+                "offset": 5,
+                "type": "felt"
+            },
+            {
+                "name": "target_nft_id",
+                "offset": 6,
+                "type": "felt"
+            },
+            {
+                "name": "bid_id",
+                "offset": 7,
+                "type": "felt"
+            }
+        ],
+        "name": "SaleBid",
+        "size": 8,
+        "type": "struct"
+    },
+    {
+        "data": [
+            {
+                "name": "trade",
+                "type": "SaleTrade"
+            }
+        ],
+        "keys": [],
+        "name": "SaleAction",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "trade",
+                "type": "SaleBid"
+            }
+        ],
+        "keys": [],
+        "name": "SaleBidAction",
+        "type": "event"
+    }
+]

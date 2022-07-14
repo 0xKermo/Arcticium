@@ -1,0 +1,150 @@
+[
+    {
+        "members": [
+            {
+                "name": "owner",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "token_contract",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "token_id",
+                "offset": 2,
+                "type": "Uint256"
+            },
+            {
+                "name": "expiration",
+                "offset": 4,
+                "type": "felt"
+            },
+            {
+                "name": "price",
+                "offset": 5,
+                "type": "felt"
+            },
+            {
+                "name": "status",
+                "offset": 6,
+                "type": "felt"
+            },
+            {
+                "name": "swap_trade_id",
+                "offset": 7,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_contract",
+                "offset": 8,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_id",
+                "offset": 9,
+                "type": "Uint256"
+            }
+        ],
+        "name": "SwapTrade",
+        "size": 11,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "low",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "high",
+                "offset": 1,
+                "type": "felt"
+            }
+        ],
+        "name": "Uint256",
+        "size": 2,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "bid_owner",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "bid_collection_address",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "bid_nft_id",
+                "offset": 2,
+                "type": "Uint256"
+            },
+            {
+                "name": "expiration",
+                "offset": 4,
+                "type": "felt"
+            },
+            {
+                "name": "price",
+                "offset": 5,
+                "type": "felt"
+            },
+            {
+                "name": "status",
+                "offset": 6,
+                "type": "felt"
+            },
+            {
+                "name": "target_nft_owner",
+                "offset": 7,
+                "type": "felt"
+            },
+            {
+                "name": "target_collection_address",
+                "offset": 8,
+                "type": "felt"
+            },
+            {
+                "name": "target_nft_id",
+                "offset": 9,
+                "type": "felt"
+            },
+            {
+                "name": "bid_id",
+                "offset": 10,
+                "type": "felt"
+            }
+        ],
+        "name": "SwapBid",
+        "size": 11,
+        "type": "struct"
+    },
+    {
+        "data": [
+            {
+                "name": "trade",
+                "type": "SwapTrade"
+            }
+        ],
+        "keys": [],
+        "name": "SwapAction",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "trade",
+                "type": "SwapBid"
+            }
+        ],
+        "keys": [],
+        "name": "SwapBidAction",
+        "type": "event"
+    }
+]

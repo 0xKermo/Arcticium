@@ -3,12 +3,18 @@ const { expect } = require("chai");
 // These two lines allow us to play with our testnet and access our deployed contract 
 const { starknet } = require("hardhat");
 const { number, uint256 } = require("starknet");
-
+const {toUint256WithFelts} = require("./utils/util")
 const { StarknetContract, StarknetContractFactory } = require("hardhat/types/runtime");
 
 const { Account } = require("@shardlabs/starknet-hardhat-plugin/dist/src/account");
 
-
+function toUint256WithFelts(num) {
+    const n = uint256.bnToUint256(num);
+    return {
+      low: BigInt(n.low.toString()),
+      high: BigInt(n.high.toString()),
+    };
+  }
 describe("ERC20 Test Cases", function () {
 
   this.timeout(300_000);
@@ -20,13 +26,7 @@ describe("ERC20 Test Cases", function () {
   let receipt;
 
   before(async function () {
-    function toUint256WithFelts(num) {
-        const n = uint256.bnToUint256(num);
-        return {
-          low: BigInt(n.low.toString()),
-          high: BigInt(n.high.toString()),
-        };
-      }
+
     acc1 = await starknet.deployAccount("OpenZeppelin");
     acc2 = await starknet.deployAccount("OpenZeppelin");
     acc3 = await starknet.deployAccount("OpenZeppelin");
@@ -36,19 +36,19 @@ describe("ERC20 Test Cases", function () {
 
     const name = starknet.shortStringToBigInt("TestToken");
     const symbol = starknet.shortStringToBigInt("tst");
-    const decimal = starknet.shortStringToBigInt("18")
+    const decimals = BigInt(18)
     const initial_supply =toUint256WithFelts("25")
     
     owner =BigInt(acc1.starknetContract.address)
-    receipt = BigInt(acc1.starknetContract.address)
+    recipient = BigInt(acc1.starknetContract.address)
     const contractFactory = await starknet.getContractFactory("ERC20");
 
     contract = await contractFactory.deploy({
       name,
       symbol,
-      decimal,
+      decimals,
       initial_supply,
-      receipt,
+      recipient,
       owner
     });
 
@@ -69,9 +69,17 @@ describe("ERC20 Test Cases", function () {
     this.timeout(300_000);
 
 
-    const balance2 = (await contract.call("getCallerAddress"));
-    console.log("owner balance",balance2)
+    const getCallerAddress = (await contract.invoke("getCallerAddress"));
+    console.log("caller",getCallerAddress)
 
+    const num2 = toUint256WithFelts("2");
+    const toWallet = BigInt(acc2.starknetContract.address);
 
+    await acc1.invoke(contract, "mint", {
+        to: toWallet,
+        amount: num2,
+      });
+      const balance = (await contract.call("balanceOf", { account: toWallet }));
+      console.log("balance",balance)
   });
 });
