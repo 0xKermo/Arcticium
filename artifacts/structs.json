@@ -96,46 +96,50 @@
                 "members": {
                     "bid_contract_address": {
                         "cairo_type": "felt",
-                        "offset": 1
-                    },
-                    "bid_id": {
-                        "cairo_type": "felt",
-                        "offset": 10
+                        "offset": 2
                     },
                     "bid_owner": {
                         "cairo_type": "felt",
-                        "offset": 0
+                        "offset": 1
                     },
                     "bid_token_id": {
                         "cairo_type": "starkware.cairo.common.uint256.Uint256",
-                        "offset": 2
+                        "offset": 3
                     },
                     "expiration": {
                         "cairo_type": "felt",
-                        "offset": 4
+                        "offset": 5
+                    },
+                    "item_bid_id": {
+                        "cairo_type": "felt",
+                        "offset": 12
                     },
                     "price": {
                         "cairo_type": "felt",
-                        "offset": 5
+                        "offset": 6
                     },
                     "status": {
                         "cairo_type": "felt",
-                        "offset": 6
+                        "offset": 7
                     },
                     "target_nft_owner": {
                         "cairo_type": "felt",
-                        "offset": 7
+                        "offset": 8
                     },
                     "target_token_contract": {
                         "cairo_type": "felt",
-                        "offset": 8
+                        "offset": 9
                     },
                     "target_token_id": {
+                        "cairo_type": "starkware.cairo.common.uint256.Uint256",
+                        "offset": 10
+                    },
+                    "trade_id": {
                         "cairo_type": "felt",
-                        "offset": 9
+                        "offset": 0
                     }
                 },
-                "size": 11,
+                "size": 13,
                 "type": "struct"
             },
             "__main__.SwapTrade": {

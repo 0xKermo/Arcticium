@@ -298,67 +298,14 @@ func get_swap_item_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_c
     return (bid)
 end
 
-# @view
-# func get_swap_item_bids{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_trade_id : felt, index : felt) -> (
-#     bids_len : felt, bids : SwapBid*
-#     ):
-#     let (bids) = Swap_Trade.get_item_bids(_trade_id,index )
-#     return (bids)
-# end
-
-
 @view
-func get_all_bids{
-    syscall_ptr: felt*,
-    pedersen_ptr: HashBuiltin*,
-    range_check_ptr: felt
-    }(_trade_id : felt ) -> (bids_ptr_len: felt, bids_ptr: SwapBid*):
-
-    alloc_locals
-    let (item_bit_count) = Swap_Trade.get_bid_count(_trade_id)
-
-    let (local bids_ptr: SwapBid*) = alloc()
-
-    get_bids(
-        _trade_id=_trade_id,
-        _item_bit_count=item_bit_count,
-        _bids_ptr_len=0,
-        _bids_ptr=bids_ptr
-    )
-    
-    return (item_bit_count, bids_ptr)
-end
-
-func get_bids{
-    syscall_ptr: felt*,
-    pedersen_ptr: HashBuiltin*,
-    range_check_ptr: felt
-    }(
-    _trade_id: felt,
-    _item_bit_count: felt,
-    _bids_ptr_len: felt,
-    _bids_ptr: SwapBid*
+func get_swap_item_bids{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_trade_id : felt) -> (
+    bids_len : felt, bids : SwapBid*
     ):
-
-    if _bids_ptr_len == _item_bit_count - 1:
-        return ()
-    end
-
-    let (bid) = Swap_Trade.bid(_trade_id,
-        _bids_ptr_len + 1
-    )
-
-    assert [_bids_ptr] = bid
-
-    get_bids(
-        _trade_id=_trade_id,
-        _item_bit_count=_item_bit_count,
-        _bids_ptr_len=_bids_ptr_len + 1,
-        _bids_ptr=_bids_ptr + SwapBid.SIZE
-    )
-
-    return ()
+    let (bids_len,bids) = Swap_Trade.get_all_bids(_trade_id )
+    return (bids_len, bids)
 end
+
 
 ##############
 #   COMMON   #

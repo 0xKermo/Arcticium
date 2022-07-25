@@ -397,57 +397,60 @@ namespace Swap_Trade:
     end
 
     
-    # func get_all_bids{
-    #     syscall_ptr: felt*,
-    #     pedersen_ptr: HashBuiltin*,
-    #     range_check_ptr: felt
-    #     }(_trade_id : felt ) -> (bids_ptr_len: felt, bids_ptr: SwapBid*):
+    @view
+    func get_all_bids{
+        syscall_ptr: felt*,
+        pedersen_ptr: HashBuiltin*,
+        range_check_ptr: felt
+    }(trade_id : felt ) -> (bids_ptr_len: felt, bids_ptr: SwapBid*):
 
-    #     alloc_locals
-    #     let (item_bit_count) = _bid_to_item_counter.read(_trade_id)
+        alloc_locals
+        let (bids_count) = Swap_Trade.get_bid_count(trade_id)
 
-    #     let (local bids_ptr: SwapBid*) = alloc()
+        let (local bids_ptr: SwapBid*) = alloc()
 
-    #     get_bids(
-    #         _trade_id=_trade_id,
-    #         _item_bit_count=item_bit_count,
-    #         _bids_ptr_len=0,
-    #         _bids_ptr=bids_ptr
-    #     )
+        get_bids(
+            trade_id=trade_id,
+            bids_count=bids_count,
+            bids_ptr_len=0,
+            bids_ptr=bids_ptr
+        )
         
-    #     return (item_bit_count, bids_ptr)
-    # end
+        return (bids_count, bids_ptr)
+    end
 
-    # func get_bids{
-    #     syscall_ptr: felt*,
-    #     pedersen_ptr: HashBuiltin*,
-    #     range_check_ptr: felt
-    #     }(
-    #     _trade_id: felt,
-    #     _item_bit_count: felt,
-    #     _bids_ptr_len: felt,
-    #     _bids_ptr: SwapBid*
-    #     ):
+    func get_bids{
+        syscall_ptr: felt*,
+        pedersen_ptr: HashBuiltin*,
+        range_check_ptr: felt
+    }(
+        trade_id: felt,
+        bids_count: felt,
+        bids_ptr_len: felt,
+        bids_ptr: SwapBid*
+    ):
 
-    #     if _bids_ptr_len == _item_bit_count - 1:
-    #         return ()
-    #     end
+        if bids_ptr_len == bids_count:
+            return ()
+        end
 
-    #     let (bid) = _bids.read(_trade_id,
-    #         _bids_ptr_len + 1
-    #     )
+        let (bid) = Swap_Trade.bid(
+            trade_id,
+            bids_ptr_len + 1
+        )
 
-    #     assert [_bids_ptr] = bid
+        assert [bids_ptr] = bid
 
-    #     get_bids(
-    #         _trade_id=_trade_id,
-    #         _item_bit_count=_item_bit_count,
-    #         _bids_ptr_len=_bids_ptr_len + 1,
-    #         _bids_ptr=_bids_ptr + SwapBid.SIZE
-    #     )
+        get_bids(
+            trade_id=trade_id,
+            bids_count=bids_count,
+            bids_ptr_len=bids_ptr_len + 1,
+            bids_ptr=bids_ptr + SwapBid.SIZE
+        )
 
-    #     return ()
-    # end
+        return ()
+
+    end
 
     ###########
     # SETTERS #

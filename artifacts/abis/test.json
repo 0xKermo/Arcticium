@@ -1,0 +1,64 @@
+[
+    {
+        "inputs": [],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
+        "inputs": [
+            {
+                "name": "pool_address",
+                "type": "felt"
+            }
+        ],
+        "name": "add_pool",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "id",
+                "type": "felt"
+            }
+        ],
+        "name": "get_pool",
+        "outputs": [
+            {
+                "name": "pool_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_pool_count",
+        "outputs": [
+            {
+                "name": "pool_count",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_all_pools",
+        "outputs": [
+            {
+                "name": "pools_ptr_len",
+                "type": "felt"
+            },
+            {
+                "name": "pools_ptr",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

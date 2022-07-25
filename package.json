@@ -9,8 +9,11 @@
   "scripts": {
     "test": "mocha --timeout 10000"
   },
-    "plugins": [
+  "plugins": [
     "babel-plugin-transform-export-extensions",
     "transform-es2015-modules-commonjs"
-  ]
+  ],
+  "dependencies": {
+    "react-redux": "^8.0.2"
+  }
 }

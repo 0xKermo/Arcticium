@@ -71,58 +71,63 @@
     {
         "members": [
             {
-                "name": "bid_owner",
+                "name": "trade_id",
                 "offset": 0,
                 "type": "felt"
             },
             {
-                "name": "bid_contract_address",
+                "name": "bid_owner",
                 "offset": 1,
                 "type": "felt"
             },
             {
-                "name": "bid_token_id",
+                "name": "bid_contract_address",
                 "offset": 2,
+                "type": "felt"
+            },
+            {
+                "name": "bid_token_id",
+                "offset": 3,
                 "type": "Uint256"
             },
             {
                 "name": "expiration",
-                "offset": 4,
-                "type": "felt"
-            },
-            {
-                "name": "price",
                 "offset": 5,
                 "type": "felt"
             },
             {
-                "name": "status",
+                "name": "price",
                 "offset": 6,
                 "type": "felt"
             },
             {
-                "name": "target_nft_owner",
+                "name": "status",
                 "offset": 7,
                 "type": "felt"
             },
             {
-                "name": "target_token_contract",
+                "name": "target_nft_owner",
                 "offset": 8,
                 "type": "felt"
             },
             {
-                "name": "target_token_id",
+                "name": "target_token_contract",
                 "offset": 9,
                 "type": "felt"
             },
             {
-                "name": "bid_id",
+                "name": "target_token_id",
                 "offset": 10,
+                "type": "Uint256"
+            },
+            {
+                "name": "item_bid_id",
+                "offset": 12,
                 "type": "felt"
             }
         ],
         "name": "SwapBid",
-        "size": 11,
+        "size": 13,
         "type": "struct"
     },
     {
@@ -146,5 +151,26 @@
         "keys": [],
         "name": "SwapBidAction",
         "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "name": "trade_id",
+                "type": "felt"
+            }
+        ],
+        "name": "get_all_bids",
+        "outputs": [
+            {
+                "name": "bids_ptr_len",
+                "type": "felt"
+            },
+            {
+                "name": "bids_ptr",
+                "type": "SwapBid*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     }
 ]

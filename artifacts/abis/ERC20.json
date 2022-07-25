@@ -186,6 +186,23 @@
     {
         "inputs": [
             {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "user_faucet_time",
+        "outputs": [
+            {
+                "name": "time_stamp",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "name": "recipient",
                 "type": "felt"
             },

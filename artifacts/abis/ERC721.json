@@ -19,7 +19,7 @@
     {
         "data": [
             {
-                "name": "from_",
+                "name": "_from",
                 "type": "felt"
             },
             {
@@ -51,7 +51,7 @@
             }
         ],
         "keys": [],
-        "name": "Approval",
+        "name": "Approve",
         "type": "event"
     },
     {
@@ -74,21 +74,6 @@
         "type": "event"
     },
     {
-        "data": [
-            {
-                "name": "previousOwner",
-                "type": "felt"
-            },
-            {
-                "name": "newOwner",
-                "type": "felt"
-            }
-        ],
-        "keys": [],
-        "name": "OwnershipTransferred",
-        "type": "event"
-    },
-    {
         "inputs": [
             {
                 "name": "name",
@@ -108,9 +93,21 @@
         "type": "constructor"
     },
     {
+        "inputs": [],
+        "name": "getOwner",
+        "outputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
             {
-                "name": "interfaceId",
+                "name": "interface_id",
                 "type": "felt"
             }
         ],
@@ -168,7 +165,7 @@
     {
         "inputs": [
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             }
         ],
@@ -185,7 +182,7 @@
     {
         "inputs": [
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             }
         ],
@@ -213,7 +210,7 @@
         "name": "isApprovedForAll",
         "outputs": [
             {
-                "name": "isApproved",
+                "name": "is_approved",
                 "type": "felt"
             }
         ],
@@ -223,15 +220,19 @@
     {
         "inputs": [
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             }
         ],
         "name": "tokenURI",
         "outputs": [
             {
-                "name": "tokenURI",
+                "name": "token_uri_len",
                 "type": "felt"
+            },
+            {
+                "name": "token_uri",
+                "type": "felt*"
             }
         ],
         "stateMutability": "view",
@@ -239,10 +240,10 @@
     },
     {
         "inputs": [],
-        "name": "owner",
+        "name": "totalSupply",
         "outputs": [
             {
-                "name": "owner",
+                "name": "total_supply",
                 "type": "felt"
             }
         ],
@@ -256,7 +257,7 @@
                 "type": "felt"
             },
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             }
         ],
@@ -282,7 +283,7 @@
     {
         "inputs": [
             {
-                "name": "from_",
+                "name": "_from",
                 "type": "felt"
             },
             {
@@ -290,7 +291,7 @@
                 "type": "felt"
             },
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             }
         ],
@@ -301,7 +302,7 @@
     {
         "inputs": [
             {
-                "name": "from_",
+                "name": "_from",
                 "type": "felt"
             },
             {
@@ -309,7 +310,7 @@
                 "type": "felt"
             },
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             },
             {
@@ -328,12 +329,39 @@
     {
         "inputs": [
             {
+                "name": "token_id",
+                "type": "Uint256"
+            },
+            {
+                "name": "base_token_uri_len",
+                "type": "felt"
+            },
+            {
+                "name": "base_token_uri",
+                "type": "felt*"
+            }
+        ],
+        "name": "setTokenURI",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "name": "to",
                 "type": "felt"
             },
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
+            },
+            {
+                "name": "base_token_uri_len",
+                "type": "felt"
+            },
+            {
+                "name": "base_token_uri",
+                "type": "felt*"
             }
         ],
         "name": "mint",
@@ -343,7 +371,7 @@
     {
         "inputs": [
             {
-                "name": "tokenId",
+                "name": "token_id",
                 "type": "Uint256"
             }
         ],
@@ -354,33 +382,17 @@
     {
         "inputs": [
             {
-                "name": "tokenId",
-                "type": "Uint256"
-            },
-            {
-                "name": "tokenURI",
-                "type": "felt"
-            }
-        ],
-        "name": "setTokenURI",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "newOwner",
+                "name": "new_owner",
                 "type": "felt"
             }
         ],
         "name": "transferOwnership",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
+        "outputs": [
+            {
+                "name": "new_owner",
+                "type": "felt"
+            }
+        ],
         "type": "function"
     }
 ]

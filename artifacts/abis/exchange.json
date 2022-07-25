@@ -266,6 +266,27 @@
     {
         "inputs": [
             {
+                "name": "trade_id",
+                "type": "felt"
+            }
+        ],
+        "name": "get_all_bids",
+        "outputs": [
+            {
+                "name": "bids_ptr_len",
+                "type": "felt"
+            },
+            {
+                "name": "bids_ptr",
+                "type": "SwapBid*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "name": "owner",
                 "type": "felt"
             },
@@ -598,14 +619,14 @@
                 "type": "felt"
             }
         ],
-        "name": "get_all_bids",
+        "name": "get_swap_item_bids",
         "outputs": [
             {
-                "name": "bids_ptr_len",
+                "name": "bids_len",
                 "type": "felt"
             },
             {
-                "name": "bids_ptr",
+                "name": "bids",
                 "type": "SwapBid*"
             }
         ],
