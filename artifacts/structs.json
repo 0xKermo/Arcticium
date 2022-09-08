@@ -106,45 +106,53 @@
                         "cairo_type": "starkware.cairo.common.uint256.Uint256",
                         "offset": 3
                     },
+                    "currency_address": {
+                        "cairo_type": "felt",
+                        "offset": 6
+                    },
                     "expiration": {
                         "cairo_type": "felt",
                         "offset": 5
                     },
                     "item_bid_id": {
                         "cairo_type": "felt",
-                        "offset": 12
+                        "offset": 14
                     },
                     "price": {
-                        "cairo_type": "felt",
-                        "offset": 6
+                        "cairo_type": "starkware.cairo.common.uint256.Uint256",
+                        "offset": 7
                     },
                     "status": {
                         "cairo_type": "felt",
-                        "offset": 7
+                        "offset": 9
                     },
                     "target_nft_owner": {
                         "cairo_type": "felt",
-                        "offset": 8
+                        "offset": 10
                     },
                     "target_token_contract": {
                         "cairo_type": "felt",
-                        "offset": 9
+                        "offset": 11
                     },
                     "target_token_id": {
                         "cairo_type": "starkware.cairo.common.uint256.Uint256",
-                        "offset": 10
+                        "offset": 12
                     },
                     "trade_id": {
                         "cairo_type": "felt",
                         "offset": 0
                     }
                 },
-                "size": 13,
+                "size": 15,
                 "type": "struct"
             },
             "__main__.SwapTrade": {
                 "full_name": "__main__.SwapTrade",
                 "members": {
+                    "currency_address": {
+                        "cairo_type": "felt",
+                        "offset": 5
+                    },
                     "expiration": {
                         "cairo_type": "felt",
                         "offset": 4
@@ -154,24 +162,24 @@
                         "offset": 0
                     },
                     "price": {
-                        "cairo_type": "felt",
-                        "offset": 5
+                        "cairo_type": "starkware.cairo.common.uint256.Uint256",
+                        "offset": 6
                     },
                     "status": {
                         "cairo_type": "felt",
-                        "offset": 6
+                        "offset": 8
                     },
                     "swap_trade_id": {
                         "cairo_type": "felt",
-                        "offset": 7
+                        "offset": 9
                     },
                     "target_token_contract": {
                         "cairo_type": "felt",
-                        "offset": 8
+                        "offset": 11
                     },
                     "target_token_id": {
                         "cairo_type": "starkware.cairo.common.uint256.Uint256",
-                        "offset": 9
+                        "offset": 12
                     },
                     "token_contract": {
                         "cairo_type": "felt",
@@ -180,9 +188,13 @@
                     "token_id": {
                         "cairo_type": "starkware.cairo.common.uint256.Uint256",
                         "offset": 2
+                    },
+                    "trade_type": {
+                        "cairo_type": "felt",
+                        "offset": 10
                     }
                 },
-                "size": 11,
+                "size": 14,
                 "type": "struct"
             },
             "__main__.Uint256": {
@@ -549,7 +561,7 @@
                         "cairo_type": "felt",
                         "offset": 2
                     },
-                    "reserved": {
+                    "deploy_from_zero": {
                         "cairo_type": "felt",
                         "offset": 5
                     },

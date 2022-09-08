@@ -83,11 +83,9 @@ namespace Sale_Trade:
             range_check_ptr
         }(
             _owner_address : felt,
-            _erc20_address : felt,
             
         ):
         Ownable_initializer(_owner_address)
-        erc20_token_address.write(_erc20_address)
         _trade_counter.write(1)
         return ()
     end

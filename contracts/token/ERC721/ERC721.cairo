@@ -11,7 +11,6 @@ from contracts.token.ERC721.ERC721_base import (
     ERC721_ownerOf,
     ERC721_getApproved,
     ERC721_isApprovedForAll,
-    ERC721_totalSupply,
     ERC721_mint,
     ERC721_burn,
 
@@ -39,6 +38,9 @@ from contracts.token.lib.Ownable_base import (
     Ownable_transfer_ownership
 )
 
+@storage_var
+func _total_supply() -> (res: felt):
+end
 
 #
 # Constructor
@@ -155,7 +157,7 @@ func totalSupply{
         pedersen_ptr : HashBuiltin*,
         range_check_ptr
     }() -> (total_supply: felt):
-    let (total_supply) = ERC721_totalSupply()
+    let (total_supply) = _total_supply.read()
     return (total_supply)
 end
 #
@@ -224,10 +226,13 @@ func mint{
         pedersen_ptr: HashBuiltin*,
         syscall_ptr: felt*,
         range_check_ptr
-    }(to: felt, token_id: Uint256, base_token_uri_len: felt, base_token_uri: felt*):
-    ERC721_mint(to, token_id)
-    ERC721_Metadata_setBaseTokenURI(token_id,base_token_uri_len, base_token_uri)
-    return ()
+    }(to: felt, base_token_uri_len: felt, base_token_uri: felt*) ->(token_id: felt):
+    alloc_locals
+    let (tokenId) = _total_supply.read()
+    ERC721_mint(to, Uint256(tokenId + 1, 0))
+    ERC721_Metadata_setBaseTokenURI(Uint256(tokenId + 1, 0),base_token_uri_len, base_token_uri)
+    _total_supply.write(tokenId+1)
+    return (tokenId)
 end
 
 @external

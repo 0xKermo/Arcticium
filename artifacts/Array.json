@@ -35,18 +35,13 @@
             "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffed",
             "0x40137fff7fff8000",
             "0x480a80007fff8000",
-            "0x480a7ffb7fff8000",
-            "0x480a7ffa7fff8000",
-            "0x1104800180018000",
-            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffea",
-            "0x482a7ffa80008000",
             "0x480a7ffd7fff8000",
             "0x480a7ffc7fff8000",
             "0x1104800180018000",
-            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffe5",
-            "0x480a7ff97fff8000",
+            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffea",
+            "0x480a7ffb7fff8000",
             "0x480a80007fff8000",
-            "0x482a7ffc7ffa8000",
+            "0x480a7ffc7fff8000",
             "0x208b7fff7fff7ffe"
         ],
         "debug_info": {
@@ -358,12 +353,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 17,
-                        "end_line": 12,
+                        "end_line": 10,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 12
+                        "start_line": 10
                     }
                 },
                 "20": {
@@ -375,12 +370,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 37,
-                        "end_line": 13,
+                        "end_line": 11,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "start_col": 30,
-                        "start_line": 13
+                        "start_line": 11
                     }
                 },
                 "22": {
@@ -392,12 +387,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 26,
-                        "end_line": 13,
+                        "end_line": 11,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "start_col": 10,
-                        "start_line": 13
+                        "start_line": 11
                     }
                 },
                 "23": {
@@ -409,24 +404,24 @@
                     "hints": [],
                     "inst": {
                         "end_col": 19,
-                        "end_line": 13,
+                        "end_line": 11,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 15,
-                                "end_line": 14,
+                                "end_line": 12,
                                 "input_file": {
                                     "filename": "contracts/token/lib/Array.cairo"
                                 },
                                 "start_col": 12,
-                                "start_line": 14
+                                "start_line": 12
                             },
                             "While expanding the reference 'res' in:"
                         ],
                         "start_col": 16,
-                        "start_line": 13
+                        "start_line": 11
                     }
                 },
                 "24": {
@@ -445,12 +440,12 @@
                         "parent_location": [
                             {
                                 "end_col": 21,
-                                "end_line": 14,
+                                "end_line": 12,
                                 "input_file": {
                                     "filename": "contracts/token/lib/Array.cairo"
                                 },
                                 "start_col": 17,
-                                "start_line": 14
+                                "start_line": 12
                             },
                             "While expanding the reference 'arr1' in:"
                         ],
@@ -474,12 +469,12 @@
                         "parent_location": [
                             {
                                 "end_col": 31,
-                                "end_line": 14,
+                                "end_line": 12,
                                 "input_file": {
                                     "filename": "contracts/token/lib/Array.cairo"
                                 },
                                 "start_col": 23,
-                                "start_line": 14
+                                "start_line": 12
                             },
                             "While expanding the reference 'arr1_len' in:"
                         ],
@@ -496,107 +491,15 @@
                     "hints": [],
                     "inst": {
                         "end_col": 32,
-                        "end_line": 14,
+                        "end_line": 12,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 14
+                        "start_line": 12
                     }
                 },
                 "28": {
-                    "accessible_scopes": [
-                        "__main__",
-                        "__main__.concat_arr"
-                    ],
-                    "flow_tracking_data": null,
-                    "hints": [],
-                    "inst": {
-                        "end_col": 26,
-                        "end_line": 15,
-                        "input_file": {
-                            "filename": "contracts/token/lib/Array.cairo"
-                        },
-                        "start_col": 12,
-                        "start_line": 15
-                    }
-                },
-                "29": {
-                    "accessible_scopes": [
-                        "__main__",
-                        "__main__.concat_arr"
-                    ],
-                    "flow_tracking_data": null,
-                    "hints": [],
-                    "inst": {
-                        "end_col": 20,
-                        "end_line": 10,
-                        "input_file": {
-                            "filename": "contracts/token/lib/Array.cairo"
-                        },
-                        "parent_location": [
-                            {
-                                "end_col": 32,
-                                "end_line": 15,
-                                "input_file": {
-                                    "filename": "contracts/token/lib/Array.cairo"
-                                },
-                                "start_col": 28,
-                                "start_line": 15
-                            },
-                            "While expanding the reference 'arr2' in:"
-                        ],
-                        "start_col": 9,
-                        "start_line": 10
-                    }
-                },
-                "30": {
-                    "accessible_scopes": [
-                        "__main__",
-                        "__main__.concat_arr"
-                    ],
-                    "flow_tracking_data": null,
-                    "hints": [],
-                    "inst": {
-                        "end_col": 23,
-                        "end_line": 9,
-                        "input_file": {
-                            "filename": "contracts/token/lib/Array.cairo"
-                        },
-                        "parent_location": [
-                            {
-                                "end_col": 42,
-                                "end_line": 15,
-                                "input_file": {
-                                    "filename": "contracts/token/lib/Array.cairo"
-                                },
-                                "start_col": 34,
-                                "start_line": 15
-                            },
-                            "While expanding the reference 'arr2_len' in:"
-                        ],
-                        "start_col": 9,
-                        "start_line": 9
-                    }
-                },
-                "31": {
-                    "accessible_scopes": [
-                        "__main__",
-                        "__main__.concat_arr"
-                    ],
-                    "flow_tracking_data": null,
-                    "hints": [],
-                    "inst": {
-                        "end_col": 43,
-                        "end_line": 15,
-                        "input_file": {
-                            "filename": "contracts/token/lib/Array.cairo"
-                        },
-                        "start_col": 5,
-                        "start_line": 15
-                    }
-                },
-                "33": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__.concat_arr"
@@ -618,13 +521,13 @@
                                 },
                                 "parent_location": [
                                     {
-                                        "end_col": 38,
-                                        "end_line": 16,
+                                        "end_col": 28,
+                                        "end_line": 13,
                                         "input_file": {
                                             "filename": "contracts/token/lib/Array.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 16
+                                        "start_line": 13
                                     },
                                     "While trying to retrieve the implicit argument 'range_check_ptr' in:"
                                 ],
@@ -637,7 +540,7 @@
                         "start_line": 6
                     }
                 },
-                "34": {
+                "29": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__.concat_arr"
@@ -646,27 +549,27 @@
                     "hints": [],
                     "inst": {
                         "end_col": 19,
-                        "end_line": 13,
+                        "end_line": 11,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 16,
-                                "end_line": 16,
+                                "end_line": 13,
                                 "input_file": {
                                     "filename": "contracts/token/lib/Array.cairo"
                                 },
                                 "start_col": 13,
-                                "start_line": 16
+                                "start_line": 13
                             },
                             "While expanding the reference 'res' in:"
                         ],
                         "start_col": 16,
-                        "start_line": 13
+                        "start_line": 11
                     }
                 },
-                "35": {
+                "30": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__.concat_arr"
@@ -674,16 +577,28 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 37,
-                        "end_line": 16,
+                        "end_col": 23,
+                        "end_line": 7,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
-                        "start_col": 18,
-                        "start_line": 16
+                        "parent_location": [
+                            {
+                                "end_col": 26,
+                                "end_line": 13,
+                                "input_file": {
+                                    "filename": "contracts/token/lib/Array.cairo"
+                                },
+                                "start_col": 18,
+                                "start_line": 13
+                            },
+                            "While expanding the reference 'arr1_len' in:"
+                        ],
+                        "start_col": 9,
+                        "start_line": 7
                     }
                 },
-                "36": {
+                "31": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__.concat_arr"
@@ -691,13 +606,13 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 38,
-                        "end_line": 16,
+                        "end_col": 28,
+                        "end_line": 13,
                         "input_file": {
                             "filename": "contracts/token/lib/Array.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 16
+                        "start_line": 13
                     }
                 }
             }
@@ -792,17 +707,9 @@
                     "arr1_len": {
                         "cairo_type": "felt",
                         "offset": 0
-                    },
-                    "arr2": {
-                        "cairo_type": "felt*",
-                        "offset": 3
-                    },
-                    "arr2_len": {
-                        "cairo_type": "felt",
-                        "offset": 2
                     }
                 },
-                "size": 4,
+                "size": 2,
                 "type": "struct"
             },
             "__main__.concat_arr.ImplicitArgs": {
@@ -1185,7 +1092,7 @@
                         "cairo_type": "felt",
                         "offset": 2
                     },
-                    "reserved": {
+                    "deploy_from_zero": {
                         "cairo_type": "felt",
                         "offset": 5
                     },

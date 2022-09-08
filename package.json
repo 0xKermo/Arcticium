@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@shardlabs/starknet-hardhat-plugin": "^0.5.5",
+    "@shardlabs/starknet-hardhat-plugin": "^0.6.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "chai": "^4.3.6",
@@ -14,6 +14,7 @@
     "transform-es2015-modules-commonjs"
   ],
   "dependencies": {
-    "react-redux": "^8.0.2"
+    "react-redux": "^8.0.2",
+    "starknet": "^3.18.2"
   }
 }

@@ -22,33 +22,43 @@
                 "type": "felt"
             },
             {
-                "name": "price",
+                "name": "currency_address",
                 "offset": 5,
                 "type": "felt"
             },
             {
-                "name": "status",
+                "name": "price",
                 "offset": 6,
-                "type": "felt"
+                "type": "Uint256"
             },
             {
-                "name": "swap_trade_id",
-                "offset": 7,
-                "type": "felt"
-            },
-            {
-                "name": "target_token_contract",
+                "name": "status",
                 "offset": 8,
                 "type": "felt"
             },
             {
-                "name": "target_token_id",
+                "name": "swap_trade_id",
                 "offset": 9,
+                "type": "felt"
+            },
+            {
+                "name": "trade_type",
+                "offset": 10,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_contract",
+                "offset": 11,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_id",
+                "offset": 12,
                 "type": "Uint256"
             }
         ],
         "name": "SwapTrade",
-        "size": 11,
+        "size": 14,
         "type": "struct"
     },
     {
@@ -96,39 +106,59 @@
                 "type": "felt"
             },
             {
-                "name": "price",
+                "name": "currency_address",
                 "offset": 6,
                 "type": "felt"
             },
             {
-                "name": "status",
+                "name": "price",
                 "offset": 7,
-                "type": "felt"
+                "type": "Uint256"
             },
             {
-                "name": "target_nft_owner",
-                "offset": 8,
-                "type": "felt"
-            },
-            {
-                "name": "target_token_contract",
+                "name": "status",
                 "offset": 9,
                 "type": "felt"
             },
             {
-                "name": "target_token_id",
+                "name": "target_nft_owner",
                 "offset": 10,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_contract",
+                "offset": 11,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_id",
+                "offset": 12,
                 "type": "Uint256"
             },
             {
                 "name": "item_bid_id",
-                "offset": 12,
+                "offset": 14,
                 "type": "felt"
             }
         ],
         "name": "SwapBid",
-        "size": 13,
+        "size": 15,
         "type": "struct"
+    },
+    {
+        "data": [
+            {
+                "name": "previousOwner",
+                "type": "felt"
+            },
+            {
+                "name": "newOwner",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "OwnershipTransferred",
+        "type": "event"
     },
     {
         "data": [

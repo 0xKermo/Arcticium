@@ -11,7 +11,7 @@ module.exports = {
   // We define our test network, which we will run locally with.
   networks: {
     develop: {
-      url: "http://127.0.0.1:5000"
+      url: "http://127.0.0.1:5050"
     }
   },
   cairo: {
@@ -22,7 +22,7 @@ module.exports = {
     // Where are our contracts: ./contracts
     starknetSources:"./contracts",
     // Where are our artifacts (build contract): ./stark-artifacts, not use repository "artifacts" which is reserved by hardhat to solidity
-    starknetArtifacts: "./starknet-artifacts",
+    starknetArtifacts: "./artifacts",
   },
   mocha: {
     // set up the network to run our test

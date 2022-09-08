@@ -352,10 +352,6 @@
                 "type": "felt"
             },
             {
-                "name": "token_id",
-                "type": "Uint256"
-            },
-            {
                 "name": "base_token_uri_len",
                 "type": "felt"
             },
@@ -365,7 +361,12 @@
             }
         ],
         "name": "mint",
-        "outputs": [],
+        "outputs": [
+            {
+                "name": "token_id",
+                "type": "felt"
+            }
+        ],
         "type": "function"
     },
     {

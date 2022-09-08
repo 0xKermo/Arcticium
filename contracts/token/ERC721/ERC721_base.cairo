@@ -42,9 +42,6 @@ end
 func ERC721_operator_approvals(owner: felt, operator: felt) -> (res: felt):
 end
 
-@storage_var
-func total_supply() -> (res: felt):
-end
 
 #
 # Events
@@ -77,7 +74,6 @@ func ERC721_initializer{
     ):
     ERC721_name_.write(name)
     ERC721_symbol_.write(symbol)
-    total_supply.write(1)
     # register IERC721
     ERC165_register_interface(0x80ac58cd)
     return ()
@@ -147,14 +143,7 @@ func ERC721_isApprovedForAll{
     return (is_approved)
 end
 
-func ERC721_totalSupply{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }() -> (supply: felt):
-    let (supply) = total_supply.read()
-    return (supply)
-end
+
 
 #
 # Externals
@@ -271,8 +260,7 @@ func ERC721_mint{
 
     # low + high felts = uint256
     ERC721_owners.write(token_id, to)
-    let (totalSupply) = total_supply.read()
-    total_supply.write(totalSupply+1)
+
     # Emit Transfer event
     Transfer.emit(_from=0, to=to, tokenId=token_id)
     return ()

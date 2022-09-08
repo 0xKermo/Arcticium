@@ -5337,12 +5337,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 90,
-                        "end_line": 196,
+                        "end_line": 198,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 63,
-                        "start_line": 196
+                        "start_line": 198
                     }
                 },
                 "163": {
@@ -5354,12 +5354,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 91,
-                        "end_line": 196,
+                        "end_line": 198,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 196
+                        "start_line": 198
                     }
                 },
                 "164": {
@@ -5372,48 +5372,48 @@
                         {
                             "location": {
                                 "end_col": 93,
-                                "end_line": 197,
+                                "end_line": 199,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 197
+                                "start_line": 199
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 58,
-                        "end_line": 198,
+                        "end_line": 200,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 60,
-                                        "end_line": 199,
+                                        "end_line": 201,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 199
+                                        "start_line": 201
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 198
+                        "start_line": 200
                     }
                 },
                 "166": {
@@ -5425,12 +5425,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 59,
-                        "end_line": 199,
+                        "end_line": 201,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 28,
-                        "start_line": 199
+                        "start_line": 201
                     }
                 },
                 "167": {
@@ -5442,12 +5442,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 60,
-                        "end_line": 199,
+                        "end_line": 201,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 199
+                        "start_line": 201
                     }
                 },
                 "168": {
@@ -5459,12 +5459,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 94,
-                        "end_line": 270,
+                        "end_line": 272,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 65,
-                        "start_line": 270
+                        "start_line": 272
                     }
                 },
                 "170": {
@@ -5476,12 +5476,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 95,
-                        "end_line": 270,
+                        "end_line": 272,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 270
+                        "start_line": 272
                     }
                 },
                 "171": {
@@ -5494,48 +5494,48 @@
                         {
                             "location": {
                                 "end_col": 95,
-                                "end_line": 271,
+                                "end_line": 273,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 271
+                                "start_line": 273
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 60,
-                        "end_line": 272,
+                        "end_line": 274,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 46,
-                                "end_line": 268,
+                                "end_line": 270,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 64,
-                                        "end_line": 273,
+                                        "end_line": 275,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 273
+                                        "start_line": 275
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 27,
-                                "start_line": 268
+                                "start_line": 270
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 272
+                        "start_line": 274
                     }
                 },
                 "173": {
@@ -5547,12 +5547,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 63,
-                        "end_line": 273,
+                        "end_line": 275,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 30,
-                        "start_line": 273
+                        "start_line": 275
                     }
                 },
                 "174": {
@@ -5564,12 +5564,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 64,
-                        "end_line": 273,
+                        "end_line": 275,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 273
+                        "start_line": 275
                     }
                 },
                 "175": {
@@ -5581,12 +5581,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 92,
-                        "end_line": 294,
+                        "end_line": 296,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 64,
-                        "start_line": 294
+                        "start_line": 296
                     }
                 },
                 "177": {
@@ -5598,12 +5598,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 93,
-                        "end_line": 294,
+                        "end_line": 296,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 294
+                        "start_line": 296
                     }
                 },
                 "178": {
@@ -5616,48 +5616,48 @@
                         {
                             "location": {
                                 "end_col": 94,
-                                "end_line": 295,
+                                "end_line": 297,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 295
+                                "start_line": 297
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 59,
-                        "end_line": 296,
+                        "end_line": 298,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 45,
-                                "end_line": 292,
+                                "end_line": 294,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 62,
-                                        "end_line": 297,
+                                        "end_line": 299,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 297
+                                        "start_line": 299
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 26,
-                                "start_line": 292
+                                "start_line": 294
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 296
+                        "start_line": 298
                     }
                 },
                 "180": {
@@ -5669,12 +5669,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 61,
-                        "end_line": 297,
+                        "end_line": 299,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 29,
-                        "start_line": 297
+                        "start_line": 299
                     }
                 },
                 "181": {
@@ -5686,12 +5686,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 62,
-                        "end_line": 297,
+                        "end_line": 299,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 297
+                        "start_line": 299
                     }
                 },
                 "182": {
@@ -5703,12 +5703,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 79,
-                        "end_line": 348,
+                        "end_line": 350,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 58,
-                        "start_line": 348
+                        "start_line": 350
                     }
                 },
                 "184": {
@@ -5720,12 +5720,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 97,
-                        "end_line": 348,
+                        "end_line": 350,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 348
+                        "start_line": 350
                     }
                 },
                 "185": {
@@ -5737,12 +5737,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 97,
-                        "end_line": 348,
+                        "end_line": 350,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 348
+                        "start_line": 350
                     }
                 },
                 "186": {
@@ -5755,48 +5755,48 @@
                         {
                             "location": {
                                 "end_col": 87,
-                                "end_line": 349,
+                                "end_line": 351,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 349
+                                "start_line": 351
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 53,
-                        "end_line": 351,
+                        "end_line": 353,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 34,
-                                        "end_line": 352,
+                                        "end_line": 354,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 352
+                                        "start_line": 354
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 351
+                        "start_line": 353
                     }
                 },
                 "188": {
@@ -5808,12 +5808,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 33,
-                        "end_line": 352,
+                        "end_line": 354,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 19,
-                        "start_line": 352
+                        "start_line": 354
                     }
                 },
                 "189": {
@@ -5825,12 +5825,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 34,
-                        "end_line": 352,
+                        "end_line": 354,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 352
+                        "start_line": 354
                     }
                 },
                 "190": {
@@ -5842,12 +5842,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 40,
-                        "end_line": 366,
+                        "end_line": 368,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 18,
-                        "start_line": 366
+                        "start_line": 368
                     }
                 },
                 "192": {
@@ -5859,12 +5859,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 71,
-                        "end_line": 366,
+                        "end_line": 368,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 365
+                        "start_line": 367
                     }
                 },
                 "193": {
@@ -5876,12 +5876,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 71,
-                        "end_line": 366,
+                        "end_line": 368,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 365
+                        "start_line": 367
                     }
                 },
                 "194": {
@@ -5893,12 +5893,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 71,
-                        "end_line": 366,
+                        "end_line": 368,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 365
+                        "start_line": 367
                     }
                 },
                 "195": {
@@ -5911,48 +5911,48 @@
                         {
                             "location": {
                                 "end_col": 88,
-                                "end_line": 367,
+                                "end_line": 369,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 367
+                                "start_line": 369
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 54,
-                        "end_line": 368,
+                        "end_line": 370,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 14,
-                                        "end_line": 369,
+                                        "end_line": 371,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 369
+                                        "start_line": 371
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 368
+                        "start_line": 370
                     }
                 },
                 "197": {
@@ -5964,12 +5964,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 14,
-                        "end_line": 369,
+                        "end_line": 371,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 369
+                        "start_line": 371
                     }
                 },
                 "198": {
@@ -5981,12 +5981,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 37,
-                        "end_line": 385,
+                        "end_line": 387,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 18,
-                        "start_line": 385
+                        "start_line": 387
                     }
                 },
                 "200": {
@@ -5998,12 +5998,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 98,
-                        "end_line": 385,
+                        "end_line": 387,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 384
+                        "start_line": 386
                     }
                 },
                 "201": {
@@ -6015,12 +6015,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 98,
-                        "end_line": 385,
+                        "end_line": 387,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 384
+                        "start_line": 386
                     }
                 },
                 "202": {
@@ -6032,12 +6032,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 98,
-                        "end_line": 385,
+                        "end_line": 387,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 384
+                        "start_line": 386
                     }
                 },
                 "203": {
@@ -6049,12 +6049,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 98,
-                        "end_line": 385,
+                        "end_line": 387,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 384
+                        "start_line": 386
                     }
                 },
                 "204": {
@@ -6066,12 +6066,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 98,
-                        "end_line": 385,
+                        "end_line": 387,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 384
+                        "start_line": 386
                     }
                 },
                 "205": {
@@ -6084,48 +6084,48 @@
                         {
                             "location": {
                                 "end_col": 85,
-                                "end_line": 386,
+                                "end_line": 388,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "start_col": 5,
-                                "start_line": 386
+                                "start_line": 388
                             },
                             "n_prefix_newlines": 0
                         }
                     ],
                     "inst": {
                         "end_col": 51,
-                        "end_line": 387,
+                        "end_line": 389,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "parent_location": [
                             {
                                 "end_col": 36,
-                                "end_line": 383,
+                                "end_line": 385,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
                                 "parent_location": [
                                     {
                                         "end_col": 14,
-                                        "end_line": 388,
+                                        "end_line": 390,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
                                         "start_col": 5,
-                                        "start_line": 388
+                                        "start_line": 390
                                     },
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 17,
-                                "start_line": 383
+                                "start_line": 385
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
                         "start_col": 23,
-                        "start_line": 387
+                        "start_line": 389
                     }
                 },
                 "207": {
@@ -6137,12 +6137,12 @@
                     "hints": [],
                     "inst": {
                         "end_col": 14,
-                        "end_line": 388,
+                        "end_line": 390,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
                         "start_col": 5,
-                        "start_line": 388
+                        "start_line": 390
                     }
                 },
                 "208": {
@@ -8937,7 +8937,7 @@
                                 "parent_location": [
                                     {
                                         "end_col": 36,
-                                        "end_line": 383,
+                                        "end_line": 385,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
@@ -8966,7 +8966,7 @@
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 17,
-                                        "start_line": 383
+                                        "start_line": 385
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
@@ -9693,7 +9693,7 @@
                                 "parent_location": [
                                     {
                                         "end_col": 36,
-                                        "end_line": 383,
+                                        "end_line": 385,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
@@ -9722,7 +9722,7 @@
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 17,
-                                        "start_line": 383
+                                        "start_line": 385
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
@@ -10292,7 +10292,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -10309,7 +10309,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -10375,7 +10375,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -10404,7 +10404,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "405": {
@@ -10658,7 +10658,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -10675,7 +10675,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -11126,7 +11126,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -11143,7 +11143,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -11209,7 +11209,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -11238,7 +11238,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "435": {
@@ -11492,7 +11492,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -11509,7 +11509,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -11960,7 +11960,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -11977,7 +11977,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -12043,7 +12043,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -12072,7 +12072,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "465": {
@@ -12326,7 +12326,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -12343,7 +12343,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -12794,7 +12794,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -12811,7 +12811,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -12877,7 +12877,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -12891,7 +12891,7 @@
                                 "parent_location": [
                                     {
                                         "end_col": 38,
-                                        "end_line": 346,
+                                        "end_line": 348,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
@@ -12908,7 +12908,7 @@
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 19,
-                                        "start_line": 346
+                                        "start_line": 348
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
@@ -12918,7 +12918,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "495": {
@@ -12967,7 +12967,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -12996,7 +12996,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "500": {
@@ -13280,7 +13280,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -13297,7 +13297,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -14030,7 +14030,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -14047,7 +14047,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -14113,7 +14113,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -14127,7 +14127,7 @@
                                 "parent_location": [
                                     {
                                         "end_col": 38,
-                                        "end_line": 346,
+                                        "end_line": 348,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
@@ -14144,7 +14144,7 @@
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 19,
-                                        "start_line": 346
+                                        "start_line": 348
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
@@ -14154,7 +14154,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "546": {
@@ -14203,7 +14203,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -14232,7 +14232,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "551": {
@@ -14546,7 +14546,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -14563,7 +14563,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -15362,7 +15362,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -15379,7 +15379,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -15445,7 +15445,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -15459,7 +15459,7 @@
                                 "parent_location": [
                                     {
                                         "end_col": 38,
-                                        "end_line": 346,
+                                        "end_line": 348,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
@@ -15476,7 +15476,7 @@
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 19,
-                                        "start_line": 346
+                                        "start_line": 348
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
@@ -15486,7 +15486,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "602": {
@@ -15535,7 +15535,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -15564,7 +15564,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "607": {
@@ -15908,7 +15908,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -15925,7 +15925,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -17724,7 +17724,7 @@
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -17741,7 +17741,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -17775,7 +17775,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -17816,7 +17816,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "695": {
@@ -18084,7 +18084,7 @@
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -18101,7 +18101,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -18164,7 +18164,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -18205,7 +18205,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "711": {
@@ -19718,7 +19718,7 @@
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -19735,7 +19735,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -19832,7 +19832,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -19873,7 +19873,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "769": {
@@ -20698,7 +20698,7 @@
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -20715,7 +20715,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -20749,7 +20749,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -20790,7 +20790,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "798": {
@@ -21483,7 +21483,7 @@
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -21500,7 +21500,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -21534,7 +21534,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -21575,7 +21575,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "830": {
@@ -26456,7 +26456,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -26473,7 +26473,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -26539,7 +26539,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -26568,7 +26568,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "1004": {
@@ -26822,7 +26822,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -26839,7 +26839,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -27388,7 +27388,7 @@
                                 "parent_location": [
                                     {
                                         "end_col": 44,
-                                        "end_line": 194,
+                                        "end_line": 196,
                                         "input_file": {
                                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                         },
@@ -27405,7 +27405,7 @@
                                             "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                         ],
                                         "start_col": 25,
-                                        "start_line": 194
+                                        "start_line": 196
                                     },
                                     "While expanding the reference 'syscall_ptr' in:"
                                 ],
@@ -27461,7 +27461,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -27502,7 +27502,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "1037": {
@@ -28107,7 +28107,7 @@
                         "parent_location": [
                             {
                                 "end_col": 38,
-                                "end_line": 346,
+                                "end_line": 348,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -28124,7 +28124,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 19,
-                                "start_line": 346
+                                "start_line": 348
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -28190,7 +28190,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 38,
-                        "end_line": 346,
+                        "end_line": 348,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -28219,7 +28219,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 19,
-                        "start_line": 346
+                        "start_line": 348
                     }
                 },
                 "1064": {
@@ -28503,7 +28503,7 @@
                         "parent_location": [
                             {
                                 "end_col": 39,
-                                "end_line": 364,
+                                "end_line": 366,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -28520,7 +28520,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 20,
-                                "start_line": 364
+                                "start_line": 366
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -35827,7 +35827,7 @@
                         "parent_location": [
                             {
                                 "end_col": 44,
-                                "end_line": 194,
+                                "end_line": 196,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -35844,7 +35844,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 25,
-                                "start_line": 194
+                                "start_line": 196
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -35880,7 +35880,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 44,
-                        "end_line": 194,
+                        "end_line": 196,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -35921,7 +35921,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 25,
-                        "start_line": 194
+                        "start_line": 196
                     }
                 },
                 "1282": {
@@ -46882,7 +46882,7 @@
                         "parent_location": [
                             {
                                 "end_col": 45,
-                                "end_line": 292,
+                                "end_line": 294,
                                 "input_file": {
                                     "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                                 },
@@ -46899,7 +46899,7 @@
                                     "While trying to retrieve the implicit argument 'syscall_ptr' in:"
                                 ],
                                 "start_col": 26,
-                                "start_line": 292
+                                "start_line": 294
                             },
                             "While expanding the reference 'syscall_ptr' in:"
                         ],
@@ -46965,7 +46965,7 @@
                     "hints": [],
                     "inst": {
                         "end_col": 45,
-                        "end_line": 292,
+                        "end_line": 294,
                         "input_file": {
                             "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
                         },
@@ -47006,7 +47006,7 @@
                             "While trying to update the implicit return value 'syscall_ptr' in:"
                         ],
                         "start_col": 26,
-                        "start_line": 292
+                        "start_line": 294
                     }
                 },
                 "1590": {
@@ -54828,7 +54828,7 @@
                         "cairo_type": "felt",
                         "offset": 2
                     },
-                    "reserved": {
+                    "deploy_from_zero": {
                         "cairo_type": "felt",
                         "offset": 5
                     },

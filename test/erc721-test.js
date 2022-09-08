@@ -17,12 +17,6 @@ describe("ERC721 Test Cases", function () {
 
   before(async function () {
     acc1 = await starknet.deployAccount("OpenZeppelin");
-    acc2 = await starknet.deployAccount("OpenZeppelin");
-    acc3 = await starknet.deployAccount("OpenZeppelin");
-    console.log("Deployed acc1 address: ", acc1.starknetContract.address);
-    console.log("Deployed acc2 address: ", acc2.starknetContract.address);
-    console.log("Deployed acc3 address: ", acc3.starknetContract.address);
-
     const name = starknet.shortStringToBigInt("Arcswap");
     const symbol = starknet.shortStringToBigInt("ARC");
     const contractFactory = await starknet.getContractFactory("ERC721");

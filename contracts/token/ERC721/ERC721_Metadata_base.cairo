@@ -57,12 +57,10 @@ func ERC721_Metadata_tokenURI{
 
     _ERC721_Metadata_baseTokenURI(token_id,base_token_uri_len, base_token_uri)
 
-    let (token_id_ss_len, token_id_ss) = uint256_to_ss(token_id)
+    # let (token_id_ss_len, token_id_ss) = uint256_to_ss(token_id)
     let (token_uri, token_uri_len) = concat_arr(
         base_token_uri_len,
-        base_token_uri,
-        token_id_ss_len,
-        token_id_ss,
+        base_token_uri
     )
 
     return (token_uri_len=token_uri_len, token_uri=token_uri)

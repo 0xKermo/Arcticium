@@ -22,23 +22,43 @@
                 "type": "felt"
             },
             {
-                "name": "price",
+                "name": "currency_address",
                 "offset": 5,
                 "type": "felt"
             },
             {
-                "name": "status",
+                "name": "price",
                 "offset": 6,
+                "type": "Uint256"
+            },
+            {
+                "name": "status",
+                "offset": 8,
                 "type": "felt"
             },
             {
-                "name": "sale_trade_id",
-                "offset": 7,
+                "name": "swap_trade_id",
+                "offset": 9,
                 "type": "felt"
+            },
+            {
+                "name": "trade_type",
+                "offset": 10,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_contract",
+                "offset": 11,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_id",
+                "offset": 12,
+                "type": "Uint256"
             }
         ],
-        "name": "SaleTrade",
-        "size": 8,
+        "name": "SwapTrade",
+        "size": 14,
         "type": "struct"
     },
     {
@@ -56,105 +76,6 @@
         ],
         "name": "Uint256",
         "size": 2,
-        "type": "struct"
-    },
-    {
-        "members": [
-            {
-                "name": "bid_owner",
-                "offset": 0,
-                "type": "felt"
-            },
-            {
-                "name": "expiration",
-                "offset": 1,
-                "type": "felt"
-            },
-            {
-                "name": "bid_price",
-                "offset": 2,
-                "type": "felt"
-            },
-            {
-                "name": "status",
-                "offset": 3,
-                "type": "felt"
-            },
-            {
-                "name": "bidden_nft_owner",
-                "offset": 4,
-                "type": "felt"
-            },
-            {
-                "name": "bidden_collection_address",
-                "offset": 5,
-                "type": "felt"
-            },
-            {
-                "name": "target_nft_id",
-                "offset": 6,
-                "type": "felt"
-            },
-            {
-                "name": "bid_id",
-                "offset": 7,
-                "type": "felt"
-            }
-        ],
-        "name": "SaleBid",
-        "size": 8,
-        "type": "struct"
-    },
-    {
-        "members": [
-            {
-                "name": "owner",
-                "offset": 0,
-                "type": "felt"
-            },
-            {
-                "name": "token_contract",
-                "offset": 1,
-                "type": "felt"
-            },
-            {
-                "name": "token_id",
-                "offset": 2,
-                "type": "Uint256"
-            },
-            {
-                "name": "expiration",
-                "offset": 4,
-                "type": "felt"
-            },
-            {
-                "name": "price",
-                "offset": 5,
-                "type": "felt"
-            },
-            {
-                "name": "status",
-                "offset": 6,
-                "type": "felt"
-            },
-            {
-                "name": "swap_trade_id",
-                "offset": 7,
-                "type": "felt"
-            },
-            {
-                "name": "target_token_contract",
-                "offset": 8,
-                "type": "felt"
-            },
-            {
-                "name": "target_token_id",
-                "offset": 9,
-                "type": "Uint256"
-            }
-        ],
-        "name": "SwapTrade",
-        "size": 11,
         "type": "struct"
     },
     {
@@ -185,60 +106,80 @@
                 "type": "felt"
             },
             {
-                "name": "price",
+                "name": "currency_address",
                 "offset": 6,
                 "type": "felt"
             },
             {
-                "name": "status",
+                "name": "price",
                 "offset": 7,
-                "type": "felt"
+                "type": "Uint256"
             },
             {
-                "name": "target_nft_owner",
-                "offset": 8,
-                "type": "felt"
-            },
-            {
-                "name": "target_token_contract",
+                "name": "status",
                 "offset": 9,
                 "type": "felt"
             },
             {
-                "name": "target_token_id",
+                "name": "target_nft_owner",
                 "offset": 10,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_contract",
+                "offset": 11,
+                "type": "felt"
+            },
+            {
+                "name": "target_token_id",
+                "offset": 12,
                 "type": "Uint256"
             },
             {
                 "name": "item_bid_id",
-                "offset": 12,
+                "offset": 14,
                 "type": "felt"
             }
         ],
         "name": "SwapBid",
-        "size": 13,
+        "size": 15,
         "type": "struct"
     },
     {
         "data": [
             {
-                "name": "trade",
-                "type": "SaleTrade"
+                "name": "previousOwner",
+                "type": "felt"
+            },
+            {
+                "name": "newOwner",
+                "type": "felt"
             }
         ],
         "keys": [],
-        "name": "SaleAction",
+        "name": "OwnershipTransferred",
         "type": "event"
     },
     {
         "data": [
             {
-                "name": "trade",
-                "type": "SaleBid"
+                "name": "account",
+                "type": "felt"
             }
         ],
         "keys": [],
-        "name": "SaleBidAction",
+        "name": "Paused",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "account",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "Unpaused",
         "type": "event"
     },
     {
@@ -289,10 +230,6 @@
             {
                 "name": "owner",
                 "type": "felt"
-            },
-            {
-                "name": "_erc20_address",
-                "type": "felt"
             }
         ],
         "name": "constructor",
@@ -314,83 +251,15 @@
                 "type": "felt"
             },
             {
+                "name": "_currency_id",
+                "type": "felt"
+            },
+            {
                 "name": "_price",
-                "type": "felt"
-            },
-            {
-                "name": "_owner_address",
-                "type": "felt"
-            }
-        ],
-        "name": "open_sale_trade",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "_id",
-                "type": "felt"
-            },
-            {
-                "name": "_owner_address",
-                "type": "felt"
-            }
-        ],
-        "name": "execute_sale_trade",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "_id",
-                "type": "felt"
-            },
-            {
-                "name": "price",
-                "type": "felt"
-            },
-            {
-                "name": "_owner_address",
-                "type": "felt"
-            }
-        ],
-        "name": "update_sale_trade",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "_id",
-                "type": "felt"
-            },
-            {
-                "name": "_owner_address",
-                "type": "felt"
-            }
-        ],
-        "name": "cancel_sale_trade",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "_token_contract",
-                "type": "felt"
-            },
-            {
-                "name": "_token_id",
                 "type": "Uint256"
             },
             {
-                "name": "_expiration",
-                "type": "felt"
-            },
-            {
-                "name": "_price",
+                "name": "_trade_type",
                 "type": "felt"
             },
             {
@@ -425,7 +294,7 @@
             },
             {
                 "name": "price",
-                "type": "felt"
+                "type": "Uint256"
             },
             {
                 "name": "_target_token_contract",
@@ -454,7 +323,7 @@
     {
         "inputs": [
             {
-                "name": "_trade_id",
+                "name": "_swap_trade_id",
                 "type": "felt"
             },
             {
@@ -470,8 +339,12 @@
                 "type": "felt"
             },
             {
-                "name": "_price",
+                "name": "_currency_id",
                 "type": "felt"
+            },
+            {
+                "name": "_price",
+                "type": "Uint256"
             },
             {
                 "name": "_target_token_contract",
@@ -523,35 +396,6 @@
                 "type": "felt"
             }
         ],
-        "name": "get_sale_trade",
-        "outputs": [
-            {
-                "name": "trade",
-                "type": "SaleTrade"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "get_sale_trade_counter",
-        "outputs": [
-            {
-                "name": "_trade_counter",
-                "type": "felt"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "_id",
-                "type": "felt"
-            }
-        ],
         "name": "get_swap_trade",
         "outputs": [
             {
@@ -564,7 +408,7 @@
     },
     {
         "inputs": [],
-        "name": "get_swap_trade_counter",
+        "name": "get_swap_trade_count",
         "outputs": [
             {
                 "name": "trade_counter",
@@ -634,6 +478,35 @@
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "name": "_id",
+                "type": "felt"
+            }
+        ],
+        "name": "get_currency_address",
+        "outputs": [
+            {
+                "name": "currency_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "get_erc20_count",
+        "outputs": [
+            {
+                "name": "erc20_count",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "paused",
         "outputs": [
@@ -643,6 +516,34 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_erc20_address",
+                "type": "felt"
+            }
+        ],
+        "name": "add_currency_address",
+        "outputs": [
+            {
+                "name": "success",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "pauseTrade",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "unpauseTrade",
+        "outputs": [],
         "type": "function"
     }
 ]

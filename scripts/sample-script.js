@@ -1,34 +1,36 @@
-
-//we import expect to test values
-const { expect } = require("chai");
-// These two lines allow us to play with our testnet and access our deployed contract 
-const { starknet } = require("hardhat");
-const { StarknetContract, StarknetContractFactory } = require("hardhat/types/runtime");
+import { Account, Provider, Contract, ContractFactory, ec } from "starknet";
 
 
-describe("Test contract : ERC721", function () {
+const ERC721_ARTIFACT =
+  readFileSync(__dirname + "/artifacts/token/ERC721/ERC721.json").toString("ascii");
 
-  it("Should create an contract and play with it.", async function () {
-    // We need to increase the timeout to prevent test network latencies (in microseconds))  
-    this.timeout(600_000);
+  
+const deploy = async () => {
+  const DEVNET_PROVIDER_OPTIONS = {
+    baseUrl: 'http://127.0.0.1:5050/'
+  }
+  console.log("Started deployment");
+  const provider = new Provider(DEVNET_PROVIDER_OPTIONS);
 
-    console.log("Started deployment");
+  const ctc = await provider.deployContract({
+    contract: ERC721_ARTIFACT,
+    constructorCalldata: ["32762643845375604",
+    "1951286868",
+    "3525570178991347606243544905170370909634811577571717640310903706096836710426"
 
-    // "Balance" represent our smart contract.
-    const contractFactory = await starknet.getContractFactory("ERC721");
-    const contract = await contractFactory.deploy({ initial_balance: 0 });
-
-    console.log("Deployed at", contract.address);
-
-    const { res: BalanceBefore } = await contract.call("get_balance");
-    console.log("balance at initialization", BalanceBefore)
-    expect(BalanceBefore).to.equal(BigInt("0")); // or 0n, the return is typeOf Bigint
-
-    await contract.invoke("increase_balance", { amount: 10 });
-    console.log("Balance Increased by 10");
-
-    const { res: balanceAfter } = await contract.call("get_balance");
-    console.log("balance after update", balanceAfter)
-    expect(balanceAfter).to.equal(10n); // or BigInt("10")
+    ]
   });
-});
+  await provider.waitForTransaction(ctc.transaction_hash)
+  if (ctc.address === undefined)
+    throw new Error("Address undefined");
+
+  // "Balance" represent our smart contract.
+  const contractFactory = await starknet.getContractFactory("ERC721");
+  const contract = await contractFactory.deploy({ initial_balance: 0 });
+  
+  console.log("Deployed at", contract.address);
+
+}
+
+
+deploy()

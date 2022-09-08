@@ -8,13 +8,7 @@ const { StarknetContract, StarknetContractFactory } = require("hardhat/types/run
 
 const { Account } = require("@shardlabs/starknet-hardhat-plugin/dist/src/account");
 
-function toUint256WithFelts(num) {
-    const n = uint256.bnToUint256(num);
-    return {
-      low: BigInt(n.low.toString()),
-      high: BigInt(n.high.toString()),
-    };
-  }
+
 describe("ERC20 Test Cases", function () {
 
   this.timeout(300_000);

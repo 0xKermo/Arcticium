@@ -8,19 +8,13 @@ from starkware.starknet.common.syscalls import (
     get_contract_address,
     get_block_timestamp,
 )
-from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem, assert_lt_felt
+from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem, assert_lt_felt,assert_not_zero
 from starkware.cairo.common.uint256 import Uint256, uint256_le
 
-from openzeppelin.token.erc20.interfaces.IERC20 import IERC20
-from openzeppelin.token.erc721.interfaces.IERC721 import IERC721
+from contracts.openzeppelin.access.ownable.library import Ownable
+from contracts.openzeppelin.token.erc20.IERC20 import IERC20
+from contracts.openzeppelin.token.erc721.IERC721 import IERC721
 
-from openzeppelin.access.ownable import Ownable_initializer, Ownable_only_owner
-from openzeppelin.security.pausable import (
-    Pausable_paused,
-    Pausable_pause,
-    Pausable_unpause,
-    Pausable_when_not_paused,
-)
 
 from contracts.utils.structs import SwapTrade, SwapBid
 
@@ -33,6 +27,7 @@ namespace TradeStatus:
     const Executed = 2
     const Cancelled = 3
 end
+
 
 ##########
 # EVENTS #
@@ -50,10 +45,7 @@ end
 # STORAGE #
 ###########
 
-# Contract Address of ether used to purchase or sell items
-@storage_var
-func erc20_token_address() -> (address : felt):
-end
+
 
 # Indexed list of sale trades
 @storage_var
@@ -87,13 +79,9 @@ namespace Swap_Trade:
             range_check_ptr
         }(
             _owner_address : felt,
-            _erc20_address : felt,
             
         ):
-        Ownable_initializer(_owner_address)
-        erc20_token_address.write(_erc20_address)
-        _trade_counter.write(1)
-        _bid_to_item_counter.write(1,1)
+        Ownable.initializer(_owner_address)
         return ()
     end
 
@@ -105,32 +93,40 @@ namespace Swap_Trade:
         _token_contract : felt,
         _token_id : Uint256,
         _expiration : felt,
-        _price : felt,
+        _currency_address : felt,
+        _price : Uint256,
+        _tradeType : felt,
         _target_token_contract : felt,
         _target_token_id : Uint256
         ):
         alloc_locals
-        Pausable_when_not_paused()
-        let (contract_address) = get_contract_address()
+        let (contractAddress) = get_contract_address()
         let(caller) = get_caller_address()
-        let (owner_of) = IERC721.ownerOf(_token_contract, _token_id)
-        let (is_approved) = IERC721.isApprovedForAll(_token_contract, caller, contract_address)
-        let (swap_trade_count) = _trade_counter.read()
-        assert owner_of = caller
-        assert is_approved = 1
+        let (ownerOf) = IERC721.ownerOf(_token_contract, _token_id)
+        let (isApproved) = IERC721.isApprovedForAll(_token_contract, caller, contractAddress)
+        let (swapTradeCount) = _trade_counter.read()
         
+        with_attr error_message("Caller not owner"):
+            assert ownerOf = caller
+        end
+        with_attr error_message("not Approved"):
+            assert isApproved = 1
+        end
+                
         let _SwapTrade = SwapTrade(
             owner = caller,
             token_contract = _token_contract, 
             token_id = _token_id, 
             expiration = _expiration, 
+            currency_address = _currency_address,
             price = _price, 
             status =TradeStatus.Open,
-            swap_trade_id = swap_trade_count,
+            swap_trade_id = swapTradeCount+1,
+            trade_type = _tradeType,
             target_token_contract = _target_token_contract,
             target_token_id = _target_token_id)
-        _swap_trades.write(swap_trade_count,  _SwapTrade)
-        _trade_counter.write(swap_trade_count + 1)
+        _swap_trades.write(swapTradeCount+1,  _SwapTrade)
+        _trade_counter.write(swapTradeCount + 1)
         SwapAction.emit(_SwapTrade)
     
         return ()
@@ -140,34 +136,34 @@ namespace Swap_Trade:
         _trade_id : felt
         ):
         alloc_locals
-        Pausable_when_not_paused()
         let (caller) = get_caller_address()
-        let (contract_address) = get_contract_address()
-        let (swap_trade) = _swap_trades.read(_trade_id)
-        assert swap_trade.status = TradeStatus.Open
+        let (swapTrade) = _swap_trades.read(_trade_id)
+        with_attr error_message("Trade not open"):
+            assert swapTrade.status = TradeStatus.Open
+        end
 
-        # Check buyer and seller still has NFT
-        assert_swap_buyer_seller(swap_trade)
         # Check expritaion time
         assert_check_expiration(_trade_id)
 
         # İf seller wants nft + eth  
-        transfer_currency(swap_trade.owner, caller, swap_trade.price)
+        transfer_currency(swapTrade.owner, caller, swapTrade.price, swapTrade.currency_address)
         # transfer item to buyer
-        IERC721.transferFrom(swap_trade.token_contract, swap_trade.owner, caller, swap_trade.token_id)
+        IERC721.transferFrom(swapTrade.token_contract, swapTrade.owner, caller, swapTrade.token_id)
         # # transfer item to seller
-        IERC721.transferFrom(swap_trade.target_token_contract, caller, swap_trade.owner, swap_trade.target_token_id)
+        IERC721.transferFrom(swapTrade.target_token_contract, caller, swapTrade.owner, swapTrade.target_token_id)
 
         let _SwapTrade = SwapTrade(
-            owner = swap_trade.owner,
-            token_contract = swap_trade.token_contract, 
-            token_id = swap_trade.token_id, 
-            expiration = swap_trade.expiration, 
-            price = swap_trade.price, 
+            owner = swapTrade.owner,
+            token_contract = swapTrade.token_contract, 
+            token_id = swapTrade.token_id, 
+            expiration = swapTrade.expiration, 
+            currency_address = swapTrade.currency_address,
+            price = swapTrade.price, 
             status =TradeStatus.Executed,
             swap_trade_id = _trade_id,
-            target_token_contract = swap_trade.target_token_contract,
-            target_token_id = swap_trade.target_token_id
+            trade_type = swapTrade.trade_type,
+            target_token_contract = swapTrade.target_token_contract,
+            target_token_id = swapTrade.target_token_id
             )
         _swap_trades.write(_trade_id,_SwapTrade)
         SwapAction.emit(_SwapTrade)
@@ -176,29 +172,37 @@ namespace Swap_Trade:
     end
 
     func update_listing{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-        _trade_id : felt, _price : felt, _target_token_contract : felt, _target_token_id : Uint256
+        _trade_id : felt, _price : Uint256, _target_token_contract : felt, _target_token_id : Uint256
         ):
         alloc_locals
-        Pausable_when_not_paused()
         let (caller) = get_caller_address()
         
-        let (swap_trade) = _swap_trades.read(_trade_id)
-        let (owner_of) = IERC721.ownerOf(swap_trade.token_contract, swap_trade.token_id)
-        
-        assert owner_of = caller
-        assert swap_trade.owner = caller
-        assert swap_trade.status = TradeStatus.Open
+        let (swapTrade) = _swap_trades.read(_trade_id)
+        let (owner_of) = IERC721.ownerOf(swapTrade.token_contract, swapTrade.token_id)
+        with_attr error_message("Caller not owner of token"):
+            assert owner_of = caller
+        end
+
+        with_attr error_message("Caller not owner of trade"):
+            assert swapTrade.owner = caller
+        end
+
+        with_attr error_message("Trade not open"):
+            assert swapTrade.status = TradeStatus.Open
+        end
 
         assert_check_expiration(_trade_id)
 
         let _SwapTrade = SwapTrade(
-            swap_trade.owner,
-            swap_trade.token_contract, 
-            swap_trade.token_id, 
-            swap_trade.expiration, 
+            swapTrade.owner,
+            swapTrade.token_contract, 
+            swapTrade.token_id, 
+            swapTrade.expiration, 
+            swapTrade.currency_address,
             _price, 
-            swap_trade.status,
+            swapTrade.status,
             _trade_id,
+            swapTrade.trade_type,
             _target_token_contract,
             _target_token_id)
         _swap_trades.write(_trade_id,  _SwapTrade)
@@ -211,22 +215,29 @@ namespace Swap_Trade:
         _trade_id : felt
         ):
         alloc_locals
-        Pausable_when_not_paused()
         let (caller) = get_caller_address()
      
-        let (swap_trade) = _swap_trades.read(_trade_id)
-        let (owner_of) = IERC721.ownerOf(swap_trade.token_contract, swap_trade.token_id)
+        let (swapTrade) = _swap_trades.read(_trade_id)
+        let (owner_of) = IERC721.ownerOf(swapTrade.token_contract, swapTrade.token_id)
         
-        assert owner_of = caller
-        assert swap_trade.owner = caller
-        assert swap_trade.status = TradeStatus.Open
+        with_attr error_message("Caller not owner of token"):
+            assert owner_of = caller
+        end
+
+        with_attr error_message("Caller not owner of trade"):
+            assert swapTrade.owner = caller
+        end
+
+        with_attr error_message("Trade not open"):
+            assert swapTrade.status = TradeStatus.Open
+        end
 
         # assert_check_expiration(_id)
 
         # Swap Trade close function   
-        # TradeStatus.Cancelled if second parameter = 1
+        # TradeStatus.Cancelled if second parameter = 3
         # TradeStatus.Executed if second parameter = 2
-        change_swap_trade_status(_trade_id, 1)
+        change_swap_trade_status(_trade_id, 3)
     
         return ()
     end
@@ -236,24 +247,29 @@ namespace Swap_Trade:
         _bid_contract_address : felt,
         _bid_token_id : Uint256,
         _expiration : felt,
-        _price : felt,
+        _currency_address : felt,
+        _price : Uint256,
         _target_token_contract : felt,
         _target_token_id : Uint256
         ):
 
         alloc_locals
-        Pausable_when_not_paused()
 
-        let (contract_address) = get_contract_address()
+        let (contractAddress) = get_contract_address()
         let(caller) = get_caller_address()
 
-        let (owner_of) = IERC721.ownerOf(_bid_contract_address, _bid_token_id)        
-        let (is_approved) = IERC721.isApprovedForAll(_bid_contract_address, caller, contract_address)
-        assert owner_of = caller
-        assert is_approved = 1
-        
-        let (bid_to_item_counter) = _bid_to_item_counter.read(_trade_id)
-        let (swap_trade) = _swap_trades.read(_trade_id)
+        let (ownerOf) = IERC721.ownerOf(_bid_contract_address, _bid_token_id)        
+        let (isApproved) = IERC721.isApprovedForAll(_bid_contract_address, caller, contractAddress)
+        with_attr error_message("Caller not owner of token"):
+            assert ownerOf = caller
+        end
+
+        with_attr error_message("Token not approved"):
+            assert isApproved = 1
+        end
+
+        let (itemBidCount) = _bid_to_item_counter.read(_trade_id)
+        let (swapTrade) = _swap_trades.read(_trade_id)
         
         let _SwapBid = SwapBid(
             trade_id = _trade_id,
@@ -261,15 +277,16 @@ namespace Swap_Trade:
             bid_contract_address = _bid_contract_address, 
             bid_token_id = _bid_token_id, 
             expiration = _expiration, 
+            currency_address = _currency_address,
             price = _price, 
             status = TradeStatus.Open,
-            target_nft_owner = swap_trade.owner,
-            target_token_contract = swap_trade.token_contract,
-            target_token_id = swap_trade.token_id,
-            item_bid_id = bid_to_item_counter)
+            target_nft_owner = swapTrade.owner,
+            target_token_contract = swapTrade.token_contract,
+            target_token_id = swapTrade.token_id,
+            item_bid_id = itemBidCount+1)
 
-        _bids.write(_trade_id, bid_to_item_counter,  _SwapBid)
-        _bid_to_item_counter.write(_trade_id, bid_to_item_counter + 1)
+        _bids.write(_trade_id, itemBidCount +1,  _SwapBid)
+        _bid_to_item_counter.write(_trade_id, itemBidCount + 1)
         SwapBidAction.emit(_SwapBid)
     
         return ()
@@ -281,27 +298,36 @@ namespace Swap_Trade:
         ):
 
         alloc_locals
-        Pausable_when_not_paused()
 
         let(caller) = get_caller_address()
-        let (swap_trade) = _swap_trades.read(_trade_id)
-        let (swap_bid) = _bids.read(_trade_id, _bid_id)
-        let (owner_of) = IERC721.ownerOf(swap_trade.token_contract, swap_trade.token_id)
-        
-        assert owner_of = caller
-        assert swap_trade.owner = caller
-        assert swap_trade.status = TradeStatus.Open
-        assert swap_bid.status = TradeStatus.Open
+        let (swapTrade) = _swap_trades.read(_trade_id)
+        let (swapBid) = _bids.read(_trade_id, _bid_id)
+        let (owner_of) = IERC721.ownerOf(swapTrade.token_contract, swapTrade.token_id)
+        with_attr error_message("Caller not owner of token"):
+            assert owner_of = caller
+        end
+
+        with_attr error_message("Caller not owner of trade"):
+            assert swapTrade.owner = caller
+        end
+
+        with_attr error_message("Trade not open"):
+            assert swapTrade.status = TradeStatus.Open
+        end
+
+        with_attr error_message("Bid not open"):
+            assert swapBid.status = TradeStatus.Open
+        end
         
         # Check expritaion time
         assert_check_expiration(_trade_id)
 
         # İf seller wants nft + eth  
-        transfer_currency(swap_trade.owner,swap_bid.bid_owner, swap_bid.price )
+        transfer_currency(swapTrade.owner,swapBid.bid_owner, swapBid.price,  swapBid.currency_address )
         # transfer item to seller from bidder
-        IERC721.transferFrom(swap_trade.token_contract, swap_trade.owner, swap_bid.bid_owner, swap_trade.token_id)
+        IERC721.transferFrom(swapTrade.token_contract, swapTrade.owner, swapBid.bid_owner, swapTrade.token_id)
         # # transfer item to bidder from seller
-        IERC721.transferFrom(swap_bid.bid_contract_address, swap_bid.bid_owner, caller, swap_bid.bid_token_id)
+        IERC721.transferFrom(swapBid.bid_contract_address, swapBid.bid_owner, caller, swapBid.bid_token_id)
 
         # Swap Trade Bid close function
         # TradeStatus.Cancelled if second parameter = 1
@@ -321,20 +347,27 @@ namespace Swap_Trade:
         ):
 
         alloc_locals
-        Pausable_when_not_paused()
 
         let(caller) = get_caller_address()
-        let (swap_bid) = _bids.read(_trade_id, _bid_id)
-        let (owner_of) = IERC721.ownerOf(swap_bid.bid_contract_address, swap_bid.bid_token_id)
+        let (swapBid) = _bids.read(_trade_id, _bid_id)
+        let (ownerOf) = IERC721.ownerOf(swapBid.bid_contract_address, swapBid.bid_token_id)
         
-        assert owner_of = caller
-        assert swap_bid.bid_owner = caller
-        assert swap_bid.status = TradeStatus.Open
+        with_attr error_message("Caller not owner of token"):
+            assert ownerOf = caller
+        end
+
+        with_attr error_message("Caller not owner of bid"):
+            assert swapBid.bid_owner = caller
+        end
+
+        with_attr error_message("Bid not open"):
+            assert swapBid.status = TradeStatus.Open
+        end
 
         # Swap Trade Bid cancel function
-        # TradeStatus.Cancelled if second parameter = 1
+        # TradeStatus.Cancelled if second parameter = 3
         # TradeStatus.Executed if second parameter = 2
-        change_swap_bid_status(_trade_id,_bid_id, 1)  
+        change_swap_bid_status(_trade_id,_bid_id, 3)  
     
         return ()
     end
@@ -358,8 +391,8 @@ namespace Swap_Trade:
             pedersen_ptr : HashBuiltin*,
             range_check_ptr
         }() -> (trade_counter: felt):
-        let (trade_counter) = _trade_counter.read()
-        return (trade_counter)
+        let (tradeCounter) = _trade_counter.read()
+        return (tradeCounter)
     end
 
     # Returns a trades status
@@ -387,7 +420,7 @@ namespace Swap_Trade:
         return (bid)
     end
 
-     func get_bid_count{
+    func get_bid_count{
             syscall_ptr : felt*,
             pedersen_ptr : HashBuiltin*,
             range_check_ptr
@@ -399,10 +432,10 @@ namespace Swap_Trade:
     
     @view
     func get_all_bids{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr: felt
-    }(trade_id : felt ) -> (bids_ptr_len: felt, bids_ptr: SwapBid*):
+            syscall_ptr : felt*,
+            pedersen_ptr : HashBuiltin*,
+            range_check_ptr : felt
+        }(trade_id : felt ) -> (bids_ptr_len: felt, bids_ptr: SwapBid*):
 
         alloc_locals
         let (bids_count) = Swap_Trade.get_bid_count(trade_id)
@@ -420,15 +453,10 @@ namespace Swap_Trade:
     end
 
     func get_bids{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr: felt
-    }(
-        trade_id: felt,
-        bids_count: felt,
-        bids_ptr_len: felt,
-        bids_ptr: SwapBid*
-    ):
+            syscall_ptr : felt*,
+            pedersen_ptr : HashBuiltin*,
+            range_check_ptr : felt
+        }(trade_id: felt,bids_count: felt,bids_ptr_len: felt,bids_ptr: SwapBid*):
 
         if bids_ptr_len == bids_count:
             return ()
@@ -451,32 +479,6 @@ namespace Swap_Trade:
         return ()
 
     end
-
-    ###########
-    # SETTERS #
-    ###########
-
-    func set_currency_address{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-        _erc20_address : felt
-        ) -> (success : felt):
-        Ownable_only_owner()
-        erc20_token_address.write(_erc20_address)
-        return (1)
-    end
-
-    
-    func pause{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-        Ownable_only_owner()
-        Pausable_pause()
-        return ()
-    end
-
-    
-    func unpause{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
-        Ownable_only_owner()
-        Pausable_unpause()
-        return ()
-    end
 end
 
 ###########
@@ -489,20 +491,21 @@ func change_swap_bid_status{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, ra
     _bid_id : felt, 
     _status : felt
     ):
-    let (swap_bid) =  _bids.read(_trade_id,_bid_id)
+    let (swapBid) =  _bids.read(_trade_id,_bid_id)
 
     let _SwapBid = SwapBid(
         trade_id = _trade_id,
-        bid_owner = swap_bid.bid_owner,
-        bid_contract_address = swap_bid.bid_contract_address, 
-        bid_token_id = swap_bid.bid_token_id, 
-        expiration = swap_bid.expiration, 
-        price = swap_bid.price, 
+        bid_owner = swapBid.bid_owner,
+        bid_contract_address = swapBid.bid_contract_address, 
+        bid_token_id = swapBid.bid_token_id, 
+        expiration = swapBid.expiration, 
+        currency_address = swapBid.currency_address,
+        price = swapBid.price, 
         status = _status,
-        target_nft_owner = swap_bid.target_nft_owner,
-        target_token_contract = swap_bid.target_token_contract,
-        target_token_id = swap_bid.target_token_id,
-        item_bid_id = swap_bid.item_bid_id)
+        target_nft_owner = swapBid.target_nft_owner,
+        target_token_contract = swapBid.target_token_contract,
+        target_token_id = swapBid.target_token_id,
+        item_bid_id = swapBid.item_bid_id)
 
     _bids.write(_trade_id, _bid_id,  _SwapBid)
     SwapBidAction.emit(_SwapBid)
@@ -515,18 +518,20 @@ func change_swap_trade_status{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, 
     _trade_id : felt,
     _status : felt
     ):
-    let (swap_trade) = _swap_trades.read(_trade_id)
+    let (swapTrade) = _swap_trades.read(_trade_id)
 
     let _SwapTrade = SwapTrade(
-        owner = swap_trade.owner,
-        token_contract = swap_trade.token_contract, 
-        token_id = swap_trade.token_id, 
-        expiration = swap_trade.expiration, 
-        price = swap_trade.price, 
+        owner = swapTrade.owner,
+        token_contract = swapTrade.token_contract, 
+        token_id = swapTrade.token_id, 
+        expiration = swapTrade.expiration, 
+        currency_address = swapTrade.currency_address,
+        price = swapTrade.price, 
         status =_status,
         swap_trade_id = _trade_id,
-        target_token_contract = swap_trade.target_token_contract,
-        target_token_id = swap_trade.target_token_id
+        trade_type = swapTrade.trade_type,
+        target_token_contract = swapTrade.target_token_contract,
+        target_token_id = swapTrade.target_token_id
         )
     _swap_trades.write(_trade_id,_SwapTrade)
     SwapAction.emit(_SwapTrade)
@@ -546,22 +551,22 @@ func assert_check_expiration{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, r
 end
 
 func transfer_currency{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    seller : felt, buyer : felt, price : felt
+    _seller : felt, _buyer : felt, _price :Uint256, _currency_address : felt
     ):
     alloc_locals
-    let (is_zero) = uint256_le(Uint256(price,0), Uint256(0, 0))
-    if is_zero == 0:
+    let (isZero) = uint256_le(_price, Uint256(0, 0))
+    if isZero == 0:
         let (caller) = get_caller_address()
-        let (currency) = erc20_token_address.read()
-        let (buyer_balance : Uint256) = IERC20.balanceOf(currency,buyer)
-        let (balance) = uint_to_felt(buyer_balance)
-        assert_nn_le(price, balance)
-
+        let (balance : Uint256) = IERC20.balanceOf(_currency_address,_buyer)
+        let (res) =  uint256_le(_price,balance)
+        with_attr error_message("insufficient balance"):
+            assert res = 1
+        end
         # let (allowance : Uint256) =  IERC20.allowance(caller,contract_address)
         # assert_nn_le(swap_trade.price, balance)
 
         # eth transfer to seller
-        IERC20.transferFrom(currency, buyer, seller, Uint256(price, 0))
+        IERC20.transferFrom(_currency_address, _buyer, _seller, _price)
         return ()
     end
     return()

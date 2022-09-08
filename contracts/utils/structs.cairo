@@ -17,9 +17,11 @@ struct SwapTrade:
     member token_contract : felt
     member token_id : Uint256
     member expiration : felt
-    member price : felt # expect NFT + eth
+    member currency_address : felt
+    member price : Uint256 # expect NFT + eth
     member status : felt  # from TradeStatus
     member swap_trade_id : felt
+    member trade_type :felt
     member target_token_contract : felt # nft contract address to be swapped
     member target_token_id : Uint256 # nft to be swapped
 end
@@ -41,7 +43,8 @@ struct SwapBid:
     member bid_contract_address : felt 
     member bid_token_id : Uint256
     member expiration : felt
-    member price : felt # Nft + eth
+    member currency_address : felt
+    member price : Uint256 # Nft + eth
     member status : felt  # from TradeStatus
     member target_nft_owner : felt
     member target_token_contract : felt

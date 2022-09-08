@@ -5,36 +5,29 @@
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
 from starkware.cairo.common.alloc import alloc
-from starkware.starknet.common.syscalls import (
-    get_caller_address,
-    get_contract_address,
-    get_block_timestamp,
-)
-from starkware.cairo.common.math import assert_nn_le, unsigned_div_rem
-from starkware.cairo.common.uint256 import Uint256, uint256_le
+from starkware.cairo.common.uint256 import Uint256, uint256_eq
 
-from openzeppelin.token.erc20.interfaces.IERC20 import IERC20
-from openzeppelin.token.erc721.interfaces.IERC721 import IERC721
 
-from openzeppelin.access.ownable import Ownable_initializer, Ownable_only_owner
-from openzeppelin.security.pausable import (
-    Pausable_paused,
-    Pausable_pause,
-    Pausable_unpause,
-    Pausable_when_not_paused,
-)
+from contracts.openzeppelin.access.ownable.library import Ownable
+from contracts.openzeppelin.security.pausable.library import Pausable
 
-from contracts.utils.structs import SaleTrade, SwapTrade, SaleBid, SwapBid
-from contracts.exchanges.sale import Sale_Trade
+
+from contracts.utils.structs import  SwapTrade,  SwapBid
 from contracts.exchanges.swap import Swap_Trade
 
 ###########
 # STORAGE #
 ###########
 
-# The current number of trades
+
+# Contract Address of ether used to purchase or sell items
 @storage_var
-func trade_counter() -> (value : felt):
+func erc20_token_addresses(idx : felt) -> (address : felt):
+end
+
+# Contract Address of ether used to purchase or sell items
+@storage_var
+func erc20_token_count() -> (count : felt):
 end
 
 ###############
@@ -44,79 +37,11 @@ end
 @constructor
 func constructor{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     owner : felt,
-    _erc20_address : felt,
     ):
-    Ownable_initializer(owner)
-    Swap_Trade.initializer(owner,_erc20_address)
-    Sale_Trade.initializer(owner,_erc20_address)
-    trade_counter.write(1)
+    Ownable.initializer(owner)
     return ()
 end
 
-############################
-#          LIST ITEM       #
-###########################
-
-##############
-# SALE TRADE #
-##############
-
-@external
-func open_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _token_contract : felt,
-    _token_id : Uint256,
-    _expiration : felt,
-    _price : felt, 
-    _owner_address : felt
-    ):
-    alloc_locals
-    Pausable_when_not_paused()    
-    Sale_Trade.list_item(
-        _owner_address,
-        _token_contract, 
-        _token_id, 
-        _expiration, 
-        _price
-        )
- 
-    return ()
-end
-
-@external
-func execute_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt,  _owner_address : felt
-    ):
-    alloc_locals
-    Pausable_when_not_paused()
-    
-    Sale_Trade.buy_item(_id,_owner_address)
- 
-    return ()
-end
-
-@external
-func update_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt, price : felt, _owner_address : felt
-    ):
-    alloc_locals
-    Pausable_when_not_paused()
-    
-    Sale_Trade.update_price(_id, price, _owner_address)
- 
-    return ()
-end
-
-@external
-func cancel_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _id : felt, _owner_address : felt
-    ):
-    alloc_locals
-    Pausable_when_not_paused()
-    
-    Sale_Trade.cancel_listing(_id,_owner_address)
- 
-    return ()
-end
 
 ##############
 # SWAP TRADE #
@@ -127,17 +52,29 @@ func open_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     _token_contract : felt,
     _token_id : Uint256,
     _expiration : felt,
-    _price : felt, 
+    _currency_id : felt,
+    _price : Uint256, 
+    _trade_type: felt,
     _target_token_contract : felt,
     _target_token_id : Uint256
     ):
     alloc_locals
-    Pausable_when_not_paused()    
+    Pausable.assert_not_paused()
+    let (currency_address) = erc20_token_addresses.read(_currency_id) 
+
+    if currency_address == 0 :
+        let (res) = uint256_eq(_price, Uint256(0,0))
+        with_attr error_message("assert_uint256_eq failed"):
+            assert res = 1
+        end
+    end
     Swap_Trade.list_item(
         _token_contract, 
         _token_id, 
         _expiration, 
+        currency_address,
         _price,
+        _trade_type,
         _target_token_contract,
         _target_token_id
         )
@@ -150,7 +87,7 @@ func execute_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_
     _id : felt
     ):
     alloc_locals
-    Pausable_when_not_paused()
+    Pausable.assert_not_paused()
     
     Swap_Trade.swap_item(_id)
  
@@ -160,13 +97,12 @@ end
 @external
 func update_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     _id : felt,
-    price : felt,
+    price : Uint256,
     _target_token_contract : felt,
     _target_token_id : Uint256
     ):
     alloc_locals
-    Pausable_when_not_paused()
-    
+    Pausable.assert_not_paused()
     Swap_Trade.update_listing(_id, price,_target_token_contract,_target_token_id)
  
     return ()
@@ -177,7 +113,7 @@ func cancel_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_c
     _id : felt
     ):
     alloc_locals
-    Pausable_when_not_paused()
+    Pausable.assert_not_paused()
     
     Swap_Trade.cancel_trade(_id)
  
@@ -190,23 +126,33 @@ end
 
 @external
 func open_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
-    _trade_id : felt,
+    _swap_trade_id : felt,
     _bid_contract_address : felt,
     _bid_token_id : Uint256,
     _expiration : felt, 
-    _price : felt,
+    _currency_id : felt,
+    _price : Uint256,
     _target_token_contract : felt,
     _target_token_id : Uint256
     ):
     alloc_locals
+    Pausable.assert_not_paused()
+    let (currency_address) = erc20_token_addresses.read(_currency_id) 
+    if currency_address == 0:
+        let (res) = uint256_eq(_price, Uint256(0,0))
+        with_attr error_message("assert_uint256_eq failed"):
+            assert res = 1
+        end
+    end
     Swap_Trade.bid_to_item(
-    _trade_id, 
-    _bid_contract_address, 
-    _bid_token_id, 
-    _expiration,
-    _price,
-    _target_token_contract,
-    _target_token_id
+        _swap_trade_id, 
+        _bid_contract_address, 
+        _bid_token_id, 
+        _expiration,
+        currency_address,
+        _price,
+        _target_token_contract,
+        _target_token_id
     )
  
     return ()
@@ -218,7 +164,7 @@ func cancel_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     _bid_id : felt
     ):
     alloc_locals
-
+    Pausable.assert_not_paused()
     Swap_Trade.cancel_bid(
     _trade_id, 
     _bid_id
@@ -231,7 +177,8 @@ func accept_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     _trade_id : felt,
     _bid_id : felt
     ):
-    alloc_locals    
+    alloc_locals   
+    Pausable.assert_not_paused() 
     Swap_Trade.accept_bid(
     _trade_id, 
     _bid_id
@@ -239,28 +186,11 @@ func accept_swap_bid{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_che
     return ()
 end
 
+
+
 #######################
 #       GETTERS      #
 ######################
-
-##############
-# SALE GET.  #
-##############
-@view
-func get_sale_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_id : felt) -> (
-    trade : SaleTrade
-):
-    let (trade : SaleTrade) = Sale_Trade.trade(_id)
-    return (trade)
-end
-
-@view
-func get_sale_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
-    _trade_counter : felt
-):
-    let (trade_counter) = Sale_Trade.trade_counter()
-    return (trade_counter)
-end
 
 ##############
 # SWAP GET.  #
@@ -275,7 +205,7 @@ func get_swap_trade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_chec
 end
 
 @view
-func get_swap_trade_counter{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+func get_swap_trade_count{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
     trade_counter : felt
     ):
     let (trade_counter) = Swap_Trade.trade_counter()
@@ -306,12 +236,55 @@ func get_swap_item_bids{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_
     return (bids_len, bids)
 end
 
+@view
+func get_currency_address{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(_id : felt) -> (
+    currency_address : felt
+    ):
+    let (currency_address) = erc20_token_addresses.read(_id )
+    return (currency_address)
+end
+
+@view
+func get_erc20_count{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (
+    erc20_count : felt
+    ):
+    let (erc20_count) = erc20_token_count.read()
+    return (erc20_count)
+end
+
 
 ##############
 #   COMMON   #
 ##############
 @view
 func paused{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (paused : felt):
-    let (paused) = Pausable_paused.read()
+    let (paused) = Pausable.is_paused()
     return (paused)
 end
+
+@external
+func add_currency_address{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
+    _erc20_address : felt
+    ) -> (success : felt):
+    alloc_locals
+    Ownable.assert_only_owner()
+    let (erc20_count) = erc20_token_count.read()
+    erc20_token_addresses.write(erc20_count+1,_erc20_address)
+    erc20_token_count.write(erc20_count+1)
+    return (1)
+end
+
+@external
+func pauseTrade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
+    Ownable.assert_only_owner()
+    Pausable._pause()
+    return ()
+end
+
+@external    
+func unpauseTrade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}():
+    Ownable.assert_only_owner()
+    Pausable._unpause()
+    return ()
+end
+
