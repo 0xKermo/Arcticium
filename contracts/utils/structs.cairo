@@ -2,53 +2,56 @@
 
 from starkware.cairo.common.uint256 import Uint256
 
-struct SaleTrade:
-    member owner :felt
-    member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member price : felt # eth
-    member status : felt  # from TradeStatus
-    member sale_trade_id : felt
-end
+struct SaleTrade {
+    sale_trade_id: felt,
+    owner: felt,
+    token_contract: felt,
+    token_id: Uint256,
+    expiration: felt,
+    currency_address: felt,
+    price: felt,  // eth
+    status: felt,  // from TradeStatus
+    trade_type: felt,
+}
 
-struct SwapTrade:
-    member owner :felt
-    member token_contract : felt
-    member token_id : Uint256
-    member expiration : felt
-    member currency_address : felt
-    member price : Uint256 # expect NFT + eth
-    member status : felt  # from TradeStatus
-    member swap_trade_id : felt
-    member trade_type :felt
-    member target_token_contract : felt # nft contract address to be swapped
-    member target_token_id : Uint256 # nft to be swapped
-end
+struct SwapTrade {
+    swap_trade_id: felt,
+    owner: felt,
+    token_contract: felt,
+    token_id: Uint256,
+    expiration: felt,
+    currency_address: felt,
+    price: Uint256,  // expect NFT + eth
+    status: felt,  // from TradeStatus
+    trade_type: felt,
+    target_token_contract: felt,  // nft contract address to be swapped
+    target_token_id: Uint256,  // nft to be swapped
+}
 
-struct SaleBid:
-    member bid_owner : felt
-    member expiration : felt
-    member bid_price : felt # eth
-    member status : felt  # from TradeStatus
-    member bidden_nft_owner : felt
-    member bidden_collection_address : felt
-    member target_nft_id : felt
-    member bid_id : felt
-end
+struct SaleBid {
+    trade_id: felt,
+    bid_owner: felt,
+    expiration: felt,
+    currency_address: felt,
+    bid_price: felt,  // eth
+    status: felt,  // from TradeStatus
+    bidded_nft_owner: felt,
+    bidded_collection_address: felt,
+    bid_id: felt,
+    bid_type:felt
+}
 
-struct SwapBid:
-    member trade_id : felt
-    member bid_owner : felt
-    member bid_contract_address : felt 
-    member bid_token_id : Uint256
-    member expiration : felt
-    member currency_address : felt
-    member price : Uint256 # Nft + eth
-    member status : felt  # from TradeStatus
-    member target_nft_owner : felt
-    member target_token_contract : felt
-    member target_token_id : Uint256
-    member item_bid_id : felt
-end
-
+struct SwapBid {
+    trade_id: felt,
+    bid_owner: felt,
+    bid_contract_address: felt,
+    bid_token_id: Uint256,
+    expiration: felt,
+    currency_address: felt,
+    price: Uint256,  // Nft + eth
+    status: felt,  // from TradeStatus
+    target_nft_owner: felt,
+    target_token_contract: felt,
+    target_token_id: Uint256,
+    item_bid_id: felt,
+}

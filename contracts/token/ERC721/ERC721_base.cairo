@@ -4,448 +4,361 @@ from starkware.cairo.common.cairo_builtins import HashBuiltin, SignatureBuiltin
 from starkware.cairo.common.math import assert_not_zero, assert_not_equal
 from starkware.cairo.common.alloc import alloc
 from starkware.starknet.common.syscalls import get_caller_address
-from starkware.cairo.common.uint256 import (
-    Uint256, uint256_add, uint256_sub
-)
+from starkware.cairo.common.uint256 import Uint256, uint256_add, uint256_sub
 
-from contracts.token.ERC165_base import (
-    ERC165_register_interface
-)
+from contracts.token.ERC165_base import ERC165_register_interface
 
 from contracts.token.ERC721.IERC721_Receiver import IERC721_Receiver
 
-#
-# Storage
-#
+//
+// Storage
+//
 
 @storage_var
-func ERC721_name_() -> (name: felt):
-end
+func ERC721_name_() -> (name: felt) {
+}
 
 @storage_var
-func ERC721_symbol_() -> (symbol: felt):
-end
+func ERC721_symbol_() -> (symbol: felt) {
+}
 
 @storage_var
-func ERC721_owners(token_id: Uint256) -> (owner: felt):
-end
+func ERC721_owners(token_id: Uint256) -> (owner: felt) {
+}
 
 @storage_var
-func ERC721_balances(account: felt) -> (balance: Uint256):
-end
+func ERC721_balances(account: felt) -> (balance: Uint256) {
+}
 
 @storage_var
-func ERC721_token_approvals(token_id: Uint256) -> (res: felt):
-end
+func ERC721_token_approvals(token_id: Uint256) -> (res: felt) {
+}
 
 @storage_var
-func ERC721_operator_approvals(owner: felt, operator: felt) -> (res: felt):
-end
+func ERC721_operator_approvals(owner: felt, operator: felt) -> (res: felt) {
+}
 
-
-#
-# Events
-#
+//
+// Events
+//
 
 @event
-func Transfer(_from: felt, to: felt, tokenId: Uint256):
-end
+func Transfer(_from: felt, to: felt, tokenId: Uint256) {
+}
 
 @event
-func Approve(owner: felt, approved: felt, tokenId: Uint256):
-end
+func Approve(owner: felt, approved: felt, tokenId: Uint256) {
+}
 
 @event
-func ApprovalForAll(owner: felt, operator: felt, approved: felt):
-end
+func ApprovalForAll(owner: felt, operator: felt, approved: felt) {
+}
 
+//
+// Constructor
+//
 
-#
-# Constructor
-#
+func ERC721_initializer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    name: felt, symbol: felt
+) {
+    ERC721_name_.write(name);
+    ERC721_symbol_.write(symbol);
+    // register IERC721
+    ERC165_register_interface(0x80ac58cd);
+    return ();
+}
 
-func ERC721_initializer{
-        syscall_ptr : felt*,
-        pedersen_ptr : HashBuiltin*,
-        range_check_ptr
-    }(
-        name: felt,
-        symbol: felt,
-    ):
-    ERC721_name_.write(name)
-    ERC721_symbol_.write(symbol)
-    # register IERC721
-    ERC165_register_interface(0x80ac58cd)
-    return ()
-end
+//
+// Getters
+//
 
-#
-# Getters
-#
+func ERC721_name{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}() -> (
+    name: felt
+) {
+    let (name) = ERC721_name_.read();
+    return (name,);
+}
 
-func ERC721_name{
-        syscall_ptr : felt*,
-        pedersen_ptr : HashBuiltin*,
-        range_check_ptr
-    }() -> (name: felt):
-    let (name) = ERC721_name_.read()
-    return (name)
-end
+func ERC721_symbol{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}() -> (
+    symbol: felt
+) {
+    let (symbol) = ERC721_symbol_.read();
+    return (symbol,);
+}
 
-func ERC721_symbol{
-        syscall_ptr : felt*,
-        pedersen_ptr : HashBuiltin*,
-        range_check_ptr
-    }() -> (symbol: felt):
-    let (symbol) = ERC721_symbol_.read()
-    return (symbol)
-end
+func ERC721_balanceOf{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    owner: felt
+) -> (balance: Uint256) {
+    let (balance: Uint256) = ERC721_balances.read(owner);
+    assert_not_zero(owner);
+    return (balance,);
+}
 
-func ERC721_balanceOf{
-        syscall_ptr : felt*,
-        pedersen_ptr : HashBuiltin*,
-        range_check_ptr
-    }(owner: felt) -> (balance: Uint256):
-    let (balance: Uint256) = ERC721_balances.read(owner)
-    assert_not_zero(owner)
-    return (balance)
-end
+func ERC721_ownerOf{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    token_id: Uint256
+) -> (owner: felt) {
+    let (owner) = ERC721_owners.read(token_id);
+    // Ensuring the query is not for nonexistent token
+    assert_not_zero(owner);
+    return (owner,);
+}
 
-func ERC721_ownerOf{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(token_id: Uint256) -> (owner: felt):
-    let (owner) = ERC721_owners.read(token_id)
-    # Ensuring the query is not for nonexistent token
-    assert_not_zero(owner)
-    return (owner)
-end
+func ERC721_getApproved{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    token_id: Uint256
+) -> (approved: felt) {
+    let (exists) = _exists(token_id);
+    assert exists = 1;
 
-func ERC721_getApproved{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(token_id: Uint256) -> (approved: felt):
-    let (exists) = _exists(token_id)
-    assert exists = 1
+    let (approved) = ERC721_token_approvals.read(token_id);
+    return (approved,);
+}
 
-    let (approved) = ERC721_token_approvals.read(token_id)
-    return (approved)
-end
+func ERC721_isApprovedForAll{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    owner: felt, operator: felt
+) -> (is_approved: felt) {
+    let (is_approved) = ERC721_operator_approvals.read(owner=owner, operator=operator);
+    return (is_approved,);
+}
 
-func ERC721_isApprovedForAll{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(owner: felt, operator: felt) -> (is_approved: felt):
-    let (is_approved) = ERC721_operator_approvals.read(owner=owner, operator=operator)
-    return (is_approved)
-end
+//
+// Externals
+//
 
+func ERC721_approve{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    to: felt, token_id: Uint256
+) {
+    // Checks caller is not zero address
+    let (caller) = get_caller_address();
+    assert_not_zero(caller);
 
+    // Ensures 'owner' does not equal 'to'
+    let (owner) = ERC721_owners.read(token_id);
+    assert_not_equal(owner, to);
 
-#
-# Externals
-#
+    // Checks that either caller equals owner or
+    // caller isApprovedForAll on behalf of owner
+    if (caller == owner) {
+        _approve(owner, to, token_id);
+        return ();
+    } else {
+        let (is_approved) = ERC721_operator_approvals.read(owner, caller);
+        assert_not_zero(is_approved);
+        _approve(owner, to, token_id);
+        return ();
+    }
+}
 
-func ERC721_approve{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(to: felt, token_id: Uint256):
-    # Checks caller is not zero address
-    let (caller) = get_caller_address()
-    assert_not_zero(caller)
+func ERC721_setApprovalForAll{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    operator: felt, approved: felt
+) {
+    // Ensures caller is neither zero address nor operator
+    let (caller) = get_caller_address();
+    assert_not_zero(caller);
+    assert_not_equal(caller, operator);
 
-    # Ensures 'owner' does not equal 'to'
-    let (owner) = ERC721_owners.read(token_id)
-    assert_not_equal(owner, to)
+    // Make sure `approved` is a boolean (0 or 1)
+    assert approved * (1 - approved) = 0;
 
-    # Checks that either caller equals owner or
-    # caller isApprovedForAll on behalf of owner
-    if caller == owner:
-        _approve(owner, to, token_id)
-        return ()
-    else:
-        let (is_approved) = ERC721_operator_approvals.read(owner, caller)
-        assert_not_zero(is_approved)
-        _approve(owner, to, token_id)
-        return ()
-    end
-end
+    ERC721_operator_approvals.write(owner=caller, operator=operator, value=approved);
 
-func ERC721_setApprovalForAll{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(operator: felt, approved: felt):
-    # Ensures caller is neither zero address nor operator
-    let (caller) = get_caller_address()
-    assert_not_zero(caller)
-    assert_not_equal(caller, operator)
+    // Emit ApprovalForAll event
+    ApprovalForAll.emit(owner=caller, operator=operator, approved=approved);
+    return ();
+}
 
-    # Make sure `approved` is a boolean (0 or 1)
-    assert approved * (1 - approved) = 0
+func ERC721_transferFrom{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    _from: felt, to: felt, token_id: Uint256
+) {
+    alloc_locals;
 
-    ERC721_operator_approvals.write(owner=caller, operator=operator, value=approved)
+    let (caller) = get_caller_address();
+    let (is_approved) = _is_approved_or_owner(caller, token_id);
+    assert_not_zero(caller * is_approved);
+    // Note that if either `is_approved` or `caller` equals `0`,
+    // then this method should fail.
+    // The `caller` address and `is_approved` boolean are both field elements
+    // meaning that a*0==0 for all a in the field,
+    // therefore a*b==0 implies that at least one of a,b is zero in the field
 
-    # Emit ApprovalForAll event
-    ApprovalForAll.emit(owner=caller, operator=operator, approved=approved)
-    return ()
-end
+    _transfer(_from, to, token_id);
+    return ();
+}
 
-func ERC721_transferFrom{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(_from: felt, to: felt, token_id: Uint256):
-    alloc_locals
+func ERC721_safeTransferFrom{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    _from: felt, to: felt, token_id: Uint256, data_len: felt, data: felt*
+) {
+    alloc_locals;
 
-    let (caller) = get_caller_address()
-    let (is_approved) = _is_approved_or_owner(caller, token_id)
-    assert_not_zero(caller * is_approved)
-    # Note that if either `is_approved` or `caller` equals `0`,
-    # then this method should fail.
-    # The `caller` address and `is_approved` boolean are both field elements
-    # meaning that a*0==0 for all a in the field,
-    # therefore a*b==0 implies that at least one of a,b is zero in the field
+    let (caller) = get_caller_address();
+    let (is_approved) = _is_approved_or_owner(caller, token_id);
+    assert_not_zero(caller * is_approved);
+    // Note that if either `is_approved` or `caller` equals `0`,
+    // then this method should fail.
+    // The `caller` address and `is_approved` boolean are both field elements
+    // meaning that a*0==0 for all a in the field,
+    // therefore a*b==0 implies that at least one of a,b is zero in the field
 
-    _transfer(_from, to, token_id)
-    return ()
-end
+    _safe_transfer(_from, to, token_id, data_len, data);
+    return ();
+}
 
-func ERC721_safeTransferFrom{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(
-        _from: felt,
-        to: felt,
-        token_id: Uint256,
-        data_len: felt,
-        data: felt*
-    ):
-    alloc_locals
+func ERC721_mint{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    to: felt, token_id: Uint256
+) {
+    assert_not_zero(to);
 
-    let (caller) = get_caller_address()
-    let (is_approved) = _is_approved_or_owner(caller, token_id)
-    assert_not_zero(caller * is_approved)
-    # Note that if either `is_approved` or `caller` equals `0`,
-    # then this method should fail.
-    # The `caller` address and `is_approved` boolean are both field elements
-    # meaning that a*0==0 for all a in the field,
-    # therefore a*b==0 implies that at least one of a,b is zero in the field
+    // Ensures token_id is unique
+    let (exists) = _exists(token_id);
+    assert exists = 0;
 
-    _safe_transfer(_from, to, token_id, data_len, data)
-    return ()
-end
+    let (balance: Uint256) = ERC721_balances.read(to);
+    // Overflow is not possible because token_ids are checked for duplicate ids with `_exists()`
+    // thus, each token is guaranteed to be a unique uint256
+    let (new_balance: Uint256, _) = uint256_add(balance, Uint256(1, 0));
+    ERC721_balances.write(to, new_balance);
 
-func ERC721_mint{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(to: felt, token_id: Uint256):
-    assert_not_zero(to)
+    // low + high felts = uint256
+    ERC721_owners.write(token_id, to);
 
-    # Ensures token_id is unique
-    let (exists) = _exists(token_id)
-    assert exists = 0
+    // Emit Transfer event
+    Transfer.emit(_from=0, to=to, tokenId=token_id);
+    return ();
+}
 
-    let (balance: Uint256) = ERC721_balances.read(to)
-    # Overflow is not possible because token_ids are checked for duplicate ids with `_exists()`
-    # thus, each token is guaranteed to be a unique uint256
-    let (new_balance: Uint256, _) = uint256_add(balance, Uint256(1, 0))
-    ERC721_balances.write(to, new_balance)
+func ERC721_burn{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    token_id: Uint256
+) {
+    alloc_locals;
+    let (local owner) = ERC721_ownerOf(token_id);
 
-    # low + high felts = uint256
-    ERC721_owners.write(token_id, to)
+    // Clear approvals
+    _approve(owner, 0, token_id);
 
-    # Emit Transfer event
-    Transfer.emit(_from=0, to=to, tokenId=token_id)
-    return ()
-end
+    // Decrease owner balance
+    let (balance: Uint256) = ERC721_balances.read(owner);
+    let (new_balance) = uint256_sub(balance, Uint256(1, 0));
+    ERC721_balances.write(owner, new_balance);
 
-func ERC721_burn{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(token_id: Uint256):
-    alloc_locals
-    let (local owner) = ERC721_ownerOf(token_id)
+    // Delete owner
+    ERC721_owners.write(token_id, 0);
 
-    # Clear approvals
-    _approve(owner, 0, token_id)
+    // Emit Transfer event
+    Transfer.emit(_from=owner, to=0, tokenId=token_id);
+    return ();
+}
 
-    # Decrease owner balance
-    let (balance: Uint256) = ERC721_balances.read(owner)
-    let (new_balance) = uint256_sub(balance, Uint256(1, 0))
-    ERC721_balances.write(owner, new_balance)
+func ERC721_safeMint{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    to: felt, token_id: Uint256, data_len: felt, data: felt*
+) {
+    ERC721_mint(to, token_id);
+    _check_onERC721Received(0, to, token_id, data_len, data);
+    return ();
+}
 
-    # Delete owner
-    ERC721_owners.write(token_id, 0)
+//
+// Internals
+//
 
-    # Emit Transfer event
-    Transfer.emit(_from=owner, to=0, tokenId=token_id)
-    return ()
-end
+func _approve{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    owner: felt, to: felt, token_id: Uint256
+) {
+    ERC721_token_approvals.write(token_id, to);
+    Approve.emit(owner=owner, approved=to, tokenId=token_id);
+    return ();
+}
 
-func ERC721_safeMint{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(
-        to: felt,
-        token_id: Uint256,
-        data_len: felt,
-        data: felt*
-    ):
-    ERC721_mint(to, token_id)
-    _check_onERC721Received(
-        0,
-        to,
-        token_id,
-        data_len,
-        data
-    )
-    return ()
-end
+func _is_approved_or_owner{pedersen_ptr: HashBuiltin*, syscall_ptr: felt*, range_check_ptr}(
+    spender: felt, token_id: Uint256
+) -> (res: felt) {
+    alloc_locals;
 
-#
-# Internals
-#
+    let (exists) = _exists(token_id);
+    assert exists = 1;
 
-func _approve{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(owner: felt, to: felt, token_id: Uint256):
-    ERC721_token_approvals.write(token_id, to)
-    Approve.emit(owner=owner, approved=to, tokenId=token_id)
-    return ()
-end
+    let (owner) = ERC721_ownerOf(token_id);
+    if (owner == spender) {
+        return (1,);
+    }
 
-func _is_approved_or_owner{
-        pedersen_ptr: HashBuiltin*,
-        syscall_ptr: felt*,
-        range_check_ptr
-    }(spender: felt, token_id: Uint256) -> (res: felt):
-    alloc_locals
+    let (approved_addr) = ERC721_getApproved(token_id);
+    if (approved_addr == spender) {
+        return (1,);
+    }
 
-    let (exists) = _exists(token_id)
-    assert exists = 1
+    let (is_operator) = ERC721_isApprovedForAll(owner, spender);
+    if (is_operator == 1) {
+        return (1,);
+    }
 
-    let (owner) = ERC721_ownerOf(token_id)
-    if owner == spender:
-        return (1)
-    end
+    return (0,);
+}
 
-    let (approved_addr) = ERC721_getApproved(token_id)
-    if approved_addr == spender:
-        return (1)
-    end
+func _exists{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    token_id: Uint256
+) -> (res: felt) {
+    let (res) = ERC721_owners.read(token_id);
 
-    let (is_operator) = ERC721_isApprovedForAll(owner, spender)
-    if is_operator == 1:
-        return (1)
-    end
+    if (res == 0) {
+        return (0,);
+    } else {
+        return (1,);
+    }
+}
 
-    return (0)
-end
+func _transfer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    _from: felt, to: felt, token_id: Uint256
+) {
+    // ownerOf ensures '_from' is not the zero address
+    let (_ownerOf) = ERC721_ownerOf(token_id);
+    assert _ownerOf = _from;
 
-func _exists{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(token_id: Uint256) -> (res: felt):
-    let (res) = ERC721_owners.read(token_id)
+    assert_not_zero(to);
 
-    if res == 0:
-        return (0)
-    else:
-        return (1)
-    end
-end
+    // Clear approvals
+    _approve(_ownerOf, 0, token_id);
 
-func _transfer{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(_from: felt, to: felt, token_id: Uint256):
-    # ownerOf ensures '_from' is not the zero address
-    let (_ownerOf) = ERC721_ownerOf(token_id)
-    assert _ownerOf = _from
+    // Decrease owner balance
+    let (owner_bal) = ERC721_balances.read(_from);
+    let (new_balance) = uint256_sub(owner_bal, Uint256(1, 0));
+    ERC721_balances.write(_from, new_balance);
 
-    assert_not_zero(to)
+    // Increase receiver balance
+    let (receiver_bal) = ERC721_balances.read(to);
+    // overflow not possible because token_id must be unique
+    let (new_balance: Uint256, _) = uint256_add(receiver_bal, Uint256(1, 0));
+    ERC721_balances.write(to, new_balance);
 
-    # Clear approvals
-    _approve(_ownerOf, 0, token_id)
+    // Update token_id owner
+    ERC721_owners.write(token_id, to);
 
-    # Decrease owner balance
-    let (owner_bal) = ERC721_balances.read(_from)
-    let (new_balance) = uint256_sub(owner_bal, Uint256(1, 0))
-    ERC721_balances.write(_from, new_balance)
+    // Emit transfer event
+    Transfer.emit(_from=_from, to=to, tokenId=token_id);
+    return ();
+}
 
-    # Increase receiver balance
-    let (receiver_bal) = ERC721_balances.read(to)
-    # overflow not possible because token_id must be unique
-    let (new_balance: Uint256, _) = uint256_add(receiver_bal, Uint256(1, 0))
-    ERC721_balances.write(to, new_balance)
+func _safe_transfer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    _from: felt, to: felt, token_id: Uint256, data_len: felt, data: felt*
+) {
+    _transfer(_from, to, token_id);
 
-    # Update token_id owner
-    ERC721_owners.write(token_id, to)
+    let (success) = _check_onERC721Received(_from, to, token_id, data_len, data);
+    assert_not_zero(success);
+    return ();
+}
 
-    # Emit transfer event
-    Transfer.emit(_from=_from, to=to, tokenId=token_id)
-    return ()
-end
+func _check_onERC721Received{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+    _from: felt, to: felt, token_id: Uint256, data_len: felt, data: felt*
+) -> (success: felt) {
+    // We need to consider how to differentiate between EOA and contracts
+    // and insert a conditional to know when to use the proceeding check
+    let (caller) = get_caller_address();
+    // The first parameter in an imported interface is the contract
+    // address of the interface being called
+    let (selector) = IERC721_Receiver.onERC721Received(to, caller, _from, token_id, data_len, data);
 
-func _safe_transfer{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(
-        _from: felt,
-        to: felt,
-        token_id: Uint256,
-        data_len: felt,
-        data: felt*
-    ):
-    _transfer(_from, to, token_id)
+    // ERC721_RECEIVER_ID
+    assert (selector) = 0x150b7a02;
 
-    let (success) = _check_onERC721Received(_from, to, token_id, data_len, data)
-    assert_not_zero(success)
-    return ()
-end
-
-func _check_onERC721Received{
-        syscall_ptr: felt*,
-        pedersen_ptr: HashBuiltin*,
-        range_check_ptr
-    }(
-        _from: felt,
-        to: felt,
-        token_id: Uint256,
-        data_len: felt,
-        data: felt*
-    ) -> (success: felt):
-    # We need to consider how to differentiate between EOA and contracts
-    # and insert a conditional to know when to use the proceeding check
-    let (caller) = get_caller_address()
-    # The first parameter in an imported interface is the contract
-    # address of the interface being called
-    let (selector) = IERC721_Receiver.onERC721Received(
-        to,
-        caller,
-        _from,
-        token_id,
-        data_len,
-        data
-    )
-
-    # ERC721_RECEIVER_ID
-    assert (selector) = 0x150b7a02
-
-    # Cairo equivalent to 'return (true)'
-    return (1)
-end
+    // Cairo equivalent to 'return (true)'
+    return (1,);
+}

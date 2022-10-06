@@ -135,6 +135,18 @@
             {
                 "name": "new_implementation",
                 "type": "felt"
+            },
+            {
+                "name": "selector",
+                "type": "felt"
+            },
+            {
+                "name": "calldata_len",
+                "type": "felt"
+            },
+            {
+                "name": "calldata",
+                "type": "felt*"
             }
         ],
         "name": "upgrade",

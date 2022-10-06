@@ -136,6 +136,18 @@
                 {
                     "name": "new_implementation",
                     "type": "felt"
+                },
+                {
+                    "name": "selector",
+                    "type": "felt"
+                },
+                {
+                    "name": "calldata_len",
+                    "type": "felt"
+                },
+                {
+                    "name": "calldata",
+                    "type": "felt*"
                 }
             ],
             "name": "upgrade",
@@ -156,7 +168,7 @@
                 "selector": "0x0"
             },
             {
-                "offset": "0x1b0",
+                "offset": "0x1ba",
                 "selector": "0xf2f7c15cbe06c8d94597cd91fd7f3369eae842359235712def5584f8d270cd"
             },
             {
@@ -628,24 +640,45 @@
             "0x0",
             "0x48127ffb7fff8000",
             "0x208b7fff7fff7ffe",
+            "0x480a7ff77fff8000",
+            "0x480a7ff87fff8000",
+            "0x480a7ff97fff8000",
+            "0x1104800180018000",
+            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffff00",
+            "0x480a7ffa7fff8000",
+            "0x1104800180018000",
+            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffff2b",
+            "0x48127ffd7fff8000",
             "0x480a7ffa7fff8000",
             "0x480a7ffb7fff8000",
             "0x480a7ffc7fff8000",
-            "0x1104800180018000",
-            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffff00",
             "0x480a7ffd7fff8000",
             "0x1104800180018000",
-            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffff2b",
+            "0x800000000000010fffffffffffffffffffffffffffffffffffffffffffffe50",
+            "0x48127ffd7fff8000",
+            "0x48127ff27fff8000",
+            "0x48127ff27fff8000",
             "0x208b7fff7fff7ffe",
+            "0x480280027ffb8000",
+            "0x480280027ffd8000",
+            "0x400080007ffe7fff",
             "0x482680017ffd8000",
-            "0x1",
+            "0x3",
+            "0x480280027ffd8000",
+            "0x48307fff7ffe8000",
             "0x402a7ffd7ffc7fff",
+            "0x480280027ffb8000",
             "0x480280007ffb8000",
             "0x480280017ffb8000",
-            "0x480280027ffb8000",
+            "0x482480017ffd8000",
+            "0x1",
             "0x480280007ffd8000",
+            "0x480280017ffd8000",
+            "0x480280027ffd8000",
+            "0x482680017ffd8000",
+            "0x3",
             "0x1104800180018000",
-            "0x800000000000010fffffffffffffffffffffffffffffffffffffffffffffff1",
+            "0x800000000000010ffffffffffffffffffffffffffffffffffffffffffffffdc",
             "0x40780017fff7fff",
             "0x1",
             "0x48127ffc7fff8000",
@@ -709,9 +742,9 @@
                 "autogen/starknet/external/get_implementation/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo": "let range_check_ptr = [cast([cast(fp + (-5), felt**)] + 2, felt*)]\n",
                 "autogen/starknet/external/return/get_admin/51d709d94b5da5d09a57a1fdbd8c6a6e363d19484e6fc7b288dd1f7a23e80668.cairo": "func get_admin_encode_return(ret_value : (admin : felt), range_check_ptr) -> (\n        range_check_ptr, data_len : felt, data : felt*):\n    %{ memory[ap] = segments.add() %}\n    alloc_locals\n    local __return_value_ptr_start : felt*\n    let __return_value_ptr = __return_value_ptr_start\n    with range_check_ptr:\n    end\n    return (\n        range_check_ptr=range_check_ptr,\n        data_len=__return_value_ptr - __return_value_ptr_start,\n        data=__return_value_ptr_start)\nend\n",
                 "autogen/starknet/external/return/get_implementation/6c4f8228852a83cab107e975dc5b01749918a10e0830a6080b524f80ea93870f.cairo": "func get_implementation_encode_return(ret_value : (implementation : felt), range_check_ptr) -> (\n        range_check_ptr, data_len : felt, data : felt*):\n    %{ memory[ap] = segments.add() %}\n    alloc_locals\n    local __return_value_ptr_start : felt*\n    let __return_value_ptr = __return_value_ptr_start\n    with range_check_ptr:\n    end\n    return (\n        range_check_ptr=range_check_ptr,\n        data_len=__return_value_ptr - __return_value_ptr_start,\n        data=__return_value_ptr_start)\nend\n",
-                "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo": "let ret_value = __wrapped_func{syscall_ptr=syscall_ptr, pedersen_ptr=pedersen_ptr, range_check_ptr=range_check_ptr}(new_implementation=__calldata_arg_new_implementation,)\n%{ memory[ap] = segments.add() %}        # Allocate memory for return value.\ntempvar retdata : felt*\nlet retdata_size = 0\n",
                 "autogen/starknet/external/upgrade/424b26e79f70343cc02557f1fbd25745138efb26a3dc5c8b593ca765b73138b7.cairo": "let pedersen_ptr = [cast([cast(fp + (-5), felt**)] + 1, starkware.cairo.common.cairo_builtins.HashBuiltin**)]\n",
                 "autogen/starknet/external/upgrade/4ba2b119ceb30fe10f4cca3c9d73ef620c0fb5eece91b99a99d71217bba1001c.cairo": "return (syscall_ptr,pedersen_ptr,range_check_ptr,retdata_size,retdata)\n",
+                "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo": "let ret_value = __wrapped_func{syscall_ptr=syscall_ptr, pedersen_ptr=pedersen_ptr, range_check_ptr=range_check_ptr}(new_implementation=__calldata_arg_new_implementation, selector=__calldata_arg_selector, calldata_len=__calldata_arg_calldata_len, calldata=__calldata_arg_calldata,)\n%{ memory[ap] = segments.add() %}        # Allocate memory for return value.\ntempvar retdata : felt*\nlet retdata_size = 0\n",
                 "autogen/starknet/external/upgrade/c7060df96cb0acca1380ae43bf758cab727bfdf73cb5d34a93e24a9742817fda.cairo": "let syscall_ptr = [cast([cast(fp + (-5), felt**)] + 0, felt**)]\n",
                 "autogen/starknet/external/upgrade/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo": "let range_check_ptr = [cast([cast(fp + (-5), felt**)] + 2, felt*)]\n",
                 "autogen/starknet/storage_var/Proxy_admin/decl.cairo": "namespace Proxy_admin:\n    from starkware.starknet.common.storage import normalize_address\n    from starkware.starknet.common.syscalls import storage_read, storage_write\n    from starkware.cairo.common.cairo_builtins import HashBuiltin\n    from starkware.cairo.common.hash import hash2\n\n    func addr{pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (res : felt):\n        let res = 0\n        call hash2\n        call normalize_address\n    end\n\n    func read{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}() -> (\n        proxy_admin : felt\n    ):\n        let storage_addr = 0\n        call addr\n        call storage_read\n    end\n\n    func write{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(value : felt):\n        let storage_addr = 0\n        call addr\n        call storage_write\n    end\nend",
@@ -13879,8 +13912,182 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 14,
-                        "end_line": 99,
+                        "end_col": 28,
+                        "end_line": 104,
+                        "input_file": {
+                            "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/contracts/proxy/library.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 55,
+                                "end_line": 98,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 38,
+                                        "end_line": 84,
+                                        "input_file": {
+                                            "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 6,
+                                                "end_line": 104,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 5,
+                                                "start_line": 99
+                                            },
+                                            "While trying to retrieve the implicit argument 'syscall_ptr' in:"
+                                        ],
+                                        "start_col": 19,
+                                        "start_line": 84
+                                    },
+                                    "While expanding the reference 'syscall_ptr' in:"
+                                ],
+                                "start_col": 5,
+                                "start_line": 98
+                            },
+                            "While trying to update the implicit return value 'syscall_ptr' in:"
+                        ],
+                        "start_col": 9,
+                        "start_line": 104
+                    }
+                },
+                "432": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 30,
+                        "end_line": 95,
+                        "input_file": {
+                            "filename": "contracts/proxy/proxy.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 38,
+                                "end_line": 100,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "start_col": 20,
+                                "start_line": 100
+                            },
+                            "While expanding the reference 'new_implementation' in:"
+                        ],
+                        "start_col": 5,
+                        "start_line": 95
+                    }
+                },
+                "433": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 46,
+                        "end_line": 95,
+                        "input_file": {
+                            "filename": "contracts/proxy/proxy.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 35,
+                                "end_line": 101,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "start_col": 27,
+                                "start_line": 101
+                            },
+                            "While expanding the reference 'selector' in:"
+                        ],
+                        "start_col": 31,
+                        "start_line": 95
+                    }
+                },
+                "434": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 67,
+                        "end_line": 95,
+                        "input_file": {
+                            "filename": "contracts/proxy/proxy.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 35,
+                                "end_line": 102,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "start_col": 23,
+                                "start_line": 102
+                            },
+                            "While expanding the reference 'calldata_len' in:"
+                        ],
+                        "start_col": 48,
+                        "start_line": 95
+                    }
+                },
+                "435": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 85,
+                        "end_line": 95,
+                        "input_file": {
+                            "filename": "contracts/proxy/proxy.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 26,
+                                "end_line": 103,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "start_col": 18,
+                                "start_line": 103
+                            },
+                            "While expanding the reference 'calldata' in:"
+                        ],
+                        "start_col": 69,
+                        "start_line": 95
+                    }
+                },
+                "436": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 6,
+                        "end_line": 104,
                         "input_file": {
                             "filename": "contracts/proxy/proxy.cairo"
                         },
@@ -13888,7 +14095,328 @@
                         "start_line": 99
                     }
                 },
-                "432": {
+                "438": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 38,
+                        "end_line": 84,
+                        "input_file": {
+                            "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/arcswap/lib/python3.8/site-packages/starkware/starknet/common/syscalls.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 6,
+                                "end_line": 104,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 33,
+                                        "end_line": 94,
+                                        "input_file": {
+                                            "filename": "contracts/proxy/proxy.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 14,
+                                                "end_line": 105,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 5,
+                                                "start_line": 105
+                                            },
+                                            "While trying to retrieve the implicit argument 'syscall_ptr' in:"
+                                        ],
+                                        "start_col": 14,
+                                        "start_line": 94
+                                    },
+                                    "While expanding the reference 'syscall_ptr' in:"
+                                ],
+                                "start_col": 5,
+                                "start_line": 99
+                            },
+                            "While trying to update the implicit return value 'syscall_ptr' in:"
+                        ],
+                        "start_col": 19,
+                        "start_line": 84
+                    }
+                },
+                "439": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 57,
+                        "end_line": 104,
+                        "input_file": {
+                            "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/contracts/proxy/library.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 55,
+                                "end_line": 98,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 62,
+                                        "end_line": 94,
+                                        "input_file": {
+                                            "filename": "contracts/proxy/proxy.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 14,
+                                                "end_line": 105,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 5,
+                                                "start_line": 105
+                                            },
+                                            "While trying to retrieve the implicit argument 'pedersen_ptr' in:"
+                                        ],
+                                        "start_col": 35,
+                                        "start_line": 94
+                                    },
+                                    "While expanding the reference 'pedersen_ptr' in:"
+                                ],
+                                "start_col": 5,
+                                "start_line": 98
+                            },
+                            "While trying to update the implicit return value 'pedersen_ptr' in:"
+                        ],
+                        "start_col": 30,
+                        "start_line": 104
+                    }
+                },
+                "440": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 74,
+                        "end_line": 104,
+                        "input_file": {
+                            "filename": "/mnt/c/Users/tekin/OneDrive/Masa\u00fcst\u00fc/arcswap/contracts/proxy/library.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 55,
+                                "end_line": 98,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 79,
+                                        "end_line": 94,
+                                        "input_file": {
+                                            "filename": "contracts/proxy/proxy.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 14,
+                                                "end_line": 105,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 5,
+                                                "start_line": 105
+                                            },
+                                            "While trying to retrieve the implicit argument 'range_check_ptr' in:"
+                                        ],
+                                        "start_col": 64,
+                                        "start_line": 94
+                                    },
+                                    "While expanding the reference 'range_check_ptr' in:"
+                                ],
+                                "start_col": 5,
+                                "start_line": 98
+                            },
+                            "While trying to update the implicit return value 'range_check_ptr' in:"
+                        ],
+                        "start_col": 59,
+                        "start_line": 104
+                    }
+                },
+                "441": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__main__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 14,
+                        "end_line": 105,
+                        "input_file": {
+                            "filename": "contracts/proxy/proxy.cairo"
+                        },
+                        "start_col": 5,
+                        "start_line": 105
+                    }
+                },
+                "442": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 67,
+                        "end_line": 1,
+                        "input_file": {
+                            "filename": "autogen/starknet/external/upgrade/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 79,
+                                "end_line": 94,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 24,
+                                        "end_line": 2,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 85,
+                                                "end_line": 95,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 69,
+                                                "start_line": 95
+                                            },
+                                            "While handling calldata argument 'calldata'"
+                                        ],
+                                        "start_col": 9,
+                                        "start_line": 2
+                                    },
+                                    "While expanding the reference 'range_check_ptr' in:"
+                                ],
+                                "start_col": 64,
+                                "start_line": 94
+                            },
+                            "While constructing the external wrapper for:"
+                        ],
+                        "start_col": 23,
+                        "start_line": 1
+                    }
+                },
+                "443": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 51,
+                        "end_line": 1,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/8799496fe2567340f6719cfd30d7db5f6b8e7aa420ca97e3a3c3ccbdfbb2e674.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 67,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 55,
+                                        "end_line": 2,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 85,
+                                                "end_line": 95,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 69,
+                                                "start_line": 95
+                                            },
+                                            "While handling calldata argument 'calldata'"
+                                        ],
+                                        "start_col": 28,
+                                        "start_line": 2
+                                    },
+                                    "While expanding the reference '__calldata_arg_calldata_len' in:"
+                                ],
+                                "start_col": 48,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'calldata_len'"
+                        ],
+                        "start_col": 35,
+                        "start_line": 1
+                    }
+                },
+                "444": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 55,
+                        "end_line": 2,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 85,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "start_col": 69,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'calldata'"
+                        ],
+                        "start_col": 1,
+                        "start_line": 2
+                    }
+                },
+                "445": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -13901,73 +14429,135 @@
                         "end_col": 40,
                         "end_line": 2,
                         "input_file": {
-                            "filename": "autogen/starknet/arg_processor/58b3781a772ea30e42f38de384e62c51af98506cdd1cd12d8b780fc4816d12a0.cairo"
+                            "filename": "autogen/starknet/arg_processor/8799496fe2567340f6719cfd30d7db5f6b8e7aa420ca97e3a3c3ccbdfbb2e674.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 30,
+                                "end_col": 67,
                                 "end_line": 95,
                                 "input_file": {
                                     "filename": "contracts/proxy/proxy.cairo"
                                 },
                                 "parent_location": [
                                     {
-                                        "end_col": 45,
-                                        "end_line": 1,
+                                        "end_col": 40,
+                                        "end_line": 8,
                                         "input_file": {
-                                            "filename": "autogen/starknet/arg_processor/5e1cc73f0b484f90bb02da164d88332b40c6f698801aa4d3c603dab22157e902.cairo"
+                                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
                                         },
                                         "parent_location": [
                                             {
-                                                "end_col": 13,
-                                                "end_line": 94,
+                                                "end_col": 85,
+                                                "end_line": 95,
                                                 "input_file": {
                                                     "filename": "contracts/proxy/proxy.cairo"
                                                 },
-                                                "parent_location": [
-                                                    {
-                                                        "end_col": 57,
-                                                        "end_line": 1,
-                                                        "input_file": {
-                                                            "filename": "autogen/starknet/arg_processor/1b562308a65653425ce06491fa4b4539466f3251a07e73e099d0afe86a48900e.cairo"
-                                                        },
-                                                        "parent_location": [
-                                                            {
-                                                                "end_col": 13,
-                                                                "end_line": 94,
-                                                                "input_file": {
-                                                                    "filename": "contracts/proxy/proxy.cairo"
-                                                                },
-                                                                "start_col": 6,
-                                                                "start_line": 94
-                                                            },
-                                                            "While handling calldata of"
-                                                        ],
-                                                        "start_col": 35,
-                                                        "start_line": 1
-                                                    },
-                                                    "While expanding the reference '__calldata_actual_size' in:"
-                                                ],
-                                                "start_col": 6,
-                                                "start_line": 94
+                                                "start_col": 69,
+                                                "start_line": 95
                                             },
-                                            "While handling calldata of"
+                                            "While handling calldata argument 'calldata'"
                                         ],
-                                        "start_col": 31,
-                                        "start_line": 1
+                                        "start_col": 26,
+                                        "start_line": 8
                                     },
                                     "While expanding the reference '__calldata_ptr' in:"
                                 ],
-                                "start_col": 5,
+                                "start_col": 48,
                                 "start_line": 95
                             },
-                            "While handling calldata argument 'new_implementation'"
+                            "While handling calldata argument 'calldata_len'"
                         ],
                         "start_col": 22,
                         "start_line": 2
                     }
                 },
-                "434": {
+                "447": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 51,
+                        "end_line": 1,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/8799496fe2567340f6719cfd30d7db5f6b8e7aa420ca97e3a3c3ccbdfbb2e674.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 67,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 70,
+                                        "end_line": 8,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 85,
+                                                "end_line": 95,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 69,
+                                                "start_line": 95
+                                            },
+                                            "While handling calldata argument 'calldata'"
+                                        ],
+                                        "start_col": 43,
+                                        "start_line": 8
+                                    },
+                                    "While expanding the reference '__calldata_arg_calldata_len' in:"
+                                ],
+                                "start_col": 48,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'calldata_len'"
+                        ],
+                        "start_col": 35,
+                        "start_line": 1
+                    }
+                },
+                "448": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 74,
+                        "end_line": 8,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 85,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "start_col": 69,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'calldata'"
+                        ],
+                        "start_col": 26,
+                        "start_line": 8
+                    }
+                },
+                "449": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -13998,7 +14588,86 @@
                         "start_line": 1
                     }
                 },
-                "435": {
+                "450": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 67,
+                        "end_line": 1,
+                        "input_file": {
+                            "filename": "autogen/starknet/external/upgrade/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 79,
+                                "end_line": 94,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 38,
+                                        "end_line": 3,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 85,
+                                                "end_line": 95,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "parent_location": [
+                                                    {
+                                                        "end_col": 115,
+                                                        "end_line": 1,
+                                                        "input_file": {
+                                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
+                                                        },
+                                                        "parent_location": [
+                                                            {
+                                                                "end_col": 13,
+                                                                "end_line": 94,
+                                                                "input_file": {
+                                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                                },
+                                                                "start_col": 6,
+                                                                "start_line": 94
+                                                            },
+                                                            "While constructing the external wrapper for:"
+                                                        ],
+                                                        "start_col": 100,
+                                                        "start_line": 1
+                                                    },
+                                                    "While expanding the reference 'range_check_ptr' in:"
+                                                ],
+                                                "start_col": 69,
+                                                "start_line": 95
+                                            },
+                                            "While handling calldata argument 'calldata'"
+                                        ],
+                                        "start_col": 23,
+                                        "start_line": 3
+                                    },
+                                    "While expanding the reference 'range_check_ptr' in:"
+                                ],
+                                "start_col": 64,
+                                "start_line": 94
+                            },
+                            "While constructing the external wrapper for:"
+                        ],
+                        "start_col": 23,
+                        "start_line": 1
+                    }
+                },
+                "451": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14025,7 +14694,7 @@
                                         "end_col": 55,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                                         },
                                         "parent_location": [
                                             {
@@ -14053,7 +14722,7 @@
                         "start_line": 1
                     }
                 },
-                "436": {
+                "452": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14080,7 +14749,7 @@
                                         "end_col": 82,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                                         },
                                         "parent_location": [
                                             {
@@ -14108,7 +14777,7 @@
                         "start_line": 1
                     }
                 },
-                "437": {
+                "453": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14118,15 +14787,15 @@
                     "flow_tracking_data": null,
                     "hints": [],
                     "inst": {
-                        "end_col": 67,
-                        "end_line": 1,
+                        "end_col": 42,
+                        "end_line": 3,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/e651458745e7cd218121c342e0915890767e2f59ddc2e315b8844ad0f47d582e.cairo"
+                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
                         },
                         "parent_location": [
                             {
-                                "end_col": 79,
-                                "end_line": 94,
+                                "end_col": 85,
+                                "end_line": 95,
                                 "input_file": {
                                     "filename": "contracts/proxy/proxy.cairo"
                                 },
@@ -14135,7 +14804,7 @@
                                         "end_col": 115,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                                         },
                                         "parent_location": [
                                             {
@@ -14154,16 +14823,16 @@
                                     },
                                     "While expanding the reference 'range_check_ptr' in:"
                                 ],
-                                "start_col": 64,
-                                "start_line": 94
+                                "start_col": 69,
+                                "start_line": 95
                             },
-                            "While constructing the external wrapper for:"
+                            "While handling calldata argument 'calldata'"
                         ],
                         "start_col": 23,
-                        "start_line": 1
+                        "start_line": 3
                     }
                 },
-                "438": {
+                "455": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14190,7 +14859,7 @@
                                         "end_col": 169,
                                         "end_line": 1,
                                         "input_file": {
-                                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                                         },
                                         "parent_location": [
                                             {
@@ -14218,7 +14887,172 @@
                         "start_line": 1
                     }
                 },
-                "439": {
+                "456": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 47,
+                        "end_line": 1,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/16776347bfc3c84718728a7d5c6c2189ac0c5f697db91093bdb9d32707f1b476.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 46,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 203,
+                                        "end_line": 1,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 13,
+                                                "end_line": 94,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 6,
+                                                "start_line": 94
+                                            },
+                                            "While constructing the external wrapper for:"
+                                        ],
+                                        "start_col": 180,
+                                        "start_line": 1
+                                    },
+                                    "While expanding the reference '__calldata_arg_selector' in:"
+                                ],
+                                "start_col": 31,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'selector'"
+                        ],
+                        "start_col": 31,
+                        "start_line": 1
+                    }
+                },
+                "457": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 51,
+                        "end_line": 1,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/8799496fe2567340f6719cfd30d7db5f6b8e7aa420ca97e3a3c3ccbdfbb2e674.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 67,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 245,
+                                        "end_line": 1,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 13,
+                                                "end_line": 94,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 6,
+                                                "start_line": 94
+                                            },
+                                            "While constructing the external wrapper for:"
+                                        ],
+                                        "start_col": 218,
+                                        "start_line": 1
+                                    },
+                                    "While expanding the reference '__calldata_arg_calldata_len' in:"
+                                ],
+                                "start_col": 48,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'calldata_len'"
+                        ],
+                        "start_col": 35,
+                        "start_line": 1
+                    }
+                },
+                "458": {
+                    "accessible_scopes": [
+                        "__main__",
+                        "__main__",
+                        "__wrappers__",
+                        "__wrappers__.upgrade"
+                    ],
+                    "flow_tracking_data": null,
+                    "hints": [],
+                    "inst": {
+                        "end_col": 58,
+                        "end_line": 5,
+                        "input_file": {
+                            "filename": "autogen/starknet/arg_processor/4f07c4ae795d22b6bc4426e596637ee88f870711dc3768dd8178092f4b2c0b65.cairo"
+                        },
+                        "parent_location": [
+                            {
+                                "end_col": 85,
+                                "end_line": 95,
+                                "input_file": {
+                                    "filename": "contracts/proxy/proxy.cairo"
+                                },
+                                "parent_location": [
+                                    {
+                                        "end_col": 279,
+                                        "end_line": 1,
+                                        "input_file": {
+                                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
+                                        },
+                                        "parent_location": [
+                                            {
+                                                "end_col": 13,
+                                                "end_line": 94,
+                                                "input_file": {
+                                                    "filename": "contracts/proxy/proxy.cairo"
+                                                },
+                                                "start_col": 6,
+                                                "start_line": 94
+                                            },
+                                            "While constructing the external wrapper for:"
+                                        ],
+                                        "start_col": 256,
+                                        "start_line": 1
+                                    },
+                                    "While expanding the reference '__calldata_arg_calldata' in:"
+                                ],
+                                "start_col": 69,
+                                "start_line": 95
+                            },
+                            "While handling calldata argument 'calldata'"
+                        ],
+                        "start_col": 31,
+                        "start_line": 5
+                    }
+                },
+                "460": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14237,7 +15071,7 @@
                         "start_line": 94
                     }
                 },
-                "441": {
+                "462": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14251,7 +15085,7 @@
                                 "end_col": 34,
                                 "end_line": 2,
                                 "input_file": {
-                                    "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                                    "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                                 },
                                 "parent_location": [
                                     {
@@ -14275,7 +15109,7 @@
                         "end_col": 24,
                         "end_line": 3,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                         },
                         "parent_location": [
                             {
@@ -14293,7 +15127,7 @@
                         "start_line": 3
                     }
                 },
-                "443": {
+                "464": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14306,7 +15140,7 @@
                         "end_col": 55,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                         },
                         "parent_location": [
                             {
@@ -14348,7 +15182,7 @@
                         "start_line": 1
                     }
                 },
-                "444": {
+                "465": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14361,7 +15195,7 @@
                         "end_col": 82,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                         },
                         "parent_location": [
                             {
@@ -14403,7 +15237,7 @@
                         "start_line": 1
                     }
                 },
-                "445": {
+                "466": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14416,7 +15250,7 @@
                         "end_col": 115,
                         "end_line": 1,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                         },
                         "parent_location": [
                             {
@@ -14458,7 +15292,7 @@
                         "start_line": 1
                     }
                 },
-                "446": {
+                "467": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14471,7 +15305,7 @@
                         "end_col": 21,
                         "end_line": 4,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                         },
                         "parent_location": [
                             {
@@ -14513,7 +15347,7 @@
                         "start_line": 4
                     }
                 },
-                "448": {
+                "469": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14526,7 +15360,7 @@
                         "end_col": 16,
                         "end_line": 3,
                         "input_file": {
-                            "filename": "autogen/starknet/external/upgrade/01cf0eb538193ad2725822cc1375c42d175a091c20039abd588f161b164243da.cairo"
+                            "filename": "autogen/starknet/external/upgrade/c1ee9ebfc4c605cfd6f653590b0e4d754b8c32a77a57ecd93f29c32d05f96224.cairo"
                         },
                         "parent_location": [
                             {
@@ -14568,7 +15402,7 @@
                         "start_line": 3
                     }
                 },
-                "449": {
+                "470": {
                     "accessible_scopes": [
                         "__main__",
                         "__main__",
@@ -14816,7 +15650,7 @@
                     }
                 }
             ],
-            "441": [
+            "462": [
                 {
                     "accessible_scopes": [
                         "__main__",
@@ -14828,7 +15662,7 @@
                     "flow_tracking_data": {
                         "ap_tracking": {
                             "group": 35,
-                            "offset": 97
+                            "offset": 119
                         },
                         "reference_ids": {}
                     }
@@ -15153,12 +15987,24 @@
             "__main__.upgrade.Args": {
                 "full_name": "__main__.upgrade.Args",
                 "members": {
+                    "calldata": {
+                        "cairo_type": "felt*",
+                        "offset": 3
+                    },
+                    "calldata_len": {
+                        "cairo_type": "felt",
+                        "offset": 2
+                    },
                     "new_implementation": {
                         "cairo_type": "felt",
                         "offset": 0
+                    },
+                    "selector": {
+                        "cairo_type": "felt",
+                        "offset": 1
                     }
                 },
-                "size": 1,
+                "size": 4,
                 "type": "struct"
             },
             "__main__.upgrade.ImplicitArgs": {
@@ -15473,7 +16319,7 @@
                 "decorators": [
                     "external"
                 ],
-                "pc": 432,
+                "pc": 442,
                 "type": "function"
             },
             "__wrappers__.upgrade.Args": {
