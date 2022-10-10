@@ -359,14 +359,14 @@ namespace Sale_Trade {
         trade: SaleTrade
     ) {
         let (trade) = _trades.read(_id);
-        return (trade,);
+        return (trade);
     }
 
     func trade_counter{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}() -> (
         trade_counter: felt
     ) {
         let (trade_counter) = _trade_counter.read();
-        return (trade_counter,);
+        return (trade_counter);
     }
 
     // Returns a trades status
@@ -374,7 +374,7 @@ namespace Sale_Trade {
         _id: felt
     ) -> (status: felt) {
         let (trade) = _trades.read(_id);
-        return (trade.status,);
+        return (trade.status);
     }
 
     // Returns a trades token
@@ -382,8 +382,26 @@ namespace Sale_Trade {
         _id: felt
     ) -> (token_id: Uint256) {
         let (trade) = _trades.read(_id);
-        return (trade.token_id,);
+        return (trade.token_id);
     }
+
+
+    // Returns a bid according to given trade_id and bid_id
+    func bid{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+        _trade_id: felt, _bid_id: felt
+    ) -> (trade: SaleBid) {
+        let (bid) = _bids.read(_trade_id, _bid_id);
+        return (bid);
+    }
+
+    // Returns bid count according to given trade_id 
+    func get_bid_count{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+        _trade_id: felt
+    ) -> (bid_count: felt) {
+        let (bid_count) = _bid_to_item_counter.read(_trade_id);
+        return (bid_count);
+    }
+
 
     //##########
     // SETTERS #
